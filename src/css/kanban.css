@@ -1,0 +1,31 @@
+.kanbanCard {
+    background: white;
+    padding: 15px 20px;
+    border-radius: 15px;
+    margin-bottom: 15px;
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+}
+
+.kanbanCard hr {
+    border-top: 1px solid #EBEBEB;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.kanbanCard span {
+    display: block;
+    margin-bottom: 5px;
+}
+
+.kanbanCardHeader {
+    font-weight: 600;
+    font-size: 10px;
+    line-height: 12px;
+    margin-bottom: 0px !important;
+}
+
+.kanbanCardOrderName {
+    font-weight: bold;
+}
