@@ -19,7 +19,6 @@ class CreateImportersTable extends Migration
             $table->string('nameEn');
             $table->string('phone');
             $table->string('address');
-            $table->timestamps();
         });
     }
 
