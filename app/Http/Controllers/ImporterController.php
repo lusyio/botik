@@ -27,9 +27,9 @@ class ImporterController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-           'name_ru' => 'required|max:255',
-           'name_en' => 'required|max:255',
-           'address' => 'required|max:255',
+           'name_ru' => 'required|max:255|min:1',
+           'name_en' => 'required|max:255|min:1',
+           'address' => 'required|max:255|min:1',
            'phone' => 'required',
        ]);
        $importer = Importer::create($request->all());
@@ -58,9 +58,9 @@ class ImporterController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'name_ru' => 'required|max:255',
-            'name_en' => 'required|max:255',
-            'address' => 'required|max:255',
+            'name_ru' => 'required|max:255|min:1',
+            'name_en' => 'required|max:255|min:1',
+            'address' => 'required|max:255|min:1',
             'phone' => 'required',
         ]);
 
