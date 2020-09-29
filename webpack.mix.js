@@ -1,6 +1,6 @@
 const mix = require('laravel-mix');
-require('laravel-mix-react-css-modules');
 require('laravel-mix-react-typescript-extension');
+require('laravel-mix-react-css-modules');
 
 /*
  |--------------------------------------------------------------------------
@@ -14,8 +14,6 @@ require('laravel-mix-react-typescript-extension');
  */
 
 mix.reactTypeScript('resources/js/app.tsx', 'public/js')
-    .sass('resources/sass/app.scss', 'public/css')
-    .version()
     .webpackConfig({
         module: {
             rules: [
@@ -32,4 +30,4 @@ mix.reactTypeScript('resources/js/app.tsx', 'public/js')
         },
     })
     .reactCSSModules('[path]__[name]___[hash:base64]')
-    .browserSync('http://localhost:8888/')
+    .version()

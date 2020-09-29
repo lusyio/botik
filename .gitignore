@@ -17,3 +17,4 @@ public/mix-manifest.json
 tsconfig.json
 .idea
 .DS_Store
+/public/*.js
