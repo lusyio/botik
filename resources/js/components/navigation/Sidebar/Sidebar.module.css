@@ -1,0 +1,27 @@
+.sidebar {
+    height: 100%;
+    min-height: 635px;
+    background-color: #fff;
+    padding: 15px 15px 20px;
+    width: 100%;
+    border-radius: 15px;
+    margin-top: 15px;
+}
+
+.navLink {
+    display: flex;
+    width: 100%;
+    flex-direction: row;
+    align-items: center;
+    padding: 12px 15px 13px;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    color: #3a3d61;
+    font-size: 13px;
+}
+
+.active {
+    background-color: #3a3d61;
+    color: #fff;
+    font-weight: 500;
+}

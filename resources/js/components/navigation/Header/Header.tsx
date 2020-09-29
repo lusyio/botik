@@ -3,13 +3,18 @@ import React from 'react';
 
 // Styles
 import classes from './Header.module.css'
-
-// App
+import Helmet from 'react-helmet';
 
 const Header: React.FC = () => {
     return (
-        <div className={classes.header}>
-        </div>
+        <>
+            <Helmet>
+                <title>Тайтл</title>
+            </Helmet>
+            <div className={classes.header}>
+                <h1>Заголовок страницы</h1>
+            </div>
+        </>
     );
 }
 

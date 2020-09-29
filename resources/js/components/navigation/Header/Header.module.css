@@ -1,3 +1,17 @@
-.header{
+.header {
+    margin-top: 15px;
+    background: #fff;
+    border-radius: 15px;
+    padding: 17px 30px;
+    margin-bottom: 15px;
+    display: flex;
+    justify-content: space-between;
+}
 
+.header h1 {
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 17px;
+    margin-bottom: 0;
+    margin-top: 6px;
 }
