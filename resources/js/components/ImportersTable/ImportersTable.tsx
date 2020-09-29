@@ -1,10 +1,15 @@
 // React
 import React from 'react';
 
+// Third-party
+// import {NavLink} from 'react-router-dom';
+// import BootstrapTable from 'react-bootstrap-table-next';
+
+// Typescript
+// import {IImportersTable} from './IImportersTable';
+
 const ImportersTable: React.FC = () => {
-    return (
-        <h1>ImportersTable page</h1>
-    );
+    return null;
 }
 
 export default ImportersTable;
