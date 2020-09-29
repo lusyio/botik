@@ -40,6 +40,7 @@
     },
     "dependencies": {
         "@types/react": "^16.9.46",
+        "@types/react-bootstrap-table-next": "^4.0.8",
         "@types/react-helmet": "5.0.15",
         "@types/react-redux": "7.1.7",
         "@types/react-router-dom": "^5.1.5",
@@ -48,6 +49,7 @@
         "eslint-friendly-formatter": "^4.0.1",
         "laravel-mix-react-css-modules": "^2.0.0",
         "laravel-mix-react-typescript-extension": "^1.0.3",
+        "react-bootstrap-table-next": "^4.0.3",
         "react-helmet": "^6.1.0",
         "react-router-dom": "^5.2.0",
         "typescript-plugin-css-modules": "^2.4.0",
