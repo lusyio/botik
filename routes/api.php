@@ -15,6 +15,6 @@ use Illuminate\Support\Facades\Route;
 */
 Route::get('importers', 'ImporterController@index');
 Route::post('importers', 'ImporterController@store');
-Route::get('importers/{id}', 'ImporterController@show');
-Route::put('importers/{id}', 'ImporterController@update');
-Route::delete('importers/{id}', 'ImporterController@destroy');
+Route::get('importers/{importer}', 'ImporterController@show');
+Route::put('importers/{importer}', 'ImporterController@update');
+Route::delete('importers/{importer}', 'ImporterController@destroy');
