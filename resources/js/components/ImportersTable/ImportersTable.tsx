@@ -1,15 +1,47 @@
 // React
-import React from 'react';
+import React, {useEffect} from 'react';
 
 // Third-party
-// import {NavLink} from 'react-router-dom';
-// import BootstrapTable from 'react-bootstrap-table-next';
+import {useDispatch, useSelector} from 'react-redux';
+
+// Actions
+import {fetchImporters} from '../../store/actions/importers';
 
 // Typescript
-// import {IImportersTable} from './IImportersTable';
+import {IImportersRootState} from './IImporters';
 
 const ImportersTable: React.FC = () => {
-    return null;
+    const dispatch = useDispatch();
+
+    useEffect(() => {
+        dispatch(fetchImporters());
+    }, [dispatch]);
+
+    const {importers, loading, error} = useSelector(
+        (state: IImportersRootState) => ({
+            error: state.importersState.error,
+            importers: state.importersState.importers,
+            loading: state.importersState.loading
+        })
+    );
+
+    if (error) {
+        return <div>Error! {error.message}</div>;
+    }
+    if (loading) {
+        return <div>Loading...</div>;
+    }
+    if (!importers.length) {
+        return <div>Importers empty...</div>;
+    }
+
+    console.log(importers)
+
+    return (
+        <h1>
+            Importers page
+        </h1>
+    )
 }
 
 export default ImportersTable;
