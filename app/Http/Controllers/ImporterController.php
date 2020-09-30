@@ -61,7 +61,7 @@ class ImporterController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param Importer $importer
      * @return \Illuminate\Http\JsonResponse
      */
     public function show(Importer $importer)
@@ -72,9 +72,10 @@ class ImporterController extends Controller
     /**
      * Update the specified resource in storage.
      *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param \Illuminate\Http\Request $request
+     * @param Importer $importer
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Illuminate\Validation\ValidationException
      */
     public function update(Request $request, Importer $importer)
     {
@@ -86,8 +87,9 @@ class ImporterController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param Importer $importer
      * @return \Illuminate\Http\JsonResponse
+     * @throws \Exception
      */
     public function destroy(Importer $importer)
     {
