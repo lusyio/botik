@@ -63,7 +63,7 @@ const Importer: React.FC<IImporter> = ({name}: any) => {
                                     <p>{importer.address}</p>
                                 </div>
                             </div>
-                            <NavLink to={`/importer/edit/${id}`}>
+                            <NavLink to={`/importeredit/${id}`}>
                                 Редактировать информацию
                             </NavLink>
                         </div>

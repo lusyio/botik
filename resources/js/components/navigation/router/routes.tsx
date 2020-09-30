@@ -107,7 +107,7 @@ export const routes: IRoute[] = [
     },
     {
         name: 'Добавление нового импортера',
-        path: '/importer/create',
+        path: '/importercreate',
         component: lazy(() =>
             pMinDelay(import('../../../pages/importers/ImporterCreate'), 1000)),
         hide: true,
@@ -117,7 +117,7 @@ export const routes: IRoute[] = [
     },
     {
         name: 'Импортер изменение',
-        path: '/importer/edit/:id',
+        path: '/importeredit/:id',
         component: lazy(() =>
             pMinDelay(import('../../../pages/importers/ImporterEdit'), 1000)),
         hide: true,

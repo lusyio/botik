@@ -92,7 +92,7 @@ const ImportersTable: React.FC = () => {
                                 <SearchBar {...props.searchProps} />
                             </div>
                             <div className="col-lg-6">
-                                <NavLink to={'/importer/create'}>
+                                <NavLink to={'/importercreate'}>
                                     Добавить импортера
                                 </NavLink>
                             </div>
