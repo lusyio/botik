@@ -15,10 +15,11 @@ class CreateImportersTable extends Migration
     {
         Schema::create('importers', function (Blueprint $table) {
             $table->id();
-            $table->string('nameRu');
-            $table->string('nameEn');
+            $table->string('name_ru');
+            $table->string('name_en');
             $table->string('phone');
             $table->string('address');
+            $table->timestamps();
         });
     }
 

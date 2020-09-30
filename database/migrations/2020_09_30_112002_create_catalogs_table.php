@@ -16,7 +16,7 @@ class CreateCatalogsTable extends Migration
         Schema::create('catalogs', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->bigInteger('providerId')->nullable();
+            $table->bigInteger('provider_id')->nullable();
             $table->string('file');
             $table->timestamps();
         });

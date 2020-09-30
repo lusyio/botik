@@ -15,19 +15,19 @@ class CreateProvidersTable extends Migration
     {
         Schema::create('providers', function (Blueprint $table) {
             $table->id();
-            $table->string('nameProviders');
-            $table->string('nameCompany');
+            $table->string('name');
+            $table->string('name_company');
             $table->string('email')->nullable();
             $table->string('website')->nullable();
             $table->string('phone')->nullable();
             $table->string('wechat')->nullable();
             $table->string('country')->nullable();
-            $table->string('beneficiaryName');
-            $table->string('beneficiaryAccountName');
-            $table->string('beneficiaryBankAddress');
-            $table->string('beneficiaryAddress');
-            $table->string('beneficiaryBankName');
-            $table->string('beneficiaryBankCode');
+            $table->string('beneficiary_name');
+            $table->string('beneficiary_account_name');
+            $table->string('beneficiary_bank_address');
+            $table->string('beneficiary_address');
+            $table->string('beneficiary_bank_name');
+            $table->string('beneficiary_bank_code');
             $table->timestamps();
         });
     }

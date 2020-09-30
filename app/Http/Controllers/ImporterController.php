@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Controllers\Controller;
 use App\Importer;
 use Illuminate\Http\Request;
+use App\Http\Resources\ImporterResource;
 
 class ImporterController extends Controller
 {
@@ -15,7 +16,7 @@ class ImporterController extends Controller
      */
     public function index()
     {
-        return response()->json(Importer::all(), 200);
+        return response()->json(ImporterResource::collection(Importer::all()), 200);
     }
 
     /**
@@ -33,7 +34,7 @@ class ImporterController extends Controller
            'phone' => 'required',
        ]);
        $importer = Importer::create($request->all());
-       return response()->json($importer, 201);
+       return response()->json(new ImporterResource($importer), 201);
     }
 
     /**
@@ -44,8 +45,7 @@ class ImporterController extends Controller
      */
     public function show($id)
     {
-        $importer = Importer::find($id);
-        return response()->json($importer, 200);
+        return response()->json(new ImporterResource(Importer::find($id)), 200);
     }
 
     /**
@@ -64,9 +64,8 @@ class ImporterController extends Controller
             'phone' => 'required',
         ]);
 
-        $importer = Importer::find($id);
-        $importer->update($request->all());
-        return response()->json($importer, 200);
+        $importer = Importer::find($id)->update($request->all());
+        return response()->json(new ImporterResource($importer), 200);
     }
 
     /**
@@ -78,6 +77,6 @@ class ImporterController extends Controller
     public function destroy($id)
     {
         Importer::find($id)->delete();
-        return response()->json(null, 204);
+        return response()->json([], 204); //Что вернуть?
     }
 }

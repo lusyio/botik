@@ -18,4 +18,3 @@ Route::post('importers', 'ImporterController@store');
 Route::get('importers/{id}', 'ImporterController@show');
 Route::put('importers/{id}', 'ImporterController@update');
 Route::delete('importers/{id}', 'ImporterController@destroy');
-

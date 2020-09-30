@@ -8,11 +8,11 @@ class Provider extends Model
 {
     public function catalogs()
     {
-        return $this->hasMany('App\Catalog', 'providerId');
+        return $this->hasMany('App\Catalog');
     }
 
     public function orders()
     {
-        return $this->hasMany('App\Order', 'providerId');
+        return $this->hasMany('App\Order');
     }
 }

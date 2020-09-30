@@ -15,17 +15,17 @@ class CreateProductsTable extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('nameRu');
-            $table->string('nameEn')->nullable();
-            $table->text('aboutRu');
-            $table->text('aboutEn')->nullable();
-            $table->bigInteger('catalogId')->nullable();
+            $table->string('name_ru');
+            $table->string('name_en')->nullable();
+            $table->text('about_ru');
+            $table->text('about_en')->nullable();
+            $table->bigInteger('catalog_id')->nullable();
             $table->string('image');
-            $table->integer('priceRub');
-            $table->integer('priceUsd');
-            $table->integer('priceCny');
-            $table->integer('weightNetto');
-            $table->integer('weightBrutto');
+            $table->integer('price_rub');
+            $table->integer('price_usd');
+            $table->integer('price_cny');
+            $table->integer('weight_netto');
+            $table->integer('weight_brutto');
             $table->timestamps();
         });
     }

@@ -8,7 +8,7 @@ class Order extends Model
 {
     public function provider()
     {
-        return $this->belongsTo('App\Provider', 'providerId');
+        return $this->belongsTo('App\Provider');
     }
 
     public function tags()

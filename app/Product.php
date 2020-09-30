@@ -8,6 +8,6 @@ class Product extends Model
 {
     public function catalog()
     {
-        return $this->belongsTo('App\Catalog','catalogId');
+        return $this->belongsTo('App\Catalog');
     }
 }
