@@ -4,8 +4,9 @@ import React, {useEffect} from 'react';
 // Third-party
 import {useDispatch, useSelector} from 'react-redux';
 import BootstrapTable from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
 import {NavLink} from 'react-router-dom';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 
 // Actions
 import {fetchImporters} from '../../store/actions/importers';
@@ -73,16 +74,42 @@ const ImportersTable: React.FC = () => {
         }
     ];
 
+    const {SearchBar} = Search;
+
     return (
-        <div className='card'>
-            <div className="card-body text-muted">
-                <BootstrapTable
-                    bootstrap4 keyField='id'
-                    data={importers} columns={columns}
-                    bordered={false} pagination={paginationFactory()}
-                />
-            </div>
-        </div>
+        <>
+            <ToolkitProvider
+                bootstrap4
+                keyField='id'
+                data={importers}
+                columns={columns}
+                search
+            >
+                {props => (
+                    <div>
+                        <div className="row">
+                            <div className="col-lg-6">
+                                <SearchBar {...props.searchProps} />
+                            </div>
+                            <div className="col-lg-6">
+                                <NavLink to={'/importer/create'}>
+                                    Добавить импортера
+                                </NavLink>
+                            </div>
+                        </div>
+                        <div className='card'>
+                            <div className="card-body text-muted">
+                                <BootstrapTable
+                                    pagination={paginationFactory({})}
+                                    bordered={false}
+                                    {...props.baseProps}
+                                />
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </ToolkitProvider>
+        </>
     )
 }
 
