@@ -2,16 +2,15 @@
 import React from 'react';
 
 // App
-import ImportersTable from '../../components/ImportersTable/ImportersTable';
 import Header from '../../components/navigation/Header/Header';
 
-const Importers: React.FC = ({name}: any) => {
+const ImporterCreate: React.FC = ({name}: any) => {
     return (
         <>
             <Header name={name}/>
-            <ImportersTable/>
+            <h1>Importer Create</h1>
         </>
     );
 }
 
-export default Importers;
+export default ImporterCreate;

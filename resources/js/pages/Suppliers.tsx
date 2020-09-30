@@ -1,9 +1,15 @@
 // React
 import React from 'react';
 
-const Suppliers: React.FC = () => {
+// App
+import Header from '../components/navigation/Header/Header';
+
+const Suppliers: React.FC = ({name}: any) => {
     return (
-        <h1>Suppliers page</h1>
+        <>
+            <Header name={name}/>
+            <h1>Suppliers page</h1>
+        </>
     );
 }
 

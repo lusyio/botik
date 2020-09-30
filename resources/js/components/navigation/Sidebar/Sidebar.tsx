@@ -8,7 +8,6 @@ import {NavLink} from 'react-router-dom';
 import classes from './Sidebar.module.css'
 import {routes} from '../router/routes';
 
-
 const Sidebar: React.FC = () => {
     const renderLinks = routes => {
         return routes.map((route, index) => (

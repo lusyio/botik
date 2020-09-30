@@ -39,6 +39,9 @@
         "typescript": "^4.0.2"
     },
     "dependencies": {
+        "@loadable/component": "^5.13.2",
+        "@types/loadable__component": "^5.13.1",
+        "@types/p-min-delay": "^3.0.0",
         "@types/react": "^16.9.46",
         "@types/react-bootstrap-table-next": "^4.0.8",
         "@types/react-helmet": "5.0.15",
@@ -49,6 +52,7 @@
         "eslint-friendly-formatter": "^4.0.1",
         "laravel-mix-react-css-modules": "^2.0.0",
         "laravel-mix-react-typescript-extension": "^1.0.3",
+        "p-min-delay": "^3.1.0",
         "react-bootstrap-table-next": "^4.0.3",
         "react-bootstrap-table2-paginator": "^2.1.2",
         "react-content-loader": "^5.1.2",

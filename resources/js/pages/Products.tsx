@@ -1,9 +1,15 @@
 // React
 import React from 'react';
 
-const Products: React.FC = () => {
+// Typescript
+import Header from '../components/navigation/Header/Header';
+
+const Products: React.FC = ({name}: any) => {
     return (
+        <>
+            <Header name={name}/>
             <h1>Products page</h1>
+        </>
     );
 }
 

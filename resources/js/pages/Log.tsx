@@ -1,9 +1,15 @@
 // React
 import React from 'react';
 
-const Log: React.FC = () => {
+// Typescript
+import Header from '../components/navigation/Header/Header';
+
+const Log: React.FC = ({name}: any) => {
     return (
-        <h1>Log page</h1>
+        <>
+            <Header name={name}/>
+            <h1>Log page</h1>
+        </>
     );
 }
 

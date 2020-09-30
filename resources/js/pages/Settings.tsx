@@ -1,9 +1,15 @@
 // React
 import React from 'react';
 
-const Settings: React.FC = () => {
+// App
+import Header from '../components/navigation/Header/Header';
+
+const Settings: React.FC = ({name}: any) => {
     return (
-        <h1>Settings page</h1>
+        <>
+            <Header name={name}/>
+            <h1>Settings page</h1>
+        </>
     );
 }
 

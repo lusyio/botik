@@ -6,7 +6,6 @@ import PropTypes from 'prop-types';
 import classes from './Layout.module.css'
 
 // App
-import Header from '../components/navigation/Header/Header';
 import Sidebar from '../components/navigation/Sidebar/Sidebar';
 
 const Layout: React.FC = (props) => {
@@ -18,7 +17,6 @@ const Layout: React.FC = (props) => {
                         <Sidebar/>
                     </div>
                     <main role='main' className="col-lg-10 pl-5">
-                        <Header/>
                         {props.children}
                     </main>
                 </div>
@@ -28,7 +26,7 @@ const Layout: React.FC = (props) => {
 }
 
 Layout.propTypes = {
-    children: PropTypes.node.isRequired
+    children: PropTypes.node.isRequired,
 }
 
 export default Layout;

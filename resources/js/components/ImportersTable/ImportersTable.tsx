@@ -15,7 +15,7 @@ import {IImportersRootState} from './IImporters';
 
 // App
 import Placeholder from '../UI/Placeholder/Placeholder';
-import Loader from '../UI/Loader';
+import Loader from '../UI/Loader/Loader';
 
 const ImportersTable: React.FC = () => {
     const dispatch = useDispatch();
@@ -48,7 +48,7 @@ const ImportersTable: React.FC = () => {
 
     function importerNameFormatter(nameRu, row) {
         return (
-            <NavLink to={`/importer/:${row.id}`}>{nameRu}</NavLink>
+            <NavLink to={`/importer/${row.id}`}>{nameRu}</NavLink>
         );
     }
 
