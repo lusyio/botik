@@ -8,7 +8,6 @@ import axios, {AxiosError} from 'axios';
 export const fetchImporters = () => async dispatch => {
     await dispatch({
         type: FETCH_IMPORTERS_START,
-        payload: []
     });
 
     const url = '/api/importers'

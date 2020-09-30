@@ -3,12 +3,18 @@ import React, {useEffect} from 'react';
 
 // Third-party
 import {useDispatch, useSelector} from 'react-redux';
+import BootstrapTable from 'react-bootstrap-table-next';
+import paginationFactory from 'react-bootstrap-table2-paginator';
+import {NavLink} from 'react-router-dom';
 
 // Actions
 import {fetchImporters} from '../../store/actions/importers';
 
 // Typescript
 import {IImportersRootState} from './IImporters';
+
+// App
+import Placeholder from '../UI/Placeholder/Placeholder';
 
 const ImportersTable: React.FC = () => {
     const dispatch = useDispatch();
@@ -32,15 +38,50 @@ const ImportersTable: React.FC = () => {
         return <div>Loading...</div>;
     }
     if (!importers.length) {
-        return <div>Importers empty...</div>;
+        return <Placeholder
+            description='Нажмите на кнопку «Добавить импортера»,
+             чтобы он отображался в списке'
+            link='/importer/add' linkName='Добавить импортера'
+            title='В этом списке ещё нет импортеров'/>;
     }
 
-    console.log(importers)
+    function importerNameFormatter(name, row) {
+        return (
+            <NavLink to={`/importer/${row.id}`}>{name}</NavLink>
+        );
+    }
+
+    const columns = [
+        {
+            dataField: 'nameRu',
+            text: 'Название',
+            classes: 'title',
+            sort: true,
+            formatter: importerNameFormatter
+        },
+        {
+            dataField: 'address',
+            text: 'Адрес',
+            classes: 'email',
+            sort: true
+        },
+        {
+            dataField: 'phone',
+            text: 'Телефон',
+            classes: 'phone',
+        }
+    ];
 
     return (
-        <h1>
-            Importers page
-        </h1>
+        <div className='card'>
+            <div className="card-body text-muted">
+                <BootstrapTable
+                    bootstrap4 keyField='id'
+                    data={importers} columns={columns}
+                    bordered={false} pagination={paginationFactory()}
+                />
+            </div>
+        </div>
     )
 }
 
