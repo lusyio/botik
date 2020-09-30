@@ -18,7 +18,8 @@ module.exports = {
         'require-jsdoc': 'off',
         'operator-linebreak': 'off',
         'valid-jsdoc': 'off',
-        'space-before-function-paren': 'off'
+        'space-before-function-paren': 'off',
+        'react/prop-types': 'off',
     },
     'plugins': [
         'react',

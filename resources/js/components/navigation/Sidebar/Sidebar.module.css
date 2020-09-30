@@ -20,7 +20,13 @@
     font-size: 13px;
 }
 
-.active {
+.navLink:hover {
+    text-decoration: none;
+    color: #3a3d61;
+    background-color: #f7f8fa;
+}
+
+.navLink.active {
     background-color: #3a3d61;
     color: #fff;
     font-weight: 500;

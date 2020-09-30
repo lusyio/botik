@@ -1,5 +1,5 @@
 // Fonts
-@import url('https://fonts.googleapis.com/css?family=Nunito');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;900&display=swap');
 
 // Variables
 @import 'variables';
@@ -9,4 +9,95 @@
 
 body {
     background: #f7f8fa;
+    color: #3a3d61;
+    font-family: "Montserrat", sans-serif;
+}
+
+.react-bootstrap-table {
+    .table {
+        border-collapse: separate;
+        border-spacing: 0 11px;
+        font-weight: 500;
+        table-layout: fixed;
+
+        .title {
+            font-weight: 700;
+
+            a {
+                color: #3a3d61;
+                text-decoration: none;
+            }
+        }
+
+        tbody {
+            tr {
+                background: #fafbfc;
+                border-radius: 10px;
+                transition: all .3s;
+
+                &:hover {
+                    box-shadow: 0 3px 6px rgba(27, 83, 244, .1);
+                    cursor: pointer;
+                    transition: all .1s;
+                }
+            }
+        }
+
+        thead {
+            th {
+                border: none;
+                color: #949599;
+                font-weight: 500;
+                font-size: 12px;
+                line-height: 15px;
+                transition: all .3s;
+                padding-bottom: 19px;
+            }
+        }
+
+        td {
+            border: none;
+        }
+
+        td, th {
+            padding: 1rem .75rem;
+        }
+
+        th.sortable {
+            cursor: pointer;
+        }
+
+        td:first-child, th:first-child {
+            padding-left: 48px;
+        }
+    }
+}
+
+.react-bootstrap-table-pagination {
+    #pageDropDown {
+        margin-left: 48px;
+        position: relative;
+        top: -2px;
+        height: 22px;
+        padding: 2px 5px;
+        background: #fafbfc;
+        line-height: normal;
+        border: 1px solid var(--orange);
+        border-radius: 5px;
+        min-width: auto;
+        color: #3a3d61;
+    }
+
+    .pagination {
+        justify-content: flex-end;
+    }
+}
+
+.card {
+    border: none;
+    border-radius: 10px;
+}
+
+.card-body {
+    padding: 25px 30px;
 }

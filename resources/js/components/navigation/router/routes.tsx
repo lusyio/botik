@@ -62,7 +62,7 @@ export const routes: IRoute[] = [
     {
         name: 'Импортеры',
         path: '/importers',
-        component: lazy(() => import('../../../pages/Importers')),
+        component: lazy(() => import('../../../pages/importers/Importers')),
         hide: false,
         exact: false,
         private: true,
