@@ -7,7 +7,7 @@ import {Redirect, Route} from 'react-router-dom';
 // Typescript
 import {IRoute} from './IRoute';
 
-const RouteWithSubRoutes = (route: IRoute) => {
+const RouteWithSubRoutes: React.FC<IRoute> = (route) => {
     /** Authenticated flag */
         // const authenticated: boolean = user.authenticated;
     const authenticated: boolean = true;

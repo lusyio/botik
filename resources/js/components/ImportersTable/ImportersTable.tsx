@@ -15,6 +15,7 @@ import {IImportersRootState} from './IImporters';
 
 // App
 import Placeholder from '../UI/Placeholder/Placeholder';
+import Loader from '../UI/Loader';
 
 const ImportersTable: React.FC = () => {
     const dispatch = useDispatch();
@@ -35,7 +36,7 @@ const ImportersTable: React.FC = () => {
         return <div>Error! {error.message}</div>;
     }
     if (loading) {
-        return <div>Loading...</div>;
+        return <Loader/>;
     }
     if (!importers.length) {
         return <Placeholder
@@ -45,9 +46,9 @@ const ImportersTable: React.FC = () => {
             title='В этом списке ещё нет импортеров'/>;
     }
 
-    function importerNameFormatter(name, row) {
+    function importerNameFormatter(nameRu, row) {
         return (
-            <NavLink to={`/importer/${row.id}`}>{name}</NavLink>
+            <NavLink to={`/importer/:${row.id}`}>{nameRu}</NavLink>
         );
     }
 

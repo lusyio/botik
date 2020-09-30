@@ -3,6 +3,7 @@ import React, {lazy} from 'react';
 
 // Typescript
 import {IRoute} from './IRoute';
+import Loader from '../../UI/Loader';
 
 export const routes: IRoute[] = [
     {
@@ -30,7 +31,7 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>,
+        fallback: <Loader/>
     },
     {
         name: 'Контейнеры',
@@ -39,7 +40,7 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>,
+        fallback: <Loader/>
     },
     {
         name: 'Товары',
@@ -48,7 +49,7 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>,
+        fallback: <Loader/>
     },
     {
         name: 'Поставщики',
@@ -57,7 +58,7 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>,
+        fallback: <Loader/>
     },
     {
         name: 'Импортеры',
@@ -66,7 +67,16 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>
+        fallback: <Loader/>
+    },
+    {
+        name: 'Импортер',
+        path: '/importers/:importerId',
+        component: lazy(() => import('../../../pages/importers/Importer')),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
     },
     {
         name: 'Лог',
@@ -75,7 +85,7 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>,
+        fallback: <Loader/>
     },
     {
         name: 'Настройки',
@@ -84,6 +94,6 @@ export const routes: IRoute[] = [
         hide: false,
         exact: false,
         private: true,
-        fallback: <div> Loading... </div>,
+        fallback: <Loader/>
     }
 ];
