@@ -18,3 +18,9 @@ Route::post('importers', 'ImporterController@store');
 Route::get('importers/{importer}', 'ImporterController@show');
 Route::put('importers/{importer}', 'ImporterController@update');
 Route::delete('importers/{importer}', 'ImporterController@destroy');
+
+Route::get('containers', 'ContainerController@index');
+Route::post('containers', 'ContainerController@store');
+Route::get('containers/{container}', 'ContainerController@show');
+Route::put('containers/{container}', 'ContainerController@update');
+Route::delete('containers/{container}', 'ContainerController@destroy');
