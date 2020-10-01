@@ -24,3 +24,9 @@ Route::post('containers', 'ContainerController@store');
 Route::get('containers/{container}', 'ContainerController@show');
 Route::put('containers/{container}', 'ContainerController@update');
 Route::delete('containers/{container}', 'ContainerController@destroy');
+
+Route::get('providers', 'ProviderController@index');
+Route::post('providers', 'ProviderController@store');
+Route::get('providers/{provider}', 'ProviderController@show');
+Route::put('providers/{provider}', 'ProviderController@update');
+Route::delete('providers/{provider}', 'ProviderController@destroy');

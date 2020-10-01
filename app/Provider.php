@@ -6,6 +6,25 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
+    use TranslateToCamelCase;
+
+    protected $fillable = [
+      'name',
+      'name_company',
+      'email',
+      'website',
+      'phone',
+      'wechat',
+      'country_id',
+      'beneficiary_name',
+      'beneficiary_address',
+      'beneficiary_account_name',
+      'beneficiary_bank_address',
+      'beneficiary_bank_name',
+      'beneficiary_bank_code',
+      'beneficiary_name'
+    ];
+
     public function catalogs()
     {
         return $this->hasMany('App\Catalog');
@@ -15,4 +34,10 @@ class Provider extends Model
     {
         return $this->hasMany('App\Order');
     }
+
+    public function country()
+    {
+        return $this->belongsTo('App\Country');
+    }
+
 }

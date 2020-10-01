@@ -3,6 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CatalogResource;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\CountryResource;
 
 class ProviderResource extends JsonResource
 {
@@ -22,12 +25,14 @@ class ProviderResource extends JsonResource
             'website' => $this->website,
             'phone' => $this->phone,
             'wechat' => $this->wechat,
-            'countryId' => $this->country_id,
+            'country' => new CountryResource($this->country),
             'beneficiaryName' => $this->beneficiary_name,
             'beneficiaryAccountName' => $this->beneficiary_account_name,
             'beneficiaryBankAddress' => $this->beneficiary_bank_address,
             'beneficiaryBankName' => $this->beneficiary_bank_name,
             'beneficiaryBankCode' => $this->beneficiary_bank_code,
+            'catalogs' => CatalogResource::collection($this->catalogs),
+            'orders' => OrderResource::collection($this->orders),
             'createdAt' => $this->created_at,
             'updatedAt' => $this->updated_at,
         ];
