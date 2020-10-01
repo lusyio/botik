@@ -21,7 +21,7 @@ class CreateProvidersTable extends Migration
             $table->string('website')->nullable();
             $table->string('phone')->nullable();
             $table->string('wechat')->nullable();
-            $table->string('country')->nullable();
+            $table->string('country_id')->nullable();
             $table->string('beneficiary_name');
             $table->string('beneficiary_account_name');
             $table->string('beneficiary_bank_address');
