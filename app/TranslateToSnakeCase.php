@@ -3,9 +3,9 @@ namespace App;
 
 use Illuminate\Support\Str;
 
-trait TranslateToCamelCase
+trait TranslateToSnakeCase
 {
-    public function dashesToCamelCase($request)
+    public function dashesToSnakeCase($request)
     {
         $newRequest = [];
         foreach ($request as $key => $value) {

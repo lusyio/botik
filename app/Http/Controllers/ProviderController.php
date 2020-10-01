@@ -69,7 +69,7 @@ class ProviderController extends Controller
     public function store(Request $request, Provider $provider)
     {
         $this->providerCreateValidator($request->all());
-        $newProvider = $provider->create($provider->dashesToCamelCase($request->all()));
+        $newProvider = $provider->create($provider->dashesToSnakeCase($request->all()));
         return response()->json(new ProviderResource($newProvider), 201);
     }
 
@@ -94,7 +94,7 @@ class ProviderController extends Controller
     public function update(Request $request, Provider $provider)
     {
         $this->providerCreateValidator($request->all());
-        $provider->update($provider->dashesToCamelCase($request->all()));
+        $provider->update($provider->dashesToSnakeCase($request->all()));
         return response()->json(new ProviderResource($provider), 200);
     }
 

@@ -30,3 +30,9 @@ Route::post('providers', 'ProviderController@store');
 Route::get('providers/{provider}', 'ProviderController@show');
 Route::put('providers/{provider}', 'ProviderController@update');
 Route::delete('providers/{provider}', 'ProviderController@destroy');
+
+Route::get('products', 'ProductController@index');
+Route::post('products', 'ProductController@store');
+Route::get('products/{products}', 'ProductController@show');
+Route::put('products/{products}', 'ProductController@update');
+Route::delete('products/{products}', 'ProductController@destroy');

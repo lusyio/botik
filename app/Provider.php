@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Provider extends Model
 {
-    use TranslateToCamelCase;
+    use TranslateToSnakeCase;
 
     protected $fillable = [
       'name',

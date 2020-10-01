@@ -50,7 +50,7 @@ class ContainerController extends Controller
     public function store(Request $request, Container $container)
     {
         $this->containerCreateValidator($request->all());
-        $newContainer = $container->create($container->dashesToCamelCase($request->all()));
+        $newContainer = $container->create($container->dashesToSnakeCase($request->all()));
         return response()->json(new ContainerResource($newContainer), 201);
     }
 
@@ -75,7 +75,7 @@ class ContainerController extends Controller
     public function update(Request $request, Container $container)
     {
         $this->containerCreateValidator($request->all());
-        $container->update($container->dashesToCamelCase($request->all()));
+        $container->update($container->dashesToSnakeCase($request->all()));
         return response()->json(new ContainerResource($container), 200);
     }
 

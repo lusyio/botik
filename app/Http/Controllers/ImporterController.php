@@ -54,7 +54,7 @@ class ImporterController extends Controller
     public function store(Request $request, Importer $importer)
     {
        $this->importerCreateValidator($request->all())->validate();
-       $newImporter = $importer->create($importer->dashesToCamelCase($request->all()));
+       $newImporter = $importer->create($importer->dashesToSnakeCase($request->all()));
        return response()->json(new ImporterResource($newImporter), 201);
     }
 
@@ -80,7 +80,7 @@ class ImporterController extends Controller
     public function update(Request $request, Importer $importer)
     {
         $this->importerCreateValidator($request->all())->validate();
-        $importer->update($importer->dashesToCamelCase($request->all()));
+        $importer->update($importer->dashesToSnakeCase($request->all()));
         return response()->json(new ImporterResource($importer), 200);
     }
 
