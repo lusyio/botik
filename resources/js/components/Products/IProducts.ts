@@ -15,9 +15,11 @@ export interface IProduct {
     aboutEn?: string;
     catalogId?: number;
     image: string;
-    priceRub: number;
-    priceUsd: number;
-    priceCny: number;
+    price: {
+        rub?: number;
+        usd?: number;
+        cny: number;
+    };
     weightNetto: number;
     weightBrutto: number;
     createdAt?: number;

@@ -56,6 +56,14 @@ const ProductsTable: React.FC = () => {
         }
     ]
 
+    function moneyFormatter(price, _) {
+        return (
+            Object.entries(price).map(([_, val]) => {
+                return val + ' | '
+            })
+        )
+    }
+
     const columns = [
         {
             dataField: 'image',
@@ -71,9 +79,10 @@ const ProductsTable: React.FC = () => {
             sort: true
         },
         {
-            dataField: 'priceCny',
+            dataField: 'price',
             text: 'Цена',
             classes: 'price',
+            formatter: moneyFormatter,
             sort: true
         },
         {
