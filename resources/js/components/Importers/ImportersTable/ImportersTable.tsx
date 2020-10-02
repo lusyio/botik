@@ -9,14 +9,15 @@ import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 
 // Actions
-import {fetchImporters} from '../../store/actions/importers';
+import {fetchImporters} from '../../../store/actions/importers';
 
 // Typescript
-import {IImportersRootState} from './IImporters';
+import {IImportersRootState} from '../IImporters';
 
 // App
-import Placeholder from '../UI/Placeholder/Placeholder';
-import Loader from '../UI/Loader/Loader';
+import Placeholder from '../../UI/Placeholder/Placeholder';
+import Loader from '../../UI/Loader/Loader';
+import {nameToLinkFormatter} from '../../../utils';
 
 const ImportersTable: React.FC = () => {
     const dispatch = useDispatch();
@@ -47,19 +48,14 @@ const ImportersTable: React.FC = () => {
             title='В этом списке ещё нет импортеров'/>;
     }
 
-    function importerNameFormatter(nameRu, row) {
-        return (
-            <NavLink to={`/importer/${row.id}`}>{nameRu}</NavLink>
-        );
-    }
-
     const columns = [
         {
             dataField: 'nameRu',
             text: 'Название',
             classes: 'title',
             sort: true,
-            formatter: importerNameFormatter
+            formatter: (nameRu, row) =>
+                nameToLinkFormatter(nameRu, row, 'importer')
         },
         {
             dataField: 'address',
@@ -77,39 +73,37 @@ const ImportersTable: React.FC = () => {
     const {SearchBar} = Search;
 
     return (
-        <>
-            <ToolkitProvider
-                bootstrap4
-                keyField='id'
-                data={importers}
-                columns={columns}
-                search
-            >
-                {props => (
-                    <div>
-                        <div className="row">
-                            <div className="col-lg-6">
-                                <SearchBar {...props.searchProps} />
-                            </div>
-                            <div className="col-lg-6">
-                                <NavLink to={'/importercreate'}>
-                                    Добавить импортера
-                                </NavLink>
-                            </div>
+        <ToolkitProvider
+            bootstrap4
+            keyField='id'
+            data={importers}
+            columns={columns}
+            search
+        >
+            {props => (
+                <div>
+                    <div className="row">
+                        <div className="col-lg-6">
+                            <SearchBar {...props.searchProps} />
                         </div>
-                        <div className='card'>
-                            <div className="card-body text-muted">
-                                <BootstrapTable
-                                    pagination={paginationFactory({})}
-                                    bordered={false}
-                                    {...props.baseProps}
-                                />
-                            </div>
+                        <div className="col-lg-6">
+                            <NavLink to={'/importercreate'}>
+                                Добавить импортера
+                            </NavLink>
                         </div>
                     </div>
-                )}
-            </ToolkitProvider>
-        </>
+                    <div className='card'>
+                        <div className="card-body text-muted">
+                            <BootstrapTable
+                                pagination={paginationFactory({})}
+                                bordered={false}
+                                {...props.baseProps}
+                            />
+                        </div>
+                    </div>
+                </div>
+            )}
+        </ToolkitProvider>
     )
 }
 

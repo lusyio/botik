@@ -11,7 +11,7 @@ import axios, {AxiosError} from 'axios';
 export const fetchImporters = () => async dispatch => {
     await dispatch({
         type: FETCH_IMPORTERS_START,
-    });
+    })
 
     const url = '/api/importers'
     axios
@@ -20,20 +20,20 @@ export const fetchImporters = () => async dispatch => {
             dispatch({
                 type: FETCH_IMPORTERS_SUCCESS,
                 payload: answer.data
-            });
+            })
         })
         .catch((error: AxiosError) => {
             dispatch({
                 type: FETCH_IMPORTERS_ERROR,
                 payload: error.response
-            });
+            })
         })
 }
 
 export const fetchImporterById = (id) => async dispatch => {
     await dispatch({
         type: FETCH_IMPORTER_START,
-    });
+    })
 
     const url = `/api/importers/${id}`
     axios
@@ -42,12 +42,12 @@ export const fetchImporterById = (id) => async dispatch => {
             dispatch({
                 type: FETCH_IMPORTER_SUCCESS,
                 payload: answer.data
-            });
+            })
         })
         .catch((error: AxiosError) => {
             dispatch({
                 type: FETCH_IMPORTER_ERROR,
                 payload: error.response
-            });
+            })
         })
 }

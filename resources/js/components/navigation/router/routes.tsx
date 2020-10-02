@@ -56,7 +56,7 @@ export const routes: IRoute[] = [
         pageName: 'Список каталогов',
         path: '/catalogs',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Products'), 1000)),
+            pMinDelay(import('../../../pages/products/Products'), 1000)),
         hide: false,
         exact: false,
         private: true,
@@ -67,7 +67,7 @@ export const routes: IRoute[] = [
         pageName: 'Список оцифрованных товаров',
         path: '/products',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Products'), 1000)),
+            pMinDelay(import('../../../pages/products/Products'), 1000)),
         hide: false,
         exact: false,
         private: true,
