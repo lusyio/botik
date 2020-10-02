@@ -8,6 +8,8 @@ class Country extends Model
 {
     use TranslateToSnakeCase;
 
+    protected $fillable = ['name'];
+
     public function providers()
     {
         return $this->hasMany('App\Provider');
