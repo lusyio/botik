@@ -3,14 +3,15 @@ import React from 'react';
 
 // Third-party
 import {NavLink} from 'react-router-dom';
-import BootstrapTable, {BootstrapTableProps} from 'react-bootstrap-table-next';
+import BootstrapTable, {BootstrapTableProps, ColumnFormatter}
+    from 'react-bootstrap-table-next';
 import paginationFactory from 'react-bootstrap-table2-paginator';
 import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 
-interface expandRow {
+interface expandRow<T extends object = any, E = any> {
     dataField: string,
     text: string,
-    formatter?: string | React.FC
+    formatter?: ColumnFormatter<T, E>
 }
 
 interface IAutoTable extends BootstrapTableProps {
