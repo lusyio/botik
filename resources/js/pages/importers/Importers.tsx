@@ -2,7 +2,8 @@
 import React from 'react';
 
 // App
-import ImportersTable from '../../components/ImportersTable/ImportersTable';
+import ImportersTable
+    from '../../components/Importers/ImportersTable/ImportersTable';
 import Header from '../../components/navigation/Header/Header';
 
 const Importers: React.FC = ({name}: any) => {

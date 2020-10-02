@@ -9,25 +9,21 @@ import {
 } from '../actions/actionTypes';
 
 // Typescript
-import {IImportersState, ImportersActionTypes}
-    from '../../components/ImportersTable/IImporters';
+import {
+    IImportersState,
+    IImportersActionTypes
+} from '../../components/Importers/IImporters';
 
 const initialState: IImportersState = {
     importers: [],
-    importer: {
-        id: null,
-        nameRu: '',
-        nameEn: '',
-        address: '',
-        phone: '',
-    },
+    importer: {},
     loading: true,
     error: null
 }
 
 export default function importersReducer(
     state = initialState,
-    action: ImportersActionTypes): IImportersState {
+    action: IImportersActionTypes): IImportersState {
     switch (action.type) {
         case FETCH_IMPORTERS_START:
             return {
@@ -35,11 +31,11 @@ export default function importersReducer(
             }
         case FETCH_IMPORTERS_SUCCESS:
             return {
-                ...state, importers: action.payload, loading: false
+                ...state, loading: false, importers: action.payload
             }
         case FETCH_IMPORTERS_ERROR:
             return {
-                ...state, error: action.payload
+                ...state, loading: false, error: action.payload
             }
         case FETCH_IMPORTER_START:
             return {
@@ -47,11 +43,11 @@ export default function importersReducer(
             }
         case FETCH_IMPORTER_SUCCESS:
             return {
-                ...state, importer: action.payload, loading: false
+                ...state, loading: false, importer: action.payload
             }
         case FETCH_IMPORTER_ERROR:
             return {
-                ...state, error: action.payload
+                ...state, loading: false, error: action.payload
             }
         default:
             return state

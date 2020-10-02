@@ -12,7 +12,7 @@ import {fetchImporterById} from '../../store/actions/importers';
 import {
     IImporter,
     IImportersRootState
-} from '../../components/ImportersTable/IImporters';
+} from '../../components/Importers/IImporters';
 
 // App
 import Loader from '../../components/UI/Loader/Loader';
@@ -41,7 +41,6 @@ const Importer: React.FC<IImporter> = ({name}: any) => {
     if (loading) {
         return <Loader/>;
     }
-
     return (
         <>
             <Header name={name}/>
@@ -57,10 +56,18 @@ const Importer: React.FC<IImporter> = ({name}: any) => {
                                     <p>Адрес:</p>
                                 </div>
                                 <div className="col-lg-7">
-                                    <p>{importer.nameRu}</p>
-                                    <p>{importer.nameEn}</p>
-                                    <p>{importer.phone}</p>
-                                    <p>{importer.address}</p>
+                                    <p>{'nameRu' in importer
+                                        ? importer.nameRu
+                                        : ''}</p>
+                                    <p>{'nameEn' in importer
+                                        ? importer.nameEn
+                                        : ''}</p>
+                                    <p>{'phone' in importer
+                                        ? importer.phone
+                                        : ''}</p>
+                                    <p>{'address' in importer
+                                        ? importer.address
+                                        : ''}</p>
                                 </div>
                             </div>
                             <NavLink to={`/importeredit/${id}`}>
