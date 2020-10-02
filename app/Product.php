@@ -41,7 +41,7 @@ class Product extends Model
         }
         $path = Storage::putFileAs(Product::IMAGE_DIRECTORY, $image, $this->id . '_' . $this->id . $image->extension());
         $this->image = $path;
-        $this->save;
+        $this->save();
     }
 
     public function deleteImage()

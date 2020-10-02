@@ -33,6 +33,12 @@ Route::delete('providers/{provider}', 'ProviderController@destroy');
 
 Route::get('products', 'ProductController@index');
 Route::post('products', 'ProductController@store');
-Route::get('products/{products}', 'ProductController@show');
-Route::put('products/{products}', 'ProductController@update');
-Route::delete('products/{products}', 'ProductController@destroy');
+Route::get('products/{product}', 'ProductController@show');
+Route::put('products/{product}', 'ProductController@update');
+Route::delete('products/{product}', 'ProductController@destroy');
+
+Route::get('catalogs', 'CatalogController@index');
+Route::post('catalogs', 'ProductController@store');
+Route::get('catalogs/{catalog}', 'ProductController@show');
+Route::put('catalogs/{catalog}', 'ProductController@update');
+Route::delete('catalogs/{catalog}', 'ProductController@destroy');
