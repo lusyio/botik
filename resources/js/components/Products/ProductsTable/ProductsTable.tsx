@@ -45,6 +45,17 @@ const ProductsTable: React.FC = () => {
             title='В этом списке ещё нет товаров'/>;
     }
 
+    const expandRowTable = [
+        {
+            dataField: 'aboutRu',
+            text: 'Описание'
+        },
+        {
+            dataField: 'weightNetto',
+            text: 'Вес нетто'
+        }
+    ]
+
     const columns = [
         {
             dataField: 'image',
@@ -75,6 +86,7 @@ const ProductsTable: React.FC = () => {
 
     return (
         <AutoTable
+            expandRowTable={expandRowTable}
             keyField='id' data={products} columns={columns}
             button={{link: 'productcreate', text: 'Добавить товар'}}/>
     );
