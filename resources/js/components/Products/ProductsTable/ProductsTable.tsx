@@ -3,10 +3,6 @@ import React, {useEffect} from 'react';
 
 // Third-party
 import {useDispatch, useSelector} from 'react-redux';
-import BootstrapTable from 'react-bootstrap-table-next';
-import {NavLink} from 'react-router-dom';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 
 // Actions
 import {fetchProducts} from '../../../store/actions/products';
@@ -17,7 +13,8 @@ import {IProductsRootState} from '../IProducts';
 // App
 import Loader from '../../UI/Loader/Loader';
 import Placeholder from '../../UI/Placeholder/Placeholder';
-import {imgFormatter} from '../../../utils';
+import {imgFormatter, timeConverter} from '../../../utils';
+import AutoTable from '../../UI/AutoTable/AutoTable';
 
 const ProductsTable: React.FC = () => {
     const dispatch = useDispatch();
@@ -69,46 +66,17 @@ const ProductsTable: React.FC = () => {
             sort: true
         },
         {
-            dataField: 'update',
+            dataField: 'updateAt',
             text: 'Обновление',
-            sort: true
+            sort: true,
+            formatter: (updateAt) => timeConverter(updateAt)
         }
     ];
 
-    const {SearchBar} = Search;
-
     return (
-        <ToolkitProvider
-            bootstrap4
-            keyField='id'
-            data={products}
-            columns={columns}
-            search
-        >
-            {props => (
-                <div>
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <SearchBar {...props.searchProps} />
-                        </div>
-                        <div className="col-lg-6">
-                            <NavLink to={'/productcreate'}>
-                                Добавить товар
-                            </NavLink>
-                        </div>
-                    </div>
-                    <div className='card'>
-                        <div className="card-body text-muted">
-                            <BootstrapTable
-                                pagination={paginationFactory({})}
-                                bordered={false}
-                                {...props.baseProps}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )}
-        </ToolkitProvider>
+        <AutoTable
+            keyField='id' data={products} columns={columns}
+            button={{link: 'productcreate', text: 'Добавить товар'}}/>
     );
 }
 

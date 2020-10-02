@@ -3,10 +3,6 @@ import React, {useEffect} from 'react';
 
 // Third-party
 import {useDispatch, useSelector} from 'react-redux';
-import BootstrapTable from 'react-bootstrap-table-next';
-import {NavLink} from 'react-router-dom';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
 
 // Actions
 import {fetchImporters} from '../../../store/actions/importers';
@@ -18,6 +14,7 @@ import {IImportersRootState} from '../IImporters';
 import Placeholder from '../../UI/Placeholder/Placeholder';
 import Loader from '../../UI/Loader/Loader';
 import {nameToLinkFormatter} from '../../../utils';
+import AutoTable from '../../UI/AutoTable/AutoTable';
 
 const ImportersTable: React.FC = () => {
     const dispatch = useDispatch();
@@ -70,40 +67,10 @@ const ImportersTable: React.FC = () => {
         }
     ];
 
-    const {SearchBar} = Search;
-
     return (
-        <ToolkitProvider
-            bootstrap4
-            keyField='id'
-            data={importers}
-            columns={columns}
-            search
-        >
-            {props => (
-                <div>
-                    <div className="row">
-                        <div className="col-lg-6">
-                            <SearchBar {...props.searchProps} />
-                        </div>
-                        <div className="col-lg-6">
-                            <NavLink to={'/importercreate'}>
-                                Добавить импортера
-                            </NavLink>
-                        </div>
-                    </div>
-                    <div className='card'>
-                        <div className="card-body text-muted">
-                            <BootstrapTable
-                                pagination={paginationFactory({})}
-                                bordered={false}
-                                {...props.baseProps}
-                            />
-                        </div>
-                    </div>
-                </div>
-            )}
-        </ToolkitProvider>
+        <AutoTable
+            keyField='id' data={importers} columns={columns}
+            button={{link: 'importercreate', text: 'Добавить импортера'}}/>
     )
 }
 
