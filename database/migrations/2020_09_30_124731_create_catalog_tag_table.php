@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateOrderTagTable extends Migration
+class CreateCatalogTagTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,8 @@ class CreateOrderTagTable extends Migration
      */
     public function up()
     {
-        Schema::create('order_tag', function (Blueprint $table) {
-            $table->bigInteger('order_id');
+        Schema::create('catalog_tag', function (Blueprint $table) {
+            $table->bigInteger('catalog_id');
             $table->bigInteger('tag_id');
         });
     }
@@ -26,6 +26,6 @@ class CreateOrderTagTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('order_tag');
+        Schema::dropIfExists('catalog_tag');
     }
 }

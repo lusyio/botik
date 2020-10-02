@@ -10,4 +10,9 @@ class Catalog extends Model
     {
         return $this->belongsTo('App\Provider');
     }
+
+    public function tags()
+    {
+       return $this->belongsToMany('App\Tag', 'catalog_tag', 'catalog_id', 'tag_id');
+    }
 }
