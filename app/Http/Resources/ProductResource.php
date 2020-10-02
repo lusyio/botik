@@ -5,6 +5,7 @@ namespace App\Http\Resources;
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CatalogResource;
 use App\Http\Resources\OrderResource;
+use phpDocumentor\Reflection\Types\Object_;
 
 class ProductResource extends JsonResource
 {
@@ -24,9 +25,7 @@ class ProductResource extends JsonResource
             'aboutEn' => $this->about_en,
             'catalogId' => $this->catalog_id,
             'image' => $this->image,
-            'priceRub' => (object)$this->price_rub,
-            'priceUsd' => (object)$this->price_usd,
-            'priceCny' => (object)$this->price_cny,
+            'price' => (Object)['rub' => $this->price_rub, 'usd' => $this->price_usd, 'cny' => $this->price_cny],
             'weightNetto' => $this->weight_netto,
             'weightBrutto' => $this->weight_brutto,
             'catalog' => new CatalogResource($this->catalog),
