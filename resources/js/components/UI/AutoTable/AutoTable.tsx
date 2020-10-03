@@ -102,16 +102,16 @@ const AutoTable: React.FC<IAutoTable> =
             >
                 {props => (
                     <div>
-                        <div className="row">
-                            <div className="col-lg-6">
+                        <div className="d-flex justify-content-between mb-3">
+                            <div className="searchBar">
                                 <SearchBar {...props.searchProps} />
                             </div>
                             {button
-                                ? <div className="col-lg-6">
-                                    <NavLink to={`/${button.link}`}>
+                                ?
+                                <NavLink to={`/${button.link}`}
+                                         className='btn addButton'>
                                         {button.text}
-                                    </NavLink>
-                                </div>
+                                </NavLink>
                                 : null
                             }
                         </div>
