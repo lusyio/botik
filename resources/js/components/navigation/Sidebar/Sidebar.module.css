@@ -20,6 +20,11 @@
     font-size: 13px;
 }
 
+.navLink svg {
+    margin-right: 15px;
+    width: 15px;
+}
+
 .navLink:hover {
     text-decoration: none;
     color: #3a3d61;
