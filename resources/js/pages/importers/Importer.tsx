@@ -47,15 +47,15 @@ const Importer: React.FC<IImporter> = ({name}: any) => {
             <div className='row'>
                 <div className='col-lg-8'>
                     <div className="card">
-                        <div className="card-body">
-                            <div className="row">
-                                <div className="col-lg-5">
+                        <div className="card-body-info">
+                            <div className="row mb-3">
+                                <div className="col-lg-5 infoBlockHeaders">
                                     <p>Название:</p>
                                     <p>Name:</p>
                                     <p>Телефон:</p>
                                     <p>Адрес:</p>
                                 </div>
-                                <div className="col-lg-7">
+                                <div className="col-lg-7 infoBlockText">
                                     <p>{'nameRu' in importer
                                         ? importer.nameRu
                                         : ''}</p>
@@ -70,7 +70,8 @@ const Importer: React.FC<IImporter> = ({name}: any) => {
                                         : ''}</p>
                                 </div>
                             </div>
-                            <NavLink to={`/importeredit/${id}`}>
+                            {/* eslint-disable-next-line max-len */}
+                            <NavLink to={`/importeredit/${id}`} className='editButton'>
                                 Редактировать информацию
                             </NavLink>
                         </div>

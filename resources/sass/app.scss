@@ -7,6 +7,41 @@
 // Bootstrap
 @import '~bootstrap/scss/bootstrap';
 
+:root {
+    --main-color: #3a3d61;
+    --dark-color: #3a3d61;
+    --grey-color: #F7F8FA;
+    --red-color: #F87266;
+    --blue: #1B53F4;
+    --indigo: #6574cd;
+    --purple: #9561e2;
+    --pink: #f66d9b;
+    --red: #e3342f;
+    --orange: #f44a0e;
+    --yellow: #ffed4a;
+    --green: #38c172;
+    --teal: #4dc0b5;
+    --cyan: #6cb2eb;
+    --white: #fff;
+    --gray: #949599;
+    --gray-dark: #626262;
+    --primary: #3a3d61;
+    --secondary: #6c757d;
+    --success: #38c172;
+    --info: #6cb2eb;
+    --warning: #ffed4a;
+    --danger: #e3342f;
+    --light: #c8ccd7;
+    --dark: #343a40;
+    --breakpoint-xs: 0;
+    --breakpoint-sm: 576px;
+    --breakpoint-md: 768px;
+    --breakpoint-lg: 992px;
+    --breakpoint-xl: 1200px;
+    --font-family-sans-serif: 'Montserrat', sans-serif;
+    --font-family-monospace: SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
 body {
     background: #f7f8fa;
     color: #3a3d61;
@@ -19,9 +54,10 @@ img {
 
 .react-bootstrap-table {
     .table {
+        font-size: 12px;
+        color: #3a3d61;
         border-collapse: separate;
         border-spacing: 0 11px;
-        font-weight: 500;
         table-layout: fixed;
 
         .title {
@@ -57,6 +93,9 @@ img {
                 transition: all .3s;
                 padding-bottom: 19px;
             }
+            th:focus {
+                outline: 0;
+            }
         }
 
         td {
@@ -90,10 +129,27 @@ img {
         border-radius: 5px;
         min-width: auto;
         color: #3a3d61;
+        font-size: 12px;
     }
 
     .pagination {
         justify-content: flex-end;
+    }
+
+    .page-link {
+        font-size: 12px;
+        padding: 2px;
+        text-align: center;
+        height: 22px;
+        font-weight: 500;
+        color: #3a3d61;
+        min-width: 22px !important;
+    }
+
+    .page-item.active .page-link {
+        background-color: #3a3d61;
+        border-color: #3a3d61;
+        color: white;
     }
 }
 
@@ -104,4 +160,136 @@ img {
 
 .card-body {
     padding: 25px 30px;
+}
+
+.card-body-info {
+    padding: 25px 45px;
+}
+
+.infoBlockHeaders {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    color: #B4B6BD;
+}
+
+.infoBlockText {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 600;
+    color: #3A405F;
+}
+
+// Инпуты, селекты и кнопки
+.btn {
+    max-height: 50px;
+}
+
+input:not([type=checkbox]), textarea {
+    height: 40px;
+    background: #F3F5FA;
+    background-color: #F3F5FA;
+    font-size: 14px;
+    border: none;
+    border-radius: 10px;
+    color: var(--dark-color);
+    padding: 11px 24px;
+    width: 100%;
+    transition: 0.5s all;
+    font-weight: 500;
+}
+
+select {
+    height: 40px !important;
+    background-color: #F3F5FA !important;
+    font-size: 14px !important;
+    border: none !important;
+    border-radius: 10px !important;
+    color: var(--dark-color);
+    padding: 11px 24px !important;
+    -moz-appearance:none; /* Firefox */
+    -webkit-appearance:none; /* Safari and Chrome */
+    appearance:none;
+    background-image: url(/imgs/svg/arrow.svg);
+    background-repeat: no-repeat;
+    background-position: right 20px bottom 16px;
+    background-size: 10px;
+    font-weight: 500 !important;
+}
+
+input:focus, select:focus, textarea:focus, .addButton:hover {
+    border: 0;
+    outline: none;
+    box-shadow: 0px 5px 10px rgba(27, 83, 244, 0.05);
+    transition: 0.3s all;
+}
+
+input::-webkit-input-placeholder {
+    color: #B4B6BD;
+}
+
+input::-moz-placeholder {
+    color: #B4B6BD;
+}
+
+input:-moz-placeholder {
+    color: #B4B6BD;
+}
+
+input:-ms-input-placeholder {
+    color: #B4B6BD;
+}
+
+label {
+    font-weight: 500;
+    font-size: 12px;
+    color: var(--gray);
+}
+
+.addButton {
+    border-radius: 15px;
+    border: none;
+    color: var(--orange) !important;
+    background: var(--white) url(/imgs/svg/plus.svg) no-repeat 21px 13px !important;
+    min-width: 206px;
+    padding-left: 67px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    padding-right: 30px;
+}
+
+.editButton {
+    color: var(--primary) !important;
+    background: var(--white) url(/imgs/svg/edit.svg) no-repeat 0px 4px !important;
+    padding-left: 26px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+// Поиск
+
+.searchBar input {
+    padding-left: 60px !important;
+    background: white url(/imgs/svg/search.svg) no-repeat 30px 17px !important;
+    height: 50px !important;
+    transition: 0.5s all !important;
+    min-width: 262px;
+    font-size: 12px !important;
+}
+
+.searchBar input:focus {
+    box-shadow: 0px 5px 10px rgba(27, 83, 244, 0.1) !important;
+    transition: 0.3s all;
+}
+
+.searchBar input:hover {
+    border: 0;
+    outline: none;
+    box-shadow: 0px 5px 10px rgba(27, 83, 244, 0.05);
+    transition: 0.3s all;
 }
