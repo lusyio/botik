@@ -10,7 +10,7 @@ import axios, {AxiosError} from 'axios';
 
 export const fetchImporters = () => async dispatch => {
     await dispatch({
-        type: FETCH_IMPORTERS_START,
+        type: FETCH_IMPORTERS_START
     })
 
     const url = '/api/importers'
