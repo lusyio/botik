@@ -103,7 +103,7 @@ export const routes: IRoute[] = [
         hide: true,
         exact: false,
         private: true,
-        fallback: <div>Loading...</div>
+        fallback: <Loader/>
     },
     {
         name: 'Добавление нового импортера',
@@ -113,7 +113,7 @@ export const routes: IRoute[] = [
         hide: true,
         exact: false,
         private: true,
-        fallback: <div>Loading...</div>
+        fallback: <Loader/>
     },
     {
         name: 'Импортер изменение',
@@ -123,7 +123,7 @@ export const routes: IRoute[] = [
         hide: true,
         exact: false,
         private: true,
-        fallback: <div>Loading...</div>
+        fallback: <Loader/>
     },
     {
         name: 'Лог',
