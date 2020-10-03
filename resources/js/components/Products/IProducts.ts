@@ -8,28 +8,28 @@ import {
 } from '../../store/actions/actionTypes';
 
 export interface IProduct {
-    id: number | null;
-    nameRu: string;
-    nameEn?: string;
-    aboutRu?: string;
-    aboutEn?: string;
-    catalogId?: number;
-    image: string;
+    id: number | null
+    nameRu: string
+    nameEn?: string
+    aboutRu?: string
+    aboutEn?: string
+    catalogId?: number
+    image: string
     price: {
-        rub?: number;
-        usd?: number;
-        cny: number;
-    };
-    weightNetto: number;
-    weightBrutto: number;
-    createdAt?: number;
-    updatedAt?: number;
+        rub?: number
+        usd?: number
+        cny: number
+    }
+    weightNetto: number
+    weightBrutto: number
+    createdAt?: number
+    updatedAt?: number
 }
 
 export interface IProductsState {
-    products: IProduct[] | [];
-    product: IProduct | {};
-    loading: boolean;
+    products: IProduct[] | []
+    product: IProduct | {}
+    loading: boolean
     error: any
 }
 
@@ -38,35 +38,35 @@ export interface IProductsRootState {
 }
 
 interface IFetchProductsStart {
-    type: typeof FETCH_PRODUCTS_START,
+    type: typeof FETCH_PRODUCTS_START
     loading: boolean
 }
 
 interface IFetchProductsSuccess {
-    type: typeof FETCH_PRODUCTS_SUCCESS,
+    type: typeof FETCH_PRODUCTS_SUCCESS
     payload: IProduct[]
     loading: boolean
 }
 
 interface IFetchProductsError {
-    type: typeof FETCH_PRODUCTS_ERROR,
+    type: typeof FETCH_PRODUCTS_ERROR
     payload: any
     loading: boolean
 }
 
 interface IFetchProductStart {
-    type: typeof FETCH_PRODUCT_START,
+    type: typeof FETCH_PRODUCT_START
     loading: boolean
 }
 
 interface IFetchProductSuccess {
-    type: typeof FETCH_PRODUCT_SUCCESS,
+    type: typeof FETCH_PRODUCT_SUCCESS
     payload: IProduct
     loading: boolean
 }
 
 interface IFetchProductError {
-    type: typeof FETCH_PRODUCT_ERROR,
+    type: typeof FETCH_PRODUCT_ERROR
     payload: any
     loading: boolean
 }

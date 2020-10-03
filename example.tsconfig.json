@@ -5,8 +5,19 @@
         "module": "esnext",
         "noImplicitAny": false,
         "preserveConstEnums": true,
-        "baseUrl": "./app",
-        "lib": ["dom", "es5", "es6", "es7", "es2017"],
+        "baseUrl": ".",
+        "paths": {
+            "*": [
+                "*"
+            ]
+        },
+        "lib": [
+            "dom",
+            "es5",
+            "es6",
+            "es7",
+            "es2017"
+        ],
         "allowSyntheticDefaultImports": true,
         "esModuleInterop": true,
         "jsx": "react",

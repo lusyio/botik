@@ -15,7 +15,7 @@ interface expandRow<T extends object = any, E = any> {
 }
 
 interface IAutoTable extends BootstrapTableProps {
-    button: {
+    button?: {
         link: string;
         text: string
     } | undefined,
