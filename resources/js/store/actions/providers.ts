@@ -1,50 +1,50 @@
 import axios, {AxiosError} from 'axios';
 import {
-    FETCH_CONTAINERS_ERROR,
-    FETCH_CONTAINERS_START,
-    FETCH_CONTAINERS_SUCCESS,
-    FETCH_CONTAINER_ERROR,
-    FETCH_CONTAINER_START,
-    FETCH_CONTAINER_SUCCESS
+    FETCH_PROVIDERS_ERROR,
+    FETCH_PROVIDERS_START,
+    FETCH_PROVIDERS_SUCCESS,
+    FETCH_PROVIDER_ERROR,
+    FETCH_PROVIDER_START,
+    FETCH_PROVIDER_SUCCESS
 } from './actionTypes';
 
-export const fetchContainers = () => async dispatch => {
+export const fetchProviders = () => async dispatch => {
     await dispatch({
-        type: FETCH_CONTAINERS_START
+        type: FETCH_PROVIDERS_START
     })
 
-    const url = '/api/containers'
+    const url = '/api/providers'
     axios.get(url)
         .then((answer) => {
             dispatch({
-                type: FETCH_CONTAINERS_SUCCESS,
+                type: FETCH_PROVIDERS_SUCCESS,
                 payload: answer.data
             })
         })
         .catch((error: AxiosError) => {
             dispatch({
-                type: FETCH_CONTAINERS_ERROR,
+                type: FETCH_PROVIDERS_ERROR,
                 payload: error.response
             })
         })
 }
 
-export const fetchContainerById = (id) => async dispatch => {
+export const fetchProviderById = (id) => async dispatch => {
     await dispatch({
-        type: FETCH_CONTAINER_START
+        type: FETCH_PROVIDER_START
     })
 
-    const url = `/api/containers/${id}`
+    const url = `/api/providers/${id}`
     axios.get(url)
         .then((answer) => {
             dispatch({
-                type: FETCH_CONTAINER_SUCCESS,
+                type: FETCH_PROVIDER_SUCCESS,
                 payload: answer.data
             })
         })
         .catch((error: AxiosError) => {
             dispatch({
-                type: FETCH_CONTAINER_ERROR,
+                type: FETCH_PROVIDER_ERROR,
                 payload: error.response
             })
         })
