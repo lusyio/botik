@@ -59,7 +59,7 @@ export const createImporter = (data) => async dispatch => {
     await dispatch({
         type: CREATE_IMPORTER_START,
     })
-    const url = '/api/importers/'
+    const url = '/api/importers'
     axios
         .post(url, data)
         .then((answer) => {
