@@ -18,7 +18,7 @@ mix.reactTypeScript('resources/js/app.tsx', 'public/js')
         module: {
             rules: [
                 {
-                    test: /\.(jsx|js|tsx)$/,
+                    test: /\.(jsx|js|tsx|ts)$/,
                     loader: 'eslint-loader',
                     enforce: 'pre',
                     exclude: /(node_modules)/,

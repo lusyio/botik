@@ -5,12 +5,6 @@
         "module": "esnext",
         "noImplicitAny": false,
         "preserveConstEnums": true,
-        "baseUrl": ".",
-        "paths": {
-            "*": [
-                "*"
-            ]
-        },
         "lib": [
             "dom",
             "es5",

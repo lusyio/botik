@@ -1,15 +1,9 @@
 // React
 import React from 'react';
 
-// App
-import Header from '../../components/navigation/Header/Header';
-
-const ProductEdit: React.FC = ({name}: any) => {
+const ProductEdit: React.FC = () => {
     return (
-        <>
-            <Header name={name}/>
-            <h1>Product Edit page</h1>
-        </>
+        <h1>Product Edit page</h1>
     );
 }
 

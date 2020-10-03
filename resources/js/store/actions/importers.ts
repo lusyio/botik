@@ -1,4 +1,7 @@
 import {
+    CREATE_IMPORTER_ERROR,
+    CREATE_IMPORTER_START,
+    CREATE_IMPORTER_SUCCESS,
     FETCH_IMPORTERS_ERROR,
     FETCH_IMPORTERS_START,
     FETCH_IMPORTERS_SUCCESS,
@@ -47,6 +50,27 @@ export const fetchImporterById = (id) => async dispatch => {
         .catch((error: AxiosError) => {
             dispatch({
                 type: FETCH_IMPORTER_ERROR,
+                payload: error.response
+            })
+        })
+}
+
+export const createImporter = (data) => async dispatch => {
+    await dispatch({
+        type: CREATE_IMPORTER_START,
+    })
+    const url = '/api/importers/'
+    axios
+        .post(url, data)
+        .then((answer) => {
+            dispatch({
+                type: CREATE_IMPORTER_SUCCESS,
+                payload: answer.data
+            })
+        })
+        .catch((error: AxiosError) => {
+            dispatch({
+                type: CREATE_IMPORTER_ERROR,
                 payload: error.response
             })
         })

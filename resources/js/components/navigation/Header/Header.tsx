@@ -1,31 +1,34 @@
 // React
-import React from 'react';
+import React, {useState} from 'react';
 
 // Styles
 import classes from './Header.module.css'
+import {useLocation} from 'react-router-dom';
 
-interface IHeader {
-    name: any
-}
-
-const Header: React.FC<IHeader> = ({name}) => {
+const Header: React.FC = () => {
+    const [pageName, setPageName]: any = useState('')
+    const location = useLocation()
+    // @todo Оптимизировать
+    setTimeout(() => {
+        return setPageName(location.state);
+    }, 0)
     return (
-        <>
-            <div className={classes.header}>
-                <div>
-                <h1>{name ? name : 'Название страницы'}</h1>
-                </div>
-                <div className="d-flex">
-                    <span className={classes.HeaderBlockUserPic}>И</span>
-                    <div className={classes.HeaderBlockUserNameRole}>
-                        {/* eslint-disable-next-line max-len */}
-                        <span className={classes.HeaderBlockUserName}>Иванов И.И.</span>
-                        {/* eslint-disable-next-line max-len */}
-                        <span className={classes.HeaderBlockUserRole}>Администратор</span>
-                    </div>
+        <div className={classes.header}>
+            <div>
+                <h1>{pageName}</h1>
+            </div>
+            <div className="d-flex">
+                <span className={classes.HeaderBlockUserPic}>И</span>
+                <div className={classes.HeaderBlockUserNameRole}>
+                    <span className={classes.HeaderBlockUserName}>
+                        Иванов И.И.
+                    </span>
+                    <span className={classes.HeaderBlockUserRole}>
+                        Администратор
+                    </span>
                 </div>
             </div>
-        </>
+        </div>
     );
 }
 

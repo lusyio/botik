@@ -5,7 +5,7 @@ import React from 'react';
 import {NavLink} from 'react-router-dom';
 
 // Styles
-import classes from './Sidebar.module.css'
+import classes from './Sidebar.module.css';
 import {routes} from '../router/routes';
 
 const Sidebar: React.FC = () => {
@@ -17,16 +17,17 @@ const Sidebar: React.FC = () => {
                          className={classes.navLink}
                          activeClassName={classes.active}
                          exact={route.exact}>
+                    {route.icon}
                     {route.name}
                 </NavLink>
                 : null
-        ))
-    }
+        ));
+    };
     return (
         <nav className={classes.sidebar + ' nav flex-column'}>
             {renderLinks(routes)}
         </nav>
     );
-}
+};
 
 export default Sidebar;

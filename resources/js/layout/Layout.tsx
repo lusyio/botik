@@ -7,6 +7,7 @@ import classes from './Layout.module.css'
 
 // App
 import Sidebar from '../components/navigation/Sidebar/Sidebar';
+import Header from '../components/navigation/Header/Header';
 
 const Layout: React.FC = (props) => {
     return (
@@ -17,6 +18,7 @@ const Layout: React.FC = (props) => {
                         <Sidebar/>
                     </div>
                     <main role='main' className="col-lg-10 pl-5">
+                        <Header/>
                         {props.children}
                     </main>
                 </div>

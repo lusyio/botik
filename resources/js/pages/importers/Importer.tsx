@@ -16,9 +16,8 @@ import {
 
 // App
 import Loader from '../../components/UI/Loader/Loader';
-import Header from '../../components/navigation/Header/Header';
 
-const Importer: React.FC<IImporter> = ({name}: any) => {
+const Importer: React.FC<IImporter> = () => {
     const {id}: any = useParams();
 
     const dispatch = useDispatch();
@@ -42,50 +41,47 @@ const Importer: React.FC<IImporter> = ({name}: any) => {
         return <Loader/>;
     }
     return (
-        <>
-            <Header name={name}/>
-            <div className='row'>
-                <div className='col-lg-8'>
-                    <div className="card">
-                        <div className="card-body-info">
-                            <div className="row mb-3">
-                                <div className="col-lg-5 infoBlockHeaders">
-                                    <p>Название:</p>
-                                    <p>Name:</p>
-                                    <p>Телефон:</p>
-                                    <p>Адрес:</p>
-                                </div>
-                                <div className="col-lg-7 infoBlockText">
-                                    <p>{'nameRu' in importer
-                                        ? importer.nameRu
-                                        : ''}</p>
-                                    <p>{'nameEn' in importer
-                                        ? importer.nameEn
-                                        : ''}</p>
-                                    <p>{'phone' in importer
-                                        ? importer.phone
-                                        : ''}</p>
-                                    <p>{'address' in importer
-                                        ? importer.address
-                                        : ''}</p>
-                                </div>
+        <div className='row'>
+            <div className='col-lg-8'>
+                <div className="card">
+                    <div className="card-body-info">
+                        <div className="row mb-3">
+                            <div className="col-lg-5 infoBlockHeaders">
+                                <p>Название:</p>
+                                <p>Name:</p>
+                                <p>Телефон:</p>
+                                <p>Адрес:</p>
                             </div>
-                            {/* eslint-disable-next-line max-len */}
-                            <NavLink to={`/importeredit/${id}`} className='editButton'>
-                                Редактировать информацию
-                            </NavLink>
+                            <div className="col-lg-7 infoBlockText">
+                                <p>{'nameRu' in importer
+                                    ? importer.nameRu
+                                    : ''}</p>
+                                <p>{'nameEn' in importer
+                                    ? importer.nameEn
+                                    : ''}</p>
+                                <p>{'phone' in importer
+                                    ? importer.phone
+                                    : ''}</p>
+                                <p>{'address' in importer
+                                    ? importer.address
+                                    : ''}</p>
+                            </div>
                         </div>
-                    </div>
-                </div>
-                <div className='col-lg-4'>
-                    <div className="card">
-                        <div className="card-body">
-                            Текущие заказы
-                        </div>
+                        {/* eslint-disable-next-line max-len */}
+                        <NavLink to={`/importeredit/${id}`} className='editButton'>
+                            Редактировать информацию
+                        </NavLink>
                     </div>
                 </div>
             </div>
-        </>
+            <div className='col-lg-4'>
+                <div className="card">
+                    <div className="card-body">
+                        Текущие заказы
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 }
 

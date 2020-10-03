@@ -1,4 +1,7 @@
 import {
+    CREATE_IMPORTER_ERROR,
+    CREATE_IMPORTER_START,
+    CREATE_IMPORTER_SUCCESS,
     FETCH_IMPORTERS_ERROR,
     FETCH_IMPORTERS_START,
     FETCH_IMPORTERS_SUCCESS,
@@ -62,6 +65,24 @@ interface IFetchImporterError {
     type: typeof FETCH_IMPORTER_ERROR
 }
 
+interface ICreateImporterStart {
+    type: typeof CREATE_IMPORTER_START
+    loading: boolean
+}
+
+interface ICreateImporterSuccess {
+    payload: IImporter;
+    type: typeof CREATE_IMPORTER_SUCCESS
+    loading: boolean
+}
+
+interface ICreateImporterError {
+    loading: boolean
+    payload: any
+    type: typeof CREATE_IMPORTER_ERROR
+}
+
 export type IImportersActionTypes =
     IFetchImportersStart | IFetchImportersSuccess | IFetchImportersError |
-    IFetchImporterStart | IFetchImporterSuccess | IFetchImporterError
+    IFetchImporterStart | IFetchImporterSuccess | IFetchImporterError |
+    ICreateImporterStart | ICreateImporterSuccess | ICreateImporterError

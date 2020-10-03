@@ -2,14 +2,11 @@
 import React from 'react';
 
 // App
-import Header from '../../components/navigation/Header/Header';
+import ImporterForm from '../../components/Importers/ImporterForm/ImporterForm';
 
-const ImporterCreate: React.FC = ({name}: any) => {
+const ImporterCreate: React.FC = () => {
     return (
-        <>
-            <Header name={name}/>
-            <h1>Importer Create</h1>
-        </>
+        <ImporterForm/>
     );
 }
 

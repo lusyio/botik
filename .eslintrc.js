@@ -24,6 +24,9 @@ module.exports = {
     'plugins': [
         'react',
     ],
+    'ignorePatterns': [
+        'resources/js/components/UI/iconComponents/*.tsx'
+    ],
     'extends': [
         'plugin:react/recommended',
         'eslint:recommended',

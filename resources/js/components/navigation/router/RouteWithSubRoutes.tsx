@@ -2,7 +2,7 @@
 import React, {Suspense} from 'react';
 
 // Third-party
-import {Redirect, Route} from 'react-router-dom';
+import {Redirect, Route, useHistory} from 'react-router-dom';
 
 // Typescript
 import {IRoute} from './IRoute';
@@ -10,6 +10,8 @@ import {IRoute} from './IRoute';
 const RouteWithSubRoutes: React.FC<IRoute> = (route => {
     /** Authenticated flag */
         // const authenticated: boolean = user.authenticated;
+    const history = useHistory()
+    history.location.state = route.pageName || route.name
     const authenticated: boolean = true;
     return (
         <Suspense fallback={route.fallback}>

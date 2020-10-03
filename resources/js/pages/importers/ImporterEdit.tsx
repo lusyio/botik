@@ -5,15 +5,12 @@ import React from 'react';
 // import {useParams} from 'react-router-dom';
 
 // App
-import Header from '../../components/navigation/Header/Header';
+import ImporterForm from '../../components/Importers/ImporterForm/ImporterForm';
 
 const ImporterEdit: React.FC = ({name}: any) => {
     // const {id}: any = useParams();
     return (
-        <>
-            <Header name={name}/>
-            <h1>Importer edit page</h1>
-        </>
+        <ImporterForm/>
     );
 }
 

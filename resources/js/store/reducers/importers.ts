@@ -5,7 +5,10 @@ import {
     FETCH_IMPORTERS_ERROR,
     FETCH_IMPORTER_START,
     FETCH_IMPORTER_SUCCESS,
-    FETCH_IMPORTER_ERROR
+    FETCH_IMPORTER_ERROR,
+    CREATE_IMPORTER_SUCCESS,
+    CREATE_IMPORTER_ERROR,
+    CREATE_IMPORTER_START
 } from '../actions/actionTypes';
 
 // Typescript
@@ -46,6 +49,18 @@ export default function importersReducer(
                 ...state, loading: false, importer: action.payload
             }
         case FETCH_IMPORTER_ERROR:
+            return {
+                ...state, loading: false, error: action.payload
+            }
+        case CREATE_IMPORTER_START:
+            return {
+                ...state, loading: true
+            }
+        case CREATE_IMPORTER_SUCCESS:
+            return {
+                ...state, loading: false, importer: action.payload
+            }
+        case CREATE_IMPORTER_ERROR:
             return {
                 ...state, loading: false, error: action.payload
             }
