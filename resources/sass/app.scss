@@ -162,6 +162,24 @@ img {
     padding: 25px 30px;
 }
 
+.card-body-info {
+    padding: 25px 45px;
+}
+
+.infoBlockHeaders {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 500;
+    color: #B4B6BD;
+}
+
+.infoBlockText {
+    font-size: 12px;
+    line-height: 15px;
+    font-weight: 600;
+    color: #3A405F;
+}
+
 // Инпуты, селекты и кнопки
 .btn {
     max-height: 50px;
@@ -239,6 +257,17 @@ label {
     font-size: 12px;
     line-height: 35px;
     padding-right: 30px;
+}
+
+.editButton {
+    color: var(--primary) !important;
+    background: var(--white) url(/imgs/svg/edit.svg) no-repeat 0px 4px !important;
+    padding-left: 26px;
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 35px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 

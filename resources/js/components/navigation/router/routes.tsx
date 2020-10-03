@@ -96,7 +96,7 @@ export const routes: IRoute[] = [
         fallback: <Loader/>
     },
     {
-        name: 'Импортер',
+        name: 'Просмотр информации об импортере',
         path: '/importer/:id',
         component: lazy(() =>
             pMinDelay(import('../../../pages/importers/Importer'), 1000)),
