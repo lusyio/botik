@@ -15,7 +15,7 @@ import {
     Importers, Log,
     Orders,
     Products, Settings,
-    Suppliers
+    Providers
 } from '../../UI/iconComponents';
 
 export const routes: IRoute[] = [
@@ -56,7 +56,7 @@ export const routes: IRoute[] = [
         pageName: 'Список контейнеров',
         path: '/containers',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/providers/Providers'), 1000)),
+            pMinDelay(import('../../../pages/Containers'), 1000)),
         hide: false,
         exact: false,
         private: true,
@@ -90,14 +90,14 @@ export const routes: IRoute[] = [
     {
         name: 'Поставщики',
         pageName: 'Список поставщиков',
-        path: '/suppliers',
+        path: '/providers',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Suppliers'), 1000)),
+            pMinDelay(import('../../../pages/providers/Providers'), 1000)),
         hide: false,
         exact: false,
         private: true,
         fallback: <Loader/>,
-        icon: <Suppliers/>
+        icon: <Providers/>
     },
     {
         name: 'Импортеры',

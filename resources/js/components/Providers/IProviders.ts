@@ -15,7 +15,7 @@ export interface IProvider {
     website?: string
     phone?: string
     wechat?: string
-    countryId?: any // код страны(Чуть позже здесь будет объект Страна)
+    country?: any // код страны(Чуть позже здесь будет объект Страна)
     beneficiaryName: string
     beneficiaryAccountName: string
     beneficiaryBankAddress: string

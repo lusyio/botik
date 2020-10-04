@@ -25,11 +25,11 @@ export default function providersReducer(
             }
         case FETCH_PROVIDERS_SUCCESS:
             return {
-                ...state, loading: true, providers: action.payload
+                ...state, loading: false, providers: action.payload
             }
         case FETCH_PROVIDERS_ERROR:
             return {
-                ...state, loading: true, error: action.payload
+                ...state, loading: false, error: action.payload
             }
         case FETCH_PROVIDER_START:
             return {
@@ -37,11 +37,11 @@ export default function providersReducer(
             }
         case FETCH_PROVIDER_SUCCESS:
             return {
-                ...state, loading: true, provider: action.payload
+                ...state, loading: false, provider: action.payload
             }
         case FETCH_PROVIDER_ERROR:
             return {
-                ...state, loading: true, error: action.payload
+                ...state, loading: false, error: action.payload
             }
         default:
             return state

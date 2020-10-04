@@ -1,6 +1,6 @@
 import * as React from "react";
 
-function SvgSuppliers(props: React.SVGProps<SVGSVGElement>) {
+function SvgProviders(props: React.SVGProps<SVGSVGElement>) {
     return (
         <svg
             width="1em"
@@ -33,4 +33,4 @@ function SvgSuppliers(props: React.SVGProps<SVGSVGElement>) {
     );
 }
 
-export default SvgSuppliers;
+export default SvgProviders;

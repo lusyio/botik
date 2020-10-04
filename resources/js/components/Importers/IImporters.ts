@@ -37,15 +37,15 @@ interface IFetchImportersStart {
 }
 
 interface IFetchImportersSuccess {
-    payload: IImporter[]
     type: typeof FETCH_IMPORTERS_SUCCESS
+    payload: IImporter[]
     loading: boolean
 }
 
 interface IFetchImportersError {
-    loading: boolean
-    payload: any
     type: typeof FETCH_IMPORTERS_ERROR
+    payload: any
+    loading: boolean
 }
 
 interface IFetchImporterStart {
@@ -54,15 +54,15 @@ interface IFetchImporterStart {
 }
 
 interface IFetchImporterSuccess {
-    payload: IImporter;
     type: typeof FETCH_IMPORTER_SUCCESS
+    payload: IImporter;
     loading: boolean
 }
 
 interface IFetchImporterError {
-    loading: boolean
-    payload: any
     type: typeof FETCH_IMPORTER_ERROR
+    payload: any
+    loading: boolean
 }
 
 interface ICreateImporterStart {
@@ -71,15 +71,15 @@ interface ICreateImporterStart {
 }
 
 interface ICreateImporterSuccess {
-    payload: IImporter;
     type: typeof CREATE_IMPORTER_SUCCESS
+    payload: IImporter;
     loading: boolean
 }
 
 interface ICreateImporterError {
-    loading: boolean
-    payload: any
     type: typeof CREATE_IMPORTER_ERROR
+    payload: any
+    loading: boolean
 }
 
 export type IImportersActionTypes =

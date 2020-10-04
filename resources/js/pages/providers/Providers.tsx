@@ -1,10 +1,12 @@
 // React
 import React from 'react';
+import ProvidersTable
+    from '../../components/Providers/ProvidersTable/ProvidersTable';
 
 const Providers: React.FC = () => {
     return (
-        <h1>Providers page</h1>
+        <ProvidersTable/>
     );
-}
+};
 
 export default Providers;
