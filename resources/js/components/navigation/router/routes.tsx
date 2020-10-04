@@ -56,7 +56,7 @@ export const routes: IRoute[] = [
         pageName: 'Список контейнеров',
         path: '/containers',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Containers'), 1000)),
+            pMinDelay(import('../../../pages/containers/Containers'), 1000)),
         hide: false,
         exact: false,
         private: true,

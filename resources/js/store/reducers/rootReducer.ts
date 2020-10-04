@@ -1,15 +1,17 @@
 // Third-party
-import {combineReducers} from 'redux';
+import {combineReducers} from 'redux'
 import {reducer as formReducer} from 'redux-form'
 
 // Reducers
-import importersReducer from './importers';
-import productsReducer from './products';
-import providersReducer from './providers';
+import importersReducer from './importers'
+import productsReducer from './products'
+import providersReducer from './providers'
+import containersReducer from './containers'
 
 export default combineReducers({
     importersState: importersReducer,
     productsState: productsReducer,
     providersState: providersReducer,
+    containersState: containersReducer,
     form: formReducer
 })
