@@ -2,31 +2,40 @@
 import React from 'react';
 
 // Third-party
-import {Field, reduxForm} from 'redux-form'
+import {Field, InjectedFormProps, reduxForm} from 'redux-form';
 import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 
 // Actions
 import {createImporter} from '../../../store/actions/importers';
 
-const ImporterForm: React.FC = (props: any) => {
-    const {handleSubmit, pristine, submitting} = props
+interface ICreateImporterData {
+    nameRu: string
+    nameEn: string
+    address: string
+    phone: string
+}
 
-    const dispatch = useDispatch()
-    const history = useHistory()
+const ImporterForm: React.FC<InjectedFormProps> = (props) => {
+    const {handleSubmit, pristine, submitting} = props;
 
-    const importerFormSubmitHandler = (formValues: any) => {
-        dispatch(createImporter(formValues))
-        history.push('/importers')
-    }
+    const dispatch = useDispatch();
+    const history = useHistory();
+
+    const importerFormSubmitHandler = (formValues: ICreateImporterData) => {
+        dispatch(createImporter(formValues));
+        history.push('/importers');
+    };
+
     return (
         <div className='card'>
             <div className="card-body">
-                <form onSubmit={handleSubmit((formValues) =>
-                    importerFormSubmitHandler(formValues))}>
+                <form onSubmit={handleSubmit(
+                    (formValues: ICreateImporterData) =>
+                        importerFormSubmitHandler(formValues))}>
                     <div className='mb-3 row'>
                         <div className="col-lg-6">
-                            <label>
+                            <label className='w-100'>
                                 Укажите название
                                 <span className="font-weight-bold float-right">
                                     RU
@@ -41,7 +50,7 @@ const ImporterForm: React.FC = (props: any) => {
                             />
                         </div>
                         <div className="col-lg-6">
-                            <label>
+                            <label className='w-100'>
                                 Name
                                 <span className="font-weight-bold float-right">
                                     ENG
@@ -81,7 +90,7 @@ const ImporterForm: React.FC = (props: any) => {
                     <div>
                         <button
                             onClick={() => {
-                                history.goBack()
+                                history.goBack();
                             }} className='mr-3 btn btn-light'>
                             Назад
                         </button>
@@ -95,8 +104,8 @@ const ImporterForm: React.FC = (props: any) => {
             </div>
         </div>
     );
-}
+};
 
 export default reduxForm({
-    form: 'ImporterFormCreate', // a unique identifier for this form
-})(ImporterForm)
+    form: 'ImporterFormCreate'
+})(ImporterForm);
