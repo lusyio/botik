@@ -2,10 +2,54 @@
 
 }
 
-.placeholder .title {
+.placeholder img {
+    margin-right: 28px;
+}
 
+.placeholderBody > div {
+    align-self: center;
+}
+
+.placeholderBody {
+    padding: 0 50px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-self: center;
+    margin-bottom: 15px;
+}
+
+.placeholder .title {
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+    margin-bottom: 26px;
+}
+
+.placeholderAdd {
+    background: #FFFFFF;
+    border: 1px solid #EB5E28;
+    color: #EB5E28;
+    box-sizing: border-box;
+    border-radius: 10px;
+    padding: 12px;
+    position: relative;
+    width: 100%;
+    display: block;
+    text-align: center;
+}
+
+.placeholderAdd:hover {
+    color: #EB5E28;
+}
+
+.placeholderAdd svg {
+    margin-right: 15px;
 }
 
 .placeholder .description {
-
+    font-weight: normal;
+    font-size: 13px;
+    line-height: 16px;
+    max-width: 370px;
 }
