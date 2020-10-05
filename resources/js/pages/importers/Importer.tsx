@@ -16,6 +16,7 @@ import {
 
 // App
 import Loader from '../../components/UI/Loader/Loader'
+import Error from '../../components/UI/Error/Error'
 
 const Importer: React.FC<IImporter> = () => {
     const {id}: any = useParams()
@@ -35,7 +36,7 @@ const Importer: React.FC<IImporter> = () => {
     }, [dispatch])
 
     if (error) {
-        return <div>Error! {error.message}</div>
+        return <Error/>
     }
     if (loading) {
         return <Loader/>

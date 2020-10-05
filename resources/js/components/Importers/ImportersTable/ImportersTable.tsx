@@ -16,6 +16,7 @@ import Loader from '../../UI/Loader/Loader'
 import {nameToLinkFormatter} from '../../../utils'
 import AutoTable from '../../UI/AutoTable/AutoTable'
 import {ColumnDescription} from 'react-bootstrap-table-next'
+import Error from '../../UI/Error/Error'
 
 const ImportersTable: React.FC = () => {
     const dispatch = useDispatch()
@@ -33,7 +34,7 @@ const ImportersTable: React.FC = () => {
     )
 
     if (error) {
-        return <div>Error! {error.message}</div>
+        return <Error/>
     }
     if (loading) {
         return <Loader/>

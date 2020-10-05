@@ -21,6 +21,7 @@ import {
 } from '../../../utils'
 import AutoTable from '../../UI/AutoTable/AutoTable'
 import {ColumnDescription} from 'react-bootstrap-table-next'
+import Error from '../../UI/Error/Error'
 
 const ProductsTable: React.FC = () => {
     const dispatch = useDispatch()
@@ -38,7 +39,7 @@ const ProductsTable: React.FC = () => {
     )
 
     if (error) {
-        return <div>Error! {error.message}</div>
+        return <Error/>
     }
     if (loading) {
         return <Loader/>

@@ -16,6 +16,7 @@ import Placeholder from '../../UI/Placeholder/Placeholder'
 import AutoTable from '../../UI/AutoTable/AutoTable'
 import {nameToLinkFormatter} from '../../../utils'
 import {ColumnDescription} from 'react-bootstrap-table-next'
+import Error from '../../UI/Error/Error'
 
 const ProvidersTable: React.FC = () => {
     const dispatch = useDispatch()
@@ -32,7 +33,7 @@ const ProvidersTable: React.FC = () => {
         }))
 
     if (error) {
-        return <div>Error! {error.message}</div>
+        return <Error/>
     }
     if (loading) {
         return <Loader/>
