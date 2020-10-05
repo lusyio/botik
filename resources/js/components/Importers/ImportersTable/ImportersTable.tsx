@@ -1,27 +1,28 @@
 // React
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux'
 
 // Actions
-import {fetchImporters} from '../../../store/actions/importers';
+import {fetchImporters} from '../../../store/actions/importers'
 
 // Typescript
-import {IImportersRootState} from '../IImporters';
+import {IImportersRootState} from '../IImporters'
 
 // App
-import Placeholder from '../../UI/Placeholder/Placeholder';
-import Loader from '../../UI/Loader/Loader';
-import {nameToLinkFormatter} from '../../../utils';
-import AutoTable from '../../UI/AutoTable/AutoTable';
+import Placeholder from '../../UI/Placeholder/Placeholder'
+import Loader from '../../UI/Loader/Loader'
+import {nameToLinkFormatter} from '../../../utils'
+import AutoTable from '../../UI/AutoTable/AutoTable'
+import {ColumnDescription} from 'react-bootstrap-table-next'
 
 const ImportersTable: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchImporters());
-    }, [dispatch]);
+        dispatch(fetchImporters())
+    }, [dispatch])
 
     const {importers, loading, error} = useSelector(
         (state: IImportersRootState) => ({
@@ -29,23 +30,23 @@ const ImportersTable: React.FC = () => {
             importers: state.importersState.importers,
             loading: state.importersState.loading
         })
-    );
+    )
 
     if (error) {
-        return <div>Error! {error.message}</div>;
+        return <div>Error! {error.message}</div>
     }
     if (loading) {
-        return <Loader/>;
+        return <Loader/>
     }
     if (!importers.length) {
         return <Placeholder
             description='Нажмите на кнопку «Добавить импортера»,
              чтобы он отображался в списке'
             link='/importer/add' linkName='Добавить импортера'
-            title='В этом списке ещё нет импортеров'/>;
+            title='В этом списке ещё нет импортеров'/>
     }
 
-    const columns = [
+    const columns: ColumnDescription[] = [
         {
             dataField: 'nameRu',
             text: 'Название',
@@ -63,9 +64,9 @@ const ImportersTable: React.FC = () => {
         {
             dataField: 'phone',
             text: 'Телефон',
-            classes: 'phone',
+            classes: 'phone'
         }
-    ];
+    ]
 
     return (
         <AutoTable
@@ -74,4 +75,4 @@ const ImportersTable: React.FC = () => {
     )
 }
 
-export default ImportersTable;
+export default ImportersTable

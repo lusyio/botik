@@ -1,54 +1,55 @@
 // React
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux'
 
 // Actions
-import {fetchProviders} from '../../../store/actions/providers';
+import {fetchProviders} from '../../../store/actions/providers'
 
 // Typescript
-import {IProvidersRootState} from '../IProviders';
+import {IProvidersRootState} from '../IProviders'
 
 // App
-import Loader from '../../UI/Loader/Loader';
-import Placeholder from '../../UI/Placeholder/Placeholder';
-import AutoTable from '../../UI/AutoTable/AutoTable';
-import {nameToLinkFormatter} from '../../../utils';
+import Loader from '../../UI/Loader/Loader'
+import Placeholder from '../../UI/Placeholder/Placeholder'
+import AutoTable from '../../UI/AutoTable/AutoTable'
+import {nameToLinkFormatter} from '../../../utils'
+import {ColumnDescription} from 'react-bootstrap-table-next'
 
 const ProvidersTable: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchProviders());
-    }, [dispatch]);
+        dispatch(fetchProviders())
+    }, [dispatch])
 
     const {providers, loading, error} = useSelector(
         (state: IProvidersRootState) => ({
             providers: state.providersState.providers,
             loading: state.providersState.loading,
-            error: state.providersState.error,
-        }));
+            error: state.providersState.error
+        }))
 
     if (error) {
-        return <div>Error! {error.message}</div>;
+        return <div>Error! {error.message}</div>
     }
     if (loading) {
-        return <Loader/>;
+        return <Loader/>
     }
     if (!providers.length) {
         return <Placeholder
             description='Нажмите на кнопку «Добавить поставщика»,
              чтобы он отображался в списке'
             link='/providerscreate' linkName='Добавить поставщика'
-            title='В этом списке ещё нет поставщиков'/>;
+            title='В этом списке ещё нет поставщиков'/>
     }
 
     function catalogsFormatter(catalogs, _) {
-        return (catalogs.length);
+        return (catalogs.length)
     }
 
-    const columns = [
+    const columns: ColumnDescription[] = [
         {
             dataField: 'name',
             text: 'Название',
@@ -75,14 +76,14 @@ const ProvidersTable: React.FC = () => {
             classes: '',
             sort: true,
             formatter: catalogsFormatter
-        },
-    ];
+        }
+    ]
 
     return (
         <AutoTable
             keyField='id' data={providers} columns={columns}
             button={{link: 'providercreate', text: 'Добавить поставщика'}}/>
-    );
-};
+    )
+}
 
-export default ProvidersTable;
+export default ProvidersTable

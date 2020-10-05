@@ -1,27 +1,33 @@
 // React
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {useDispatch, useSelector} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux'
 
 // Actions
-import {fetchProducts} from '../../../store/actions/products';
+import {fetchProducts} from '../../../store/actions/products'
 
 // Typescript
-import {IProductsRootState} from '../IProducts';
+import {IProductsRootState} from '../IProducts'
 
 // App
-import Loader from '../../UI/Loader/Loader';
-import Placeholder from '../../UI/Placeholder/Placeholder';
-import {imgFormatter, timeConverter} from '../../../utils';
-import AutoTable from '../../UI/AutoTable/AutoTable';
+import Loader from '../../UI/Loader/Loader'
+import Placeholder from '../../UI/Placeholder/Placeholder'
+import {
+    imgFormatter,
+    moneyFormatter,
+    nameToLinkFormatter,
+    timeConverter
+} from '../../../utils'
+import AutoTable from '../../UI/AutoTable/AutoTable'
+import {ColumnDescription} from 'react-bootstrap-table-next'
 
 const ProductsTable: React.FC = () => {
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     useEffect(() => {
-        dispatch(fetchProducts());
-    }, [dispatch]);
+        dispatch(fetchProducts())
+    }, [dispatch])
 
     const {products, loading, error} = useSelector(
         (state: IProductsRootState) => ({
@@ -29,20 +35,20 @@ const ProductsTable: React.FC = () => {
             products: state.productsState.products,
             loading: state.productsState.loading
         })
-    );
+    )
 
     if (error) {
-        return <div>Error! {error.message}</div>;
+        return <div>Error! {error.message}</div>
     }
     if (loading) {
-        return <Loader/>;
+        return <Loader/>
     }
     if (!products.length) {
         return <Placeholder
             description='Нажмите на кнопку «Добавить товар»,
              чтобы он отображался в списке'
             link='/products/add' linkName='Добавить товар'
-            title='В этом списке ещё нет товаров'/>;
+            title='В этом списке ещё нет товаров'/>
     }
 
     const expandRowTable = [
@@ -56,15 +62,7 @@ const ProductsTable: React.FC = () => {
         }
     ]
 
-    function moneyFormatter(price, _) {
-        return (
-            Object.entries(price).map(([_, val]) => {
-                return val + ' | '
-            })
-        )
-    }
-
-    const columns = [
+    const columns: ColumnDescription[] = [
         {
             dataField: 'image',
             text: '',
@@ -76,7 +74,9 @@ const ProductsTable: React.FC = () => {
             dataField: 'nameRu',
             text: 'Название',
             classes: 'name',
-            sort: true
+            sort: true,
+            formatter: (nameRu, row) =>
+                nameToLinkFormatter(nameRu, row, 'product')
         },
         {
             dataField: 'price',
@@ -91,14 +91,14 @@ const ProductsTable: React.FC = () => {
             sort: true,
             formatter: (updateAt) => timeConverter(updateAt)
         }
-    ];
+    ]
 
     return (
         <AutoTable
             expandRowTable={expandRowTable}
             keyField='id' data={products} columns={columns}
             button={{link: 'productcreate', text: 'Добавить товар'}}/>
-    );
+    )
 }
 
-export default ProductsTable;
+export default ProductsTable

@@ -1,5 +1,5 @@
-import {ComponentType, ReactNode} from 'react';
-import {LoadableComponent} from '@loadable/component';
+import {ReactNode} from 'react'
+import {LoadableComponent} from '@loadable/component'
 
 export interface IRoute {
     name: string
@@ -7,7 +7,7 @@ export interface IRoute {
     hide: boolean
     exact: boolean
     fallback: NonNullable<ReactNode> | null
-    component?: LoadableComponent<ComponentType<any>>
+    component?: LoadableComponent<any>
     pageName?: string
     routes?: IRoute[]
     redirect?: string

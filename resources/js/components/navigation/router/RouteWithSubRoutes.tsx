@@ -1,18 +1,18 @@
 // React
-import React, {Suspense} from 'react';
+import React, {Suspense} from 'react'
 
 // Third-party
-import {Redirect, Route, useHistory} from 'react-router-dom';
+import {Redirect, Route, useHistory} from 'react-router-dom'
 
 // Typescript
-import {IRoute} from './IRoute';
+import {IRoute} from './IRoute'
 
 const RouteWithSubRoutes: React.FC<IRoute> = (route => {
     /** Authenticated flag */
         // const authenticated: boolean = user.authenticated;
     const history = useHistory()
     history.location.state = route.pageName || route.name
-    const authenticated: boolean = true;
+    const authenticated: boolean = true
     return (
         <Suspense fallback={route.fallback}>
             <Route path={route.path} render={(props) => route.redirect
@@ -20,17 +20,15 @@ const RouteWithSubRoutes: React.FC<IRoute> = (route => {
                 : route.private ?
                     (authenticated
                         ? route.component &&
-                        <route.component name={route.pageName || route.name}
-                            // @ts-ignore
-                                         {...props} routes={route.routes}/>
+                        <route.component
+                            {...props} routes={route.routes}/>
                         : <Redirect to='/login'/>)
                     : route.component &&
-                    <route.component name={route.pageName || route.name}
-                        // @ts-ignore
-                                     {...props} routes={route.routes}/>}
+                    <route.component
+                        {...props} routes={route.routes}/>}
             />
         </Suspense>
-    );
-});
+    )
+})
 
-export default RouteWithSubRoutes;
+export default RouteWithSubRoutes

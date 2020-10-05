@@ -5,9 +5,9 @@ import {
     FETCH_PRODUCT_ERROR,
     FETCH_PRODUCT_START,
     FETCH_PRODUCT_SUCCESS
-} from './actionTypes';
+} from './actionTypes'
 
-import axios, {AxiosError} from 'axios';
+import axios, {AxiosError} from 'axios'
 
 export const fetchProducts = () => async dispatch => {
     await dispatch({
@@ -36,7 +36,8 @@ export const fetchProductById = (id) => async dispatch => {
     })
 
     const url = `/api/products/${id}`
-    axios.get(url)
+    axios
+        .get(url)
         .then((answer) => {
             dispatch({
                 type: FETCH_PRODUCT_SUCCESS,

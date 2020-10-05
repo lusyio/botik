@@ -88,6 +88,16 @@ export const routes: IRoute[] = [
         icon: <Products/>
     },
     {
+        name: 'Просмотр информации о товаре',
+        path: '/product/:id',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/products/Product'), 1000)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
         name: 'Поставщики',
         pageName: 'Список поставщиков',
         path: '/providers',

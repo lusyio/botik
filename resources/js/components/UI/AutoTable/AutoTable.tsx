@@ -1,12 +1,12 @@
 // React
-import React from 'react';
+import React from 'react'
 
 // Third-party
-import {NavLink} from 'react-router-dom';
-import BootstrapTable, {BootstrapTableProps, ColumnFormatter}
-    from 'react-bootstrap-table-next';
-import paginationFactory from 'react-bootstrap-table2-paginator';
-import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit';
+import {NavLink} from 'react-router-dom'
+import BootstrapTable, {BootstrapTableProps, ColumnFormatter, ExpandRowProps}
+    from 'react-bootstrap-table-next'
+import paginationFactory from 'react-bootstrap-table2-paginator'
+import ToolkitProvider, {Search} from 'react-bootstrap-table2-toolkit'
 
 interface expandRow<T extends object = any, E = any> {
     dataField: string,
@@ -30,21 +30,18 @@ const AutoTable: React.FC<IAutoTable> =
          button,
          expandRowTable = undefined
      }) => {
-        const {SearchBar} = Search;
+        const {SearchBar} = Search
 
-        let expandRow = {}
 
-        if (expandRowTable) {
-            expandRow = {
-                expandColumnPosition: 'right',
-                renderer: renderer,
-                showExpandColumn: true,
-                expandHeaderColumnRenderer: expandHeaderColumnRenderer,
-                expandColumnRenderer: expandColumnRenderer
-            };
+        const expandRow: ExpandRowProps<any> = {
+            expandColumnPosition: 'right',
+            renderer: renderer,
+            showExpandColumn: true,
+            expandHeaderColumnRenderer: expandHeaderColumnRenderer,
+            expandColumnRenderer: expandColumnRenderer
         }
 
-        function renderer(row) {
+        function renderer(row: any, rowIndex: number) {
             const tableHead = expandRowTable
                 ?.map((item, index) => {
                     return (
@@ -74,22 +71,22 @@ const AutoTable: React.FC<IAutoTable> =
                     </tr>
                     </tbody>
                 </table>
-            );
+            )
         }
 
         function expandHeaderColumnRenderer() {
-            return '';
+            return <span>{null}</span>
         }
 
         function expandColumnRenderer({expanded}) {
             if (expanded) {
                 return (
                     <b>-</b>
-                );
+                )
             }
             return (
                 <b>...</b>
-            );
+            )
         }
 
         return (
@@ -110,7 +107,7 @@ const AutoTable: React.FC<IAutoTable> =
                                 ?
                                 <NavLink to={`/${button.link}`}
                                          className='btn addButton'>
-                                        {button.text}
+                                    {button.text}
                                 </NavLink>
                                 : null
                             }
@@ -120,8 +117,9 @@ const AutoTable: React.FC<IAutoTable> =
                                 <BootstrapTable
                                     pagination={paginationFactory({})}
                                     bordered={false}
-                                    // @ts-ignore
-                                    expandRow={expandRow}
+                                    expandRow={expandRowTable
+                                        ? expandRow
+                                        : undefined}
                                     {...props.baseProps}
                                 />
                             </div>
@@ -132,4 +130,4 @@ const AutoTable: React.FC<IAutoTable> =
         )
     }
 
-export default AutoTable;
+export default AutoTable

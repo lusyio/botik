@@ -15,6 +15,7 @@ import Loader from '../../UI/Loader/Loader'
 import Placeholder from '../../UI/Placeholder/Placeholder'
 import AutoTable from '../../UI/AutoTable/AutoTable'
 import {nameToLinkFormatter} from '../../../utils'
+import {ColumnDescription} from 'react-bootstrap-table-next'
 
 const ContainersTable: React.FC = () => {
     const dispatch = useDispatch()
@@ -44,7 +45,7 @@ const ContainersTable: React.FC = () => {
             title='В этом списке ещё нет контейнеров'/>
     }
 
-    const columns = [
+    const columns: ColumnDescription[] = [
         {
             dataField: 'name',
             text: 'Название контейнера',

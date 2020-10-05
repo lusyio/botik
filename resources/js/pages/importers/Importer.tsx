@@ -1,26 +1,26 @@
 // React
-import React, {useEffect} from 'react';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {NavLink, useParams} from 'react-router-dom';
-import {useDispatch, useSelector} from 'react-redux';
+import {NavLink, useParams} from 'react-router-dom'
+import {useDispatch, useSelector} from 'react-redux'
 
 // Actions
-import {fetchImporterById} from '../../store/actions/importers';
+import {fetchImporterById} from '../../store/actions/importers'
 
 // Typescript
 import {
     IImporter,
     IImportersRootState
-} from '../../components/Importers/IImporters';
+} from '../../components/Importers/IImporters'
 
 // App
-import Loader from '../../components/UI/Loader/Loader';
+import Loader from '../../components/UI/Loader/Loader'
 
 const Importer: React.FC<IImporter> = () => {
-    const {id}: any = useParams();
+    const {id}: any = useParams()
 
-    const dispatch = useDispatch();
+    const dispatch = useDispatch()
 
     const {importer, loading, error} = useSelector(
         (state: IImportersRootState) => ({
@@ -28,17 +28,17 @@ const Importer: React.FC<IImporter> = () => {
             importer: state.importersState.importer,
             loading: state.importersState.loading
         })
-    );
+    )
 
     useEffect(() => {
-        dispatch(fetchImporterById(id));
-    }, [dispatch]);
+        dispatch(fetchImporterById(id))
+    }, [dispatch])
 
     if (error) {
-        return <div>Error! {error.message}</div>;
+        return <div>Error! {error.message}</div>
     }
     if (loading) {
-        return <Loader/>;
+        return <Loader/>
     }
     return (
         <div className='row'>
@@ -67,8 +67,8 @@ const Importer: React.FC<IImporter> = () => {
                                     : ''}</p>
                             </div>
                         </div>
-                        {/* eslint-disable-next-line max-len */}
-                        <NavLink to={`/importeredit/${id}`} className='editButton'>
+                        <NavLink to={`/importeredit/${id}`}
+                                 className='editButton'>
                             Редактировать информацию
                         </NavLink>
                     </div>
@@ -82,7 +82,7 @@ const Importer: React.FC<IImporter> = () => {
                 </div>
             </div>
         </div>
-    );
+    )
 }
 
-export default Importer;
+export default Importer
