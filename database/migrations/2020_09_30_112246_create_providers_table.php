@@ -17,6 +17,7 @@ class CreateProvidersTable extends Migration
             $table->id();
             $table->string('name');
             $table->string('name_company');
+            $table->integer('unscrupulous')->default(0);
             $table->string('email')->nullable();
             $table->string('website')->nullable();
             $table->string('phone')->nullable();

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\CountryWithProvidersResource;
+use App\Http\Resources\CountryWithRelationshipsResource;
 use App\Country;
 use Illuminate\Support\Facades\Validator;
 
@@ -32,7 +32,7 @@ class CountryController extends Controller
      */
     public function index()
     {
-         return response()->json(CountryWithProvidersResource::collection(Country::all()), 200);
+         return response()->json(CountryWithRelationshipsResource::collection(Country::all()), 200);
     }
 
     /**
@@ -46,7 +46,7 @@ class CountryController extends Controller
     {
 //        $this->countryCreateValidator($request->all())->validate(); валидация
         $newCountry = $country->create($country->dashesToSnakeCase($request->all()));
-        return response()->json(new CountryWithProvidersResource($newCountry), 201);
+        return response()->json(new CountryWithRelationshipsResource($newCountry), 201);
     }
 
     /**
@@ -57,7 +57,7 @@ class CountryController extends Controller
      */
     public function show(Country $country)
     {
-        return response()->json(new CountryWithProvidersResource($country), 200);
+        return response()->json(new CountryWithRelationshipsResource($country), 200);
     }
 
     /**
@@ -71,7 +71,7 @@ class CountryController extends Controller
     {
 //        $this->countryCreateValidator($request->all())->validate(); валидация
         $updatedCountry = $country->update($country->dashesToSnakeCase($request->all()));
-        return response()->json(new CountryWithProvidersResource($country), 201);
+        return response()->json(new CountryWithRelationshipsResource($country), 201);
     }
 
     /**

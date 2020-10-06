@@ -21,6 +21,7 @@ class ProviderResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'nameCompany' => $this->name_company,
+            'unscrupulous' => $this->unscrupulous,
             'email' => $this->email,
             'website' => $this->website,
             'phone' => $this->phone,
