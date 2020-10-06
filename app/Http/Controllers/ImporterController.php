@@ -13,11 +13,7 @@ class ImporterController extends Controller
     protected function importerCreateValidator(array $data)
     {
         $messages = [
-            'nameRu' => 'Поле :attribute обязательно для заполнения.',
-            'nameEn' => 'Поле :attribute обязательно для заполнения.',
-            'address' => 'Поле :attribute обязательно для заполнения.',
-            'phone.min' => 'Телефон должен состоять из 11 символов (7 XXX XXX XX XX)',
-            'phone.max' => 'Телефон должен состоять из 11 символов (7 XXX XXX XX XX)',
+            'required' => 'Поле :attribute обязательно для заполнения.',
             'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
@@ -31,7 +27,7 @@ class ImporterController extends Controller
         return Validator::make($data, [
             'nameRu' => ['required', 'string', 'max:255'],
             'nameEn' => ['required', 'string', 'max:255'],
-            'phone' => ['required', 'string', 'min:11', 'max:11'],
+            'phone' => ['required', 'string'],
             'address' => ['required', 'string', 'max:255'],
         ], $messages, $names);
     }
@@ -53,7 +49,7 @@ class ImporterController extends Controller
      */
     public function store(Request $request, Importer $importer)
     {
-       $this->importerCreateValidator($request->all())->validate();
+//       $this->importerCreateValidator($request->all())->validate(); валдиация
        $newImporter = $importer->create($importer->dashesToSnakeCase($request->all()));
        return response()->json(new ImporterResource($newImporter), 201);
     }
@@ -79,7 +75,7 @@ class ImporterController extends Controller
      */
     public function update(Request $request, Importer $importer)
     {
-        $this->importerCreateValidator($request->all())->validate();
+//        $this->importerCreateValidator($request->all())->validate(); валидация
         $importer->update($importer->dashesToSnakeCase($request->all()));
         return response()->json(new ImporterResource($importer), 200);
     }

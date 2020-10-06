@@ -12,14 +12,7 @@ class ProductController extends Controller
     protected function productCreateValidator(array $data)
     {
         $messages = [
-            'nameRu' => 'Поле :attribute обязательно для заполнения.',
-            'aboutRu' => 'Поле :attribute обязательно для заполнения.',
-            'image' => 'Поле :attribute обязательно для заполнения.',
-            'priceRub' => 'Поле :attribute обязательно для заполнения.',
-            'priceUsd' => 'Поле :attribute обязательно для заполнения.',
-            'priceCny' => 'Поле :attribute обязательно для заполнения.',
-            'weightNetto' => 'Поле :attribute обязательно для заполнения.',
-            'weightBrutto' => 'Поле :attribute обязательно для заполнения.',
+            'required' => 'Поле :attribute обязательно для заполнения.',
             'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
@@ -64,7 +57,7 @@ class ProductController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-        $this->productCreateValidator($request->all());
+//        $this->productCreateValidator($request->all())->validate(); валидация;
         $newProduct = $product->create($product->dashesToSnakeCase($request->all()));
         $newProduct->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($newProduct), 201);
@@ -90,7 +83,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-        $this->productCreateValidator($request->all());
+//        $this->productCreateValidator($request->all())->validate(); валидация
         $updatedProduct = $product->update($product->dashesToSnakeCase($request->all()));
         $updatedProduct->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($product), 201);

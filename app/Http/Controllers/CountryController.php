@@ -13,7 +13,8 @@ class CountryController extends Controller
     protected function countryCreateValidator(array $data)
     {
         $messages = [
-            'name' => 'Поле :attribute обязательно для заполнения.',
+            'required' => 'Поле :attribute обязательно для заполнения.',
+            'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
         $names = [
@@ -43,7 +44,7 @@ class CountryController extends Controller
      */
     public function store(Request $request, Country $country)
     {
-        $this->countryCreateValidator($request->all());
+//        $this->countryCreateValidator($request->all())->validate(); валидация
         $newCountry = $country->create($country->dashesToSnakeCase($request->all()));
         return response()->json(new CountryWithProvidersResource($newCountry), 201);
     }
@@ -68,7 +69,7 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
-        $this->countryCreateValidator($request->all());
+//        $this->countryCreateValidator($request->all())->validate(); валидация
         $updatedCountry = $country->update($country->dashesToSnakeCase($request->all()));
         return response()->json(new CountryWithProvidersResource($country), 201);
     }

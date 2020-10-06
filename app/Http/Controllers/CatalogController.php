@@ -12,8 +12,8 @@ class CatalogController extends Controller
     protected function catalogCreateValidator(array $data)
     {
         $messages = [
-            'name' => 'Поле :attribute обязательно для заполнения.',
-            'file' => 'Поле :attribute обязательно для заполнения.',
+            'required' => 'Поле :attribute обязательно для заполнения.',
+            'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
         $names = [
@@ -45,7 +45,7 @@ class CatalogController extends Controller
      */
     public function store(Request $request, Catalog $catalog)
     {
-       $this->catalogCreateValidator($request->all());
+//       $this->catalogCreateValidator($request->all())->validate(); валидация
        $newCatalog = $catalog->create($catalog->dashesToSnakeCase($request->all()));
        $newCatalog->createOrUpdateFile($request->file('file'));
        return response()->json(new CatalogResource($newCatalog), 201);
@@ -71,7 +71,7 @@ class CatalogController extends Controller
      */
     public function update(Request $request, Catalog $catalog)
     {
-       $this->catalogCreateValidator($request->all());
+//       $this->catalogCreateValidator($request->all())->validate(); валидация
        $updatedProduct = $catalog->update($catalog->dashesToSnakeCase($request->all()));
        $updatedProduct->createOrUpdateFile($request->file('file'));
        return response()->json(new CatalogResource($catalog), 201);

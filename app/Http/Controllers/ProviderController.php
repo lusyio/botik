@@ -12,23 +12,13 @@ class ProviderController extends Controller
     protected function providerCreateValidator(array $data)
     {
         $messages = [
-            'name' => 'Поле :attribute обязательно для заполнения.',
-            'nameCompany' => 'Поле :attribute обязательно для заполнения.',
-            'phone.min' => 'Телефон должен состоять из 11 символов (7 XXX XXX XX XX)',
-            'phone.max' => 'Телефон должен состоять из 11 символов (7 XXX XXX XX XX)',
-            'beneficiaryName' => 'Поле :attribute обязательно для заполнения.',
-            'beneficiaryAccount_name' => 'Поле :attribute обязательно для заполнения.',
-            'beneficiaryBank_address' => 'Поле :attribute обязательно для заполнения.',
-            'beneficiaryAddress' => 'Поле :attribute обязательно для заполнения.',
-            'beneficiaryBankName' => 'Поле :attribute обязательно для заполнения.',
-            'beneficiaryBankCode' => 'Поле :attribute обязательно для заполнения.',
+            'required' => 'Поле :attribute обязательно для заполнения.',
             'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
         $names = [
             'name' => 'имя поставщика',
             'nameCompany' => 'название компании',
-            'phone' => 'телефон',
             'beneficiaryName' => 'имя получателя',
             'beneficiaryAccountName' => 'название счета получателя',
             'beneficiaryBankAddress' => 'адрес банка получателя',
@@ -39,7 +29,6 @@ class ProviderController extends Controller
 
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
-            'phone' => ['min:11', 'max:11'],
             'nameCompany' => ['required', 'string', 'max:255'],
             'beneficiaryName' => ['required', 'string', 'max:255'],
             'beneficiaryAccountName' => ['required', 'string', 'max:255'],
@@ -68,7 +57,7 @@ class ProviderController extends Controller
      */
     public function store(Request $request, Provider $provider)
     {
-        $this->providerCreateValidator($request->all());
+//        $this->providerCreateValidator($request->all())->validate(); валидация;
         $newProvider = $provider->create($provider->dashesToSnakeCase($request->all()));
         return response()->json(new ProviderResource($newProvider), 201);
     }
@@ -93,7 +82,7 @@ class ProviderController extends Controller
      */
     public function update(Request $request, Provider $provider)
     {
-        $this->providerCreateValidator($request->all());
+//        $this->providerCreateValidator($request->all())->validate(); валидация;
         $provider->update($provider->dashesToSnakeCase($request->all()));
         return response()->json(new ProviderResource($provider), 200);
     }

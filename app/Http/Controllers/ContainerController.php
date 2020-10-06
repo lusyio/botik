@@ -12,9 +12,7 @@ class ContainerController extends Controller
     protected function containerCreateValidator(array $data)
     {
         $messages = [
-            'name' => 'Поле :attribute обязательно для заполнения.',
-            'status' => 'Поле :attribute обязательно для заполнения.',
-            'city' => 'Поле :attribute обязательно для заполнения.',
+            'required' => 'Поле :attribute обязательно для заполнения.',
             'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
@@ -49,7 +47,7 @@ class ContainerController extends Controller
      */
     public function store(Request $request, Container $container)
     {
-        $this->containerCreateValidator($request->all());
+//        $this->containerCreateValidator($request->all())->validate(); валидация
         $newContainer = $container->create($container->dashesToSnakeCase($request->all()));
         return response()->json(new ContainerResource($newContainer), 201);
     }
@@ -74,7 +72,7 @@ class ContainerController extends Controller
      */
     public function update(Request $request, Container $container)
     {
-        $this->containerCreateValidator($request->all());
+//      $this->containerCreateValidator($request->all())->validate(); валидация
         $container->update($container->dashesToSnakeCase($request->all()));
         return response()->json(new ContainerResource($container), 200);
     }
