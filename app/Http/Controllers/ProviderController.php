@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Http\Resources\ProviderResource;
+use App\Http\Resources\ProviderWithRelationshipsResource;
 use App\Provider;
 use Illuminate\Support\Facades\Validator;
 
@@ -45,7 +45,7 @@ class ProviderController extends Controller
      */
     public function index()
     {
-        return response()->json(ProviderResource::collection(Provider::all(), 200));
+        return response()->json(ProviderWithRelationshipsResource::collection(Provider::all(), 200));
     }
 
     /**
@@ -59,7 +59,7 @@ class ProviderController extends Controller
     {
 //        $this->providerCreateValidator($request->all())->validate(); валидация;
         $newProvider = $provider->create($provider->dashesToSnakeCase($request->all()));
-        return response()->json(new ProviderResource($newProvider), 201);
+        return response()->json(new ProviderWithRelationshipsResource($newProvider), 201);
     }
 
     /**
@@ -70,7 +70,7 @@ class ProviderController extends Controller
      */
     public function show(Provider $provider)
     {
-        return response()->json(new ProviderResource($provider), 200);
+        return response()->json(new ProviderWithRelationshipsResource($provider), 200);
     }
 
     /**
@@ -84,7 +84,7 @@ class ProviderController extends Controller
     {
 //        $this->providerCreateValidator($request->all())->validate(); валидация;
         $provider->update($provider->dashesToSnakeCase($request->all()));
-        return response()->json(new ProviderResource($provider), 200);
+        return response()->json(new ProviderWithRelationshipsResource($provider), 200);
     }
 
     /**

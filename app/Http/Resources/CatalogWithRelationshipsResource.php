@@ -3,8 +3,9 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\ProviderResource;
 
-class CatalogResource extends JsonResource
+class CatalogWithRelationshipsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -17,6 +18,7 @@ class CatalogResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'providerId' => new ProviderResource($this->provider_id),
             'file' => $this->file,
             'tags' => TagResource::collection($this->tags),
             'createdAt' => strtotime($this->created_at),

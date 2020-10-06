@@ -18,6 +18,7 @@ class CreateContainersTable extends Migration
             $table->string('name');
             $table->string('status');
             $table->string('city');
+            $table->integer('quantity_products')->nullable();
             $table->timestamps();
         });
     }

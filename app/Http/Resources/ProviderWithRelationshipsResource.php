@@ -3,8 +3,11 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
+use App\Http\Resources\CatalogResource;
+use App\Http\Resources\OrderResource;
+use App\Http\Resources\CountryResource;
 
-class ProviderResource extends JsonResource
+class ProviderWithRelationshipsResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -30,6 +33,8 @@ class ProviderResource extends JsonResource
             'beneficiaryBankAddress' => $this->beneficiary_bank_address,
             'beneficiaryBankName' => $this->beneficiary_bank_name,
             'beneficiaryBankCode' => $this->beneficiary_bank_code,
+            'catalogs' => CatalogResource::collection($this->catalogs),
+            'orders' => OrderResource::collection($this->orders),
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),
         ];

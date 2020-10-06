@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Tag;
 use Illuminate\Http\Request;
-use App\Http\Resources\CatalogResource;
+use App\Http\Resources\CatalogWithRelationshipsResource;
 use Illuminate\Support\Facades\Validator;
 use App\Catalog;
 
@@ -33,7 +34,7 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return response()->json(CatalogResource::collection(Catalog::all(), 200));
+        return response()->json(CatalogWithRelationshipsResource::collection(Catalog::all(), 200));
     }
 
     /**
@@ -47,8 +48,15 @@ class CatalogController extends Controller
     {
 //       $this->catalogCreateValidator($request->all())->validate(); валидация
        $newCatalog = $catalog->create($catalog->dashesToSnakeCase($request->all()));
+       if ($request->input('tags')) {
+            foreach ($request->input('tags') as $tag) {
+                if (Tag::where('name', '=', mb_strtolower($tag))->doesntExist()) {
+                    Tag::create(mb_strtolower($tag));
+                }
+            }
+       }
        $newCatalog->createOrUpdateFile($request->file('file'));
-       return response()->json(new CatalogResource($newCatalog), 201);
+       return response()->json(new CatalogWithRelationshipsResource($newCatalog), 201);
     }
 
     /**
@@ -59,7 +67,7 @@ class CatalogController extends Controller
      */
     public function show(Catalog $catalog)
     {
-        return response()->json(new ContainerResource($catalog), 200);
+        return response()->json(new CatalogWithRelationshipsResource($catalog), 200);
     }
 
     /**
@@ -74,7 +82,7 @@ class CatalogController extends Controller
 //       $this->catalogCreateValidator($request->all())->validate(); валидация
        $updatedProduct = $catalog->update($catalog->dashesToSnakeCase($request->all()));
        $updatedProduct->createOrUpdateFile($request->file('file'));
-       return response()->json(new CatalogResource($catalog), 201);
+       return response()->json(new CatalogWithRelationshipsResource($catalog), 201);
     }
 
     /**
