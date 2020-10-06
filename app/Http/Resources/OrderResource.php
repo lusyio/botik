@@ -19,8 +19,8 @@ class OrderResource extends JsonResource
             'name' => $this->name,
             'providerId' => $this->provider_id,
             'cargo' => $this->cargo,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'createdAt' => strtotime($this->created_at),
+            'updatedAt' => strtotime($this->updated_at),
         ];
     }
 }

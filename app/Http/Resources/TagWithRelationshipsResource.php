@@ -19,8 +19,8 @@ class TagWithRelationshipsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'catalogs' => CatalogResource::collection($this->catalogs),
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'createdAt' => strtotime($this->created_at),
+            'updatedAt' => strtotime($this->updated_at),
         ];
     }
 }

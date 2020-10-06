@@ -35,8 +35,8 @@ class ProviderResource extends JsonResource
             'beneficiaryBankCode' => $this->beneficiary_bank_code,
             'catalogs' => CatalogResource::collection($this->catalogs),
             'orders' => OrderResource::collection($this->orders),
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'createdAt' => strtotime($this->created_at),
+            'updatedAt' => strtotime($this->updated_at),
         ];
     }
 }

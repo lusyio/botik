@@ -20,8 +20,8 @@ class ImporterResource extends JsonResource
             'nameEn' => $this->name_en,
             'address' => $this->address,
             'phone' => $this->phone,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'createdAt' => strtotime($this->created_at),
+            'updatedAt' => strtotime($this->updated_at),
         ];
     }
 }

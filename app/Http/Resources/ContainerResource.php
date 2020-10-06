@@ -19,8 +19,8 @@ class ContainerResource extends JsonResource
             'name' => $this->name,
             'status' => $this->status,
             'city' => $this->city,
-            'createdAt' => $this->created_at,
-            'updatedAt' => $this->updated_at,
+            'createdAt' => strtotime($this->created_at),
+            'updatedAt' => strtotime($this->updated_at),
         ];
     }
 }
