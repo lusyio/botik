@@ -51,7 +51,7 @@ class CatalogController extends Controller
        if ($request->input('tags')) {
             foreach ($request->input('tags') as $tag) {
                 if (Tag::where('name', '=', mb_strtolower($tag))->doesntExist()) {
-                    Tag::create(mb_strtolower($tag));
+                    $newCatalog->tags()->attach(mb_strtolower($tag));
                 }
             }
        }
