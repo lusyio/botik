@@ -53,7 +53,7 @@ const CatalogsTable: React.FC = () => {
             classes: 'title',
             sort: true,
             formatter: (name, row) =>
-                nameToLinkFormatter(name, row, 'container')
+                nameToLinkFormatter(name, row, 'catalog')
         },
         {
             dataField: 'provider',
