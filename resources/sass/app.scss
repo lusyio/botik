@@ -23,6 +23,14 @@ img {
     max-width: 100%;
 }
 
+a {
+    color: var(--main-color);
+}
+
+.text-main {
+    color: var(--main-color);
+}
+
 .react-bootstrap-table {
     .table {
         font-size: 12px;
@@ -293,7 +301,7 @@ label {
 }
 
 .editButton {
-    color: var(--primary) !important;
+    color: var(--main-color) !important;
     background: var(--white) url(/svg/edit.svg) no-repeat 0px 4px !important;
     padding-left: 26px;
     font-weight: 500;

@@ -37,7 +37,10 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                         <div className="col-lg-6">
                             <label className='w-100'>
                                 Укажите название
-                                <span className="font-weight-bold float-right">
+                                <span className="float-right
+                                    text-main
+                                    font-weight-bold
+                                    ">
                                     RU
                                 </span>
                             </label>
@@ -52,7 +55,10 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                         <div className="col-lg-6">
                             <label className='w-100'>
                                 Name
-                                <span className="font-weight-bold float-right">
+                                <span className="float-right
+                                    text-main
+                                    font-weight-bold
+                                    ">
                                     ENG
                                 </span>
                             </label>

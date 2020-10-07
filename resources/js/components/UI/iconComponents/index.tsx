@@ -1,3 +1,4 @@
+export { default as ArrowRight } from './ArrowRight'
 export { default as Arrow } from './Arrow'
 export { default as Catalog } from './Catalog'
 export { default as Catalogs } from './Catalogs'
