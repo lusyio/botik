@@ -307,3 +307,10 @@ label {
     box-shadow: 0 5px 10px rgba(27, 83, 244, 0.05);
     transition: 0.3s all;
 }
+
+@media screen and (min-width: 960px) {
+    html {
+        margin-left: calc(100vw - 100%);
+        margin-right: 0;
+    }
+}
