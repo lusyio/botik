@@ -46,6 +46,14 @@ img {
                     transition: all .1s;
                 }
             }
+            td:first-child {
+                border-top-left-radius: 10px;
+                border-bottom-left-radius: 10px;
+            }
+            td:last-child {
+                border-top-right-radius: 10px;
+                border-bottom-right-radius: 10px;
+            }
         }
 
         thead {
@@ -80,6 +88,11 @@ img {
                 width: 100%;
                 object-fit: cover;
             }
+        }
+
+        .status {
+            color: var(--orange);
+            font-weight: 500;
         }
 
         th[data-row-selection] {
