@@ -64,6 +64,26 @@ export const routes: IRoute[] = [
         icon: <Containers/>
     },
     {
+        name: 'Просмотр информации о контейнере',
+        path: '/container/:id',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/containers/Container'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
+        name: 'Добавление нового контейнера',
+        path: '/containercreate',
+        component: lazy(() =>
+        pMinDelay(import('../../../pages/containers/ContainerCreate'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
         name: 'Каталоги',
         pageName: 'Список каталогов',
         path: '/catalogs',
@@ -74,6 +94,26 @@ export const routes: IRoute[] = [
         private: true,
         fallback: <Loader/>,
         icon: <Catalogs/>
+    },
+    {
+        name: 'Просмотр информации о каталоге',
+        path: '/catalog/:id',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/catalogs/Catalog'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
+        name: 'Добавление нового каталога',
+        path: '/catalogcreate',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/catalogs/CatalogCreate'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
     },
     {
         name: 'Товары',
@@ -98,6 +138,16 @@ export const routes: IRoute[] = [
         fallback: <Loader/>
     },
     {
+        name: 'Добавление нового товара',
+        path: '/productcreate',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/products/ProductCreate'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
         name: 'Поставщики',
         pageName: 'Список поставщиков',
         path: '/providers',
@@ -108,6 +158,26 @@ export const routes: IRoute[] = [
         private: true,
         fallback: <Loader/>,
         icon: <Providers/>
+    },
+    {
+        name: 'Просмотр информации о поставщике',
+        path: '/provider/:id',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/providers/Provider'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
+        name: 'Добавление нового поставщика',
+        path: '/providercreate',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/providers/ProviderCreate'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
     },
     {
         name: 'Импортеры',

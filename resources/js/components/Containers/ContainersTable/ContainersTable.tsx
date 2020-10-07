@@ -70,7 +70,7 @@ const ContainersTable: React.FC = () => {
     return (
         <AutoTable
             keyField='id' data={containers} columns={columns}
-            button={{link: 'importercreate', text: 'Добавить импортера'}}/>
+            button={{link: 'containercreate', text: 'Добавить контейнер'}}/>
     )
 }
 
