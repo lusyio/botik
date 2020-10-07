@@ -101,7 +101,8 @@ const AutoTable: React.FC<IAutoTable> =
                     <div>
                         <div className="d-flex justify-content-between mb-3">
                             <div className="searchBar">
-                                <SearchBar {...props.searchProps} />
+                                {/* eslint-disable-next-line max-len */}
+                                <SearchBar {...props.searchProps} placeholder="Поиск по названию"/>
                             </div>
                             {button
                                 ?
