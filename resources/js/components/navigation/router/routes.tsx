@@ -23,7 +23,7 @@ export const routes: IRoute[] = [
         name: 'Регистрация',
         path: '/signup',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Signup'), 1000)),
+            pMinDelay(import('../../../pages/Signup'), 600)),
         hide: true,
         exact: false,
         private: false,
@@ -33,7 +33,7 @@ export const routes: IRoute[] = [
         name: 'Логин',
         path: '/login',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Login'), 1000)),
+            pMinDelay(import('../../../pages/Login'), 600)),
         hide: true,
         exact: false,
         private: false,
@@ -44,7 +44,7 @@ export const routes: IRoute[] = [
         pageName: 'Заказы',
         path: '/orders',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Orders'), 1000)),
+            pMinDelay(import('../../../pages/Orders'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -56,7 +56,7 @@ export const routes: IRoute[] = [
         pageName: 'Список контейнеров',
         path: '/containers',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/containers/Containers'), 1000)),
+            pMinDelay(import('../../../pages/containers/Containers'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -68,7 +68,7 @@ export const routes: IRoute[] = [
         pageName: 'Список каталогов',
         path: '/catalogs',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/catalogs/Catalogs'), 1000)),
+            pMinDelay(import('../../../pages/catalogs/Catalogs'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -80,7 +80,7 @@ export const routes: IRoute[] = [
         pageName: 'Список оцифрованных товаров',
         path: '/products',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/products/Products'), 1000)),
+            pMinDelay(import('../../../pages/products/Products'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -91,7 +91,7 @@ export const routes: IRoute[] = [
         name: 'Просмотр информации о товаре',
         path: '/product/:id',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/products/Product'), 1000)),
+            pMinDelay(import('../../../pages/products/Product'), 600)),
         hide: true,
         exact: false,
         private: true,
@@ -102,7 +102,7 @@ export const routes: IRoute[] = [
         pageName: 'Список поставщиков',
         path: '/providers',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/providers/Providers'), 1000)),
+            pMinDelay(import('../../../pages/providers/Providers'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -114,7 +114,7 @@ export const routes: IRoute[] = [
         pageName: 'Список импортеров',
         path: '/importers',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/importers/Importers'), 1000)),
+            pMinDelay(import('../../../pages/importers/Importers'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -125,7 +125,7 @@ export const routes: IRoute[] = [
         name: 'Просмотр информации об импортере',
         path: '/importer/:id',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/importers/Importer'), 1000)),
+            pMinDelay(import('../../../pages/importers/Importer'), 600)),
         hide: true,
         exact: false,
         private: true,
@@ -135,7 +135,7 @@ export const routes: IRoute[] = [
         name: 'Добавление нового импортера',
         path: '/importercreate',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/importers/ImporterCreate'), 1000)),
+            pMinDelay(import('../../../pages/importers/ImporterCreate'), 600)),
         hide: true,
         exact: false,
         private: true,
@@ -145,7 +145,7 @@ export const routes: IRoute[] = [
         name: 'Импортер изменение',
         path: '/importeredit/:id',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/importers/ImporterEdit'), 1000)),
+            pMinDelay(import('../../../pages/importers/ImporterEdit'), 600)),
         hide: true,
         exact: false,
         private: true,
@@ -155,7 +155,7 @@ export const routes: IRoute[] = [
         name: 'Лог',
         path: '/log',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Log'), 1000)),
+            pMinDelay(import('../../../pages/Log'), 600)),
         hide: false,
         exact: false,
         private: true,
@@ -166,7 +166,7 @@ export const routes: IRoute[] = [
         name: 'Настройки',
         path: '/settings',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Settings'), 1000)),
+            pMinDelay(import('../../../pages/Settings'), 600)),
         hide: false,
         exact: false,
         private: true,
