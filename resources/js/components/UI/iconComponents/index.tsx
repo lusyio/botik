@@ -1,5 +1,7 @@
 export { default as Arrow } from './Arrow'
+export { default as Catalog } from './Catalog'
 export { default as Catalogs } from './Catalogs'
+export { default as Close } from './Close'
 export { default as Containers } from './Containers'
 export { default as Edit } from './Edit'
 export { default as ErrorPlaceholder } from './ErrorPlaceholder'
