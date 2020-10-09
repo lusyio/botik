@@ -26,6 +26,7 @@ class CreateProductsTable extends Migration
             $table->integer('price_cny');
             $table->integer('weight_netto');
             $table->integer('weight_brutto');
+            $table->string('vendor_code');
             $table->timestamps();
         });
     }
