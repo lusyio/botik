@@ -11,8 +11,8 @@ class Order extends Model
         return $this->belongsTo('App\Provider');
     }
 
-    public function products()
+    public function orderItems()
     {
-       return $this->belongsToMany('App\Product', 'order_product', 'order_id', 'product_id');
+       return $this->hasMany('App\OrderItem');
     }
 }
