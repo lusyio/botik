@@ -90,6 +90,6 @@ class ImporterController extends Controller
     public function destroy(Importer $importer)
     {
         $importer->delete();
-        return response()->json([], 204); //Что вернуть?
+        return response()->json([], 204);
     }
 }

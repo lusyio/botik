@@ -99,6 +99,6 @@ class ProductController extends Controller
     {
         $product->deleteImage();
         $product->delete();
-        return response()->json([], 204); //Что вернуть?
+        return response()->json([], 204);
     }
 }

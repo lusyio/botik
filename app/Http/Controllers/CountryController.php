@@ -70,7 +70,7 @@ class CountryController extends Controller
     public function update(Request $request, Country $country)
     {
 //        $this->countryCreateValidator($request->all())->validate(); валидация
-        $updatedCountry = $country->update($country->dashesToSnakeCase($request->all()));
+        $country->update($country->dashesToSnakeCase($request->all()));
         return response()->json(new CountryWithRelationshipsResource($country), 201);
     }
 
@@ -83,6 +83,6 @@ class CountryController extends Controller
     public function destroy(Country $country)
     {
         $country->delete();
-        return response()->json([], 204); //Что вернуть?
+        return response()->json([], 204);
     }
 }

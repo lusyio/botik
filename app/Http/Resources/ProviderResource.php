@@ -23,7 +23,7 @@ class ProviderResource extends JsonResource
             'website' => $this->website,
             'phone' => $this->phone,
             'wechat' => $this->wechat,
-            'country' => new CountryResource($this->country),
+            'country' => $this->country,
             'beneficiaryName' => $this->beneficiary_name,
             'beneficiaryAddress' => $this->beneficiary_address,
             'beneficiaryAccountName' => $this->beneficiary_account_name,
