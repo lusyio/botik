@@ -38,10 +38,10 @@ Route::put('products/{product}', 'ProductController@update');
 Route::delete('products/{product}', 'ProductController@destroy');
 
 Route::get('catalogs', 'CatalogController@index');
-Route::post('catalogs', 'ProductController@store');
-Route::get('catalogs/{catalog}', 'ProductController@show');
-Route::put('catalogs/{catalog}', 'ProductController@update');
-Route::delete('catalogs/{catalog}', 'ProductController@destroy');
+Route::post('catalogs', 'CatalogController@store');
+Route::get('catalogs/{catalog}', 'CatalogController@show');
+Route::put('catalogs/{catalog}', 'CatalogController@update');
+Route::delete('catalogs/{catalog}', 'CatalogController@destroy');
 
 Route::get('countries', 'CountryController@index');
 Route::post('countries', 'CountryController@store');

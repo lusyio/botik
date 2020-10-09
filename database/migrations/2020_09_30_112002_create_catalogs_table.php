@@ -17,7 +17,7 @@ class CreateCatalogsTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('provider_id')->nullable();
-            $table->string('file');
+            $table->string('file')->nullable();
             $table->timestamps();
         });
     }

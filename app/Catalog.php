@@ -41,4 +41,19 @@ class Catalog extends Model
         $this->file = null;
         $this->save();
     }
+
+    public function checkAndAddTag($tags)
+    {
+        $newRequest = [];
+        foreach ($tags as $tag) {
+            $availableTag = Tag::where('name', '=', mb_strtolower($tag));
+            if ($availableTag->doesntExist()) {
+                $newTag = Tag::create(['name' => mb_strtolower($tag)]);
+                array_push($newRequest,$newTag->id);
+            } else {
+                array_push($newRequest, $availableTag->first()->id);
+            }
+        }
+        $this->tags()->sync($newRequest);
+    }
 }

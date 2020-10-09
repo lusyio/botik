@@ -49,11 +49,7 @@ class CatalogController extends Controller
 //       $this->catalogCreateValidator($request->all())->validate(); валидация
        $newCatalog = $catalog->create($catalog->dashesToSnakeCase($request->all()));
        if ($request->input('tags')) {
-            foreach ($request->input('tags') as $tag) {
-                if (Tag::where('name', '=', mb_strtolower($tag))->doesntExist()) {
-                    $newCatalog->tags()->attach(mb_strtolower($tag));
-                }
-            }
+           $newCatalog->checkAndAddTag($request->input('tags'));
        }
        $newCatalog->createOrUpdateFile($request->file('file'));
        return response()->json(new CatalogWithRelationshipsResource($newCatalog), 201);
@@ -80,8 +76,11 @@ class CatalogController extends Controller
     public function update(Request $request, Catalog $catalog)
     {
 //       $this->catalogCreateValidator($request->all())->validate(); валидация
-       $updatedProduct = $catalog->update($catalog->dashesToSnakeCase($request->all()));
-       $updatedProduct->createOrUpdateFile($request->file('file'));
+       $catalog->update($catalog->dashesToSnakeCase($request->all()));
+       if ($request->input('tags')) {
+           $catalog->checkAndAddTag($request->input('tags'));
+       }
+       $catalog->createOrUpdateFile($request->file('file'));
        return response()->json(new CatalogWithRelationshipsResource($catalog), 201);
     }
 
