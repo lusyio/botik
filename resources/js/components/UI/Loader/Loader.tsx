@@ -6,7 +6,7 @@ import ContentLoader from 'react-content-loader'
 
 const Loader: React.FC = (props) => (
     <ContentLoader
-        speed={2}
+        speed={1}
         width='100%'
         height={500}
         viewBox="0 0 900 500"

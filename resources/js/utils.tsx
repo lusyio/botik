@@ -50,7 +50,7 @@ export function moneyFormatter(price) {
     return (
         <span>
            {Object.entries(price).map(([_, val]) => {
-               return val + ' | '
+               return val + ' ₽ '
            })}
         </span>
     )

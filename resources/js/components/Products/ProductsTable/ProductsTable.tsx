@@ -74,7 +74,7 @@ const ProductsTable: React.FC = () => {
         {
             dataField: 'nameRu',
             text: 'Название',
-            classes: 'name',
+            classes: 'title',
             sort: true,
             formatter: (nameRu, row) =>
                 nameToLinkFormatter(nameRu, row, 'product')

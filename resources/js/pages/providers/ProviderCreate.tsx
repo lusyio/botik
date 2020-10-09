@@ -1,9 +1,10 @@
 // React
 import React from 'react';
+import ProviderForm from '../../components/Providers/ProviderForm/ProviderForm';
 
 const ProviderCreate: React.FC = () => {
     return (
-        <h1>Provider Create page</h1>
+        <ProviderForm/>
     );
 }
 

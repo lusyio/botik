@@ -81,11 +81,12 @@ const AutoTable: React.FC<IAutoTable> =
         function expandColumnRenderer({expanded}) {
             if (expanded) {
                 return (
-                    <b>-</b>
+                    <svg width="5" height="17" viewBox="0 0 5 17" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="2.75" cy="2.75" r="1.75" stroke="#3A405F"/><circle cx="2.75" cy="8.75" r="1.75" stroke="#3A405F"/><circle cx="2.75" cy="14.75" r="1.75" stroke="#3A405F"/></svg>
+
                 )
             }
             return (
-                <b>...</b>
+                <svg width="5" height="17" viewBox="0 0 5 17" fill="none" xmlns="http://www.w3.org/2000/svg"><circle cx="2.75" cy="2.75" r="1.75" fill="#3A405F" stroke="#3A405F"/><circle cx="2.75" cy="8.75" r="1.75" fill="#3A405F" stroke="#3A405F"/><circle cx="2.75" cy="14.75" r="1.75" fill="#3A405F" stroke="#3A405F"/></svg>
             )
         }
 
@@ -99,9 +100,10 @@ const AutoTable: React.FC<IAutoTable> =
             >
                 {props => (
                     <div>
-                        <div className="d-flex justify-content-between mb-3">
+                        <div className="d-flex justify-content-between mb-2">
                             <div className="searchBar">
-                                <SearchBar {...props.searchProps} />
+                                {/* eslint-disable-next-line max-len */}
+                                <SearchBar {...props.searchProps} placeholder="Поиск по названию"/>
                             </div>
                             {button
                                 ?
