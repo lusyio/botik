@@ -1,0 +1,13 @@
+.priceMain {
+    font-weight: 600;
+    font-size: 24px;
+    line-height: 29px;
+    color: var(--orange);
+    margin-bottom: 10px;
+}
+.price {
+    font-weight: 600;
+    font-size: 13px;
+    line-height: 16px;
+    margin-bottom: 10px;
+}
