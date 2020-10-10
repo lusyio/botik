@@ -1,9 +1,7 @@
 // React
 import React from 'react';
 
-// Typescript
-
-const Orders: React.FC = () => {
+const Order: React.FC = () => {
     return (
         <div className="card">
             <div className="card-body text-center">
@@ -14,4 +12,4 @@ const Orders: React.FC = () => {
     );
 }
 
-export default Orders;
+export default Order;
