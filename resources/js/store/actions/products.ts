@@ -1,4 +1,7 @@
 import {
+    CREATE_PRODUCT_ERROR,
+    CREATE_PRODUCT_START,
+    CREATE_PRODUCT_SUCCESS,
     FETCH_PRODUCTS_ERROR,
     FETCH_PRODUCTS_START,
     FETCH_PRODUCTS_SUCCESS,
@@ -47,6 +50,27 @@ export const fetchProductById = (id) => async dispatch => {
         .catch((error: AxiosError) => {
             dispatch({
                 type: FETCH_PRODUCT_ERROR,
+                payload: error.response
+            })
+        })
+}
+
+export const createProduct = (data) => async dispatch => {
+    await dispatch({
+        type: CREATE_PRODUCT_START,
+    })
+    const url = '/api/products'
+    axios
+        .post(url, data)
+        .then((answer) => {
+            dispatch({
+                type: CREATE_PRODUCT_SUCCESS,
+                payload: answer.data
+            })
+        })
+        .catch((error: AxiosError) => {
+            dispatch({
+                type: CREATE_PRODUCT_ERROR,
                 payload: error.response
             })
         })
