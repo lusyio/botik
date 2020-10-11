@@ -42,7 +42,7 @@ const ProvidersTable: React.FC = () => {
         return <Placeholder
             description='Нажмите на кнопку «Добавить поставщика»,
              чтобы он отображался в списке'
-            link='/providerscreate' linkName='Добавить поставщика'
+            link='/providercreate' linkName='Добавить поставщика'
             title='В этом списке ещё нет поставщиков'/>
     }
 
