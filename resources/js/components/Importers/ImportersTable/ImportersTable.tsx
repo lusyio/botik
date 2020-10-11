@@ -43,7 +43,7 @@ const ImportersTable: React.FC = () => {
         return <Placeholder
             description='Нажмите на кнопку «Добавить импортера»,
              чтобы он отображался в списке'
-            link='/importer/add' linkName='Добавить импортера'
+            link='importercreate' linkName='Добавить импортера'
             title='В этом списке ещё нет импортеров'/>
     }
 
