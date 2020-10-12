@@ -1,5 +1,8 @@
 import axios, {AxiosError} from 'axios';
 import {
+    CREATE_PROVIDER_ERROR,
+    CREATE_PROVIDER_START,
+    CREATE_PROVIDER_SUCCESS,
     FETCH_PROVIDERS_ERROR,
     FETCH_PROVIDERS_START,
     FETCH_PROVIDERS_SUCCESS,
@@ -45,6 +48,27 @@ export const fetchProviderById = (id) => async dispatch => {
         .catch((error: AxiosError) => {
             dispatch({
                 type: FETCH_PROVIDER_ERROR,
+                payload: error.response
+            })
+        })
+}
+
+export const createProvider = (data) => async dispatch => {
+    await dispatch({
+        type: CREATE_PROVIDER_START,
+    })
+    const url = '/api/providers'
+    axios
+        .post(url, data)
+        .then((answer) => {
+            dispatch({
+                type: CREATE_PROVIDER_SUCCESS,
+                payload: answer.data
+            })
+        })
+        .catch((error: AxiosError) => {
+            dispatch({
+                type: CREATE_PROVIDER_ERROR,
                 payload: error.response
             })
         })

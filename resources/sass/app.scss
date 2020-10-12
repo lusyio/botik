@@ -31,6 +31,20 @@ a {
     color: var(--main-color);
 }
 
+.text-orange {
+    color: var(--orange);
+}
+
+.small {
+    font-size: 10px;
+}
+
+.priceSymbol {
+    height: 40px;
+    display: block;
+    padding-top: 8px;
+}
+
 .react-bootstrap-table {
     .table {
         font-size: 12px;
@@ -227,17 +241,33 @@ a {
     max-height: 50px;
 }
 
+.btn-search {
+    padding: 0px 10px !important;
+    min-width: auto;
+    border-radius: 5px !important;
+    transition: 0.3s all;
+
+    &:hover {
+        box-shadow: 0px 5px 10px rgba(27, 83, 244, 0.2);
+    }
+}
+
 input:not([type=checkbox]), textarea {
     height: 40px;
-    background: #F3F5FA;
+    background: #f7f8fa;
     font-size: 14px;
     border: none;
     border-radius: 10px;
     color: var(--dark-color);
-    padding: 11px 24px;
+    padding: 11px 24px !important;
     width: 100%;
     transition: 0.5s all;
     font-weight: 500;
+}
+
+textarea {
+    height: auto;
+    min-height: 112px;
 }
 
 select {
@@ -258,6 +288,10 @@ select {
     font-weight: 500 !important;
 }
 
+[disabled="disabled"], *[disabled="disabled"], select[disabled]::-ms-value, select[disabled="disabled"], option:disabled {
+    color: var(--light) !important;
+}
+
 input:focus, select:focus, textarea:focus, .addButton:hover {
     border: 0;
     outline: none;
@@ -265,19 +299,19 @@ input:focus, select:focus, textarea:focus, .addButton:hover {
     transition: 0.3s all;
 }
 
-input::-webkit-input-placeholder {
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
     color: #B4B6BD;
 }
 
-input::-moz-placeholder {
+input::-moz-placeholder, textarea::-moz-placeholder {
     color: #B4B6BD;
 }
 
-input:-moz-placeholder {
+input:-moz-placeholder, textarea:-moz-placeholder {
     color: #B4B6BD;
 }
 
-input:-ms-input-placeholder {
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
     color: #B4B6BD;
 }
 
@@ -298,6 +332,10 @@ label {
     font-size: 12px;
     line-height: 35px;
     padding-right: 30px;
+}
+
+.border-primary {
+    border: 1px solid var(--orange) !important;
 }
 
 .editButton {

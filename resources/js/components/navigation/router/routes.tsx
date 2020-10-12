@@ -44,12 +44,32 @@ export const routes: IRoute[] = [
         pageName: 'Заказы',
         path: '/orders',
         component: lazy(() =>
-            pMinDelay(import('../../../pages/Orders'), 600)),
+            pMinDelay(import('../../../pages/orders/Orders'), 600)),
         hide: false,
         exact: false,
         private: true,
         fallback: <Loader/>,
         icon: <Orders/>
+    },
+    {
+        name: 'Просмотр информации о заказе',
+        path: '/order/:id',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/orders/Order'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
+    },
+    {
+        name: 'Инициализация нового заказа',
+        path: '/ordercreate',
+        component: lazy(() =>
+            pMinDelay(import('../../../pages/orders/OrderCreate'), 600)),
+        hide: true,
+        exact: false,
+        private: true,
+        fallback: <Loader/>
     },
     {
         name: 'Контейнеры',

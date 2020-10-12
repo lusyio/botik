@@ -3,29 +3,38 @@ import React from 'react';
 
 // Third-party
 import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-// import {useDispatch} from 'react-redux';
+import {useDispatch} from 'react-redux';
 import {useHistory} from 'react-router-dom';
 import SvgCatalog from '../../UI/iconComponents/Catalog';
 import SvgClose from '../../UI/iconComponents/Close';
 
 // Actions
-// import {createProvider} from '../../../store/actions/providers';
+import {createProvider} from '../../../store/actions/providers';
 
 interface ICreateProviderData {
-    nameRu: string
-    nameEn: string
-    address: string
+    name: string
+    nameCompany: string
+    email: string
+    website: string
     phone: string
+    wechat: string
+    countryId: string
+    beneficiaryName: string
+    beneficiaryAccountName: string
+    beneficiaryBankAddress: string
+    beneficiaryAddress: string
+    beneficiaryBankName: string
+    beneficiaryBankCode: string
 }
 
 const ProviderForm: React.FC<InjectedFormProps> = (props) => {
     const {handleSubmit, pristine, submitting} = props;
 
-    // const dispatch = useDispatch();
+    const dispatch = useDispatch();
     const history = useHistory();
 
     const providerFormSubmitHandler = (formValues: ICreateProviderData) => {
-        // dispatch(createProvider(formValues));
+        dispatch(createProvider(formValues));
         history.push('/providers');
     };
 
@@ -41,7 +50,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Укажите поставщика
                             </label>
                             <Field
-                                name="nameRu"
+                                name="name"
                                 component="input"
                                 type="text"
                                 className='col-lg-10'
@@ -53,7 +62,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Укажите название компании
                             </label>
                             <Field
-                                name="nameEn"
+                                name="nameCompany"
                                 component="input"
                                 type="text"
                                 className='col-lg-10'
@@ -70,7 +79,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Укажите почту
                             </label>
                             <Field
-                                name="nameEn"
+                                name="email"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -81,7 +90,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Укажите телефон
                             </label>
                             <Field
-                                name="nameEn"
+                                name="phone"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -92,13 +101,13 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Выберите страну
                             </label>
                             <Field
-                                name="nameEn"
+                                name="countryId"
                                 component="select"
                                 className='col-lg-10 mb-2'
                             >
                                 <option disabled selected>Страна</option>
-                                <option value="#ff0000">Китай</option>
-                                <option value="#00ff00">Россия</option>
+                                <option value="1">Китай</option>
+                                <option value="2">Россия</option>
                             </Field>
                         </div>
 
@@ -107,7 +116,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Укажите адрес сайта
                             </label>
                             <Field
-                                name="nameEn"
+                                name="website"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -118,7 +127,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Укажите Wechat
                             </label>
                             <Field
-                                name="nameEn"
+                                name="wechat"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -135,7 +144,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Beneficiary Name
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiaryName"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -146,7 +155,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Beneficiary Account Name
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiaryAccountName"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -157,7 +166,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Beneficiary Bank Address
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiaryBankAddress"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -168,7 +177,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 SWIFT Address
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiarySwiftAddress"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -181,7 +190,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Address
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiaryAddress"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -192,7 +201,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Beneficiary Bank Name
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiaryBankName"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'
@@ -203,7 +212,7 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                                 Beneficiary Bank Code
                             </label>
                             <Field
-                                name="nameEn"
+                                name="beneficiaryBankCode"
                                 component="input"
                                 type="text"
                                 className='col-lg-10 mb-2'

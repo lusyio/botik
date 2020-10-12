@@ -1,0 +1,94 @@
+// React
+import React from 'react'
+// import {useEffect} from 'react'
+
+// Third-party
+// import {useDispatch, useSelector} from 'react-redux'
+
+// Actions
+// import {fetchOrders} from '../../../store/actions/orders'
+
+// Typescript
+// import {IOrdersRootState} from '../IOrder'
+
+// App
+import Placeholder from '../../UI/Placeholder/Placeholder'
+// import Loader from '../../UI/Loader/Loader'
+import {nameToLinkFormatter} from '../../../utils'
+import AutoTable from '../../UI/AutoTable/AutoTable'
+import {ColumnDescription} from 'react-bootstrap-table-next'
+// import Error from '../../UI/Error/Error'
+
+const OrdersTable: React.FC = () => {
+    // const dispatch = useDispatch()
+    //
+    // useEffect(() => {
+    //     dispatch(fetchOrders())
+    // }, [dispatch])
+
+    const orders = [
+        {
+            name: 'Светотехника',
+            id: '3453453443',
+            status: 'Создан',
+            dop: 'Возврат оплаты'
+        }
+    ];
+
+    // const {orders, loading, error} = useSelector(
+    //     (state: IOrdersRootState) => ({
+    //         error: state.ordersState.error,
+    //         orders: state.ordersState.orders,
+    //         loading: state.ordersState.loading
+    //     })
+    // )
+
+    // if (error) {
+    //     return <Error/>
+    // }
+    // if (loading) {
+    //     return <Loader/>
+    // }
+    if (!orders.length) {
+        return <Placeholder
+            description='Нажмите на кнопку «Создать заказ»,
+             чтобы он отображался в списке'
+            link='ordercreate' linkName='Создать заказ'
+            title='В этом списке ещё нет заказов'/>
+    }
+
+    const columns: ColumnDescription[] = [
+        {
+            dataField: 'name',
+            text: 'Название',
+            classes: 'title',
+            sort: true,
+            formatter: (name, row) =>
+                nameToLinkFormatter(name, row, 'order')
+        },
+        {
+            dataField: 'id',
+            text: 'ID',
+            classes: 'email',
+            sort: true
+        },
+        {
+            dataField: 'status',
+            text: 'Статус',
+            classes: 'status',
+            sort: true
+        },
+        {
+            dataField: 'dop',
+            text: 'Дополнительно'
+        }
+    ]
+
+    return (
+        <AutoTable
+            keyField='id' data={orders} columns={columns}
+            button={{link: 'ordercreate', text: 'Новый заказ'}}/>
+    )
+}
+
+export default OrdersTable

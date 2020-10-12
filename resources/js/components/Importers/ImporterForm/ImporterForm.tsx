@@ -48,7 +48,7 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                                 name="nameRu"
                                 component="input"
                                 type="text"
-                                className='col-lg-10 form-control'
+                                className='col-lg-10'
                                 placeholder="Введите название"
                             />
                         </div>
@@ -66,7 +66,7 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                                 name="nameEn"
                                 component="input"
                                 type="text"
-                                className='col-lg-10 form-control'
+                                className='col-lg-10'
                                 placeholder="Type here"
                             />
                         </div>
@@ -78,7 +78,7 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                                 name="address"
                                 component="input"
                                 type="text"
-                                className='col-lg-10 form-control'
+                                className='col-lg-10'
                                 placeholder="Введите адрес"
                             />
                         </div>
@@ -88,7 +88,7 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                                 name="phone"
                                 component="input"
                                 type="phone"
-                                className='col-lg-10 form-control'
+                                className='col-lg-10'
                                 placeholder="Введите номер"
                             />
                         </div>

@@ -48,7 +48,7 @@ const ProductsTable: React.FC = () => {
         return <Placeholder
             description='Нажмите на кнопку «Добавить товар»,
              чтобы он отображался в списке'
-            link='/products/add' linkName='Добавить товар'
+            link='/productcreate' linkName='Добавить товар'
             title='В этом списке ещё нет товаров'/>
     }
 
@@ -98,7 +98,7 @@ const ProductsTable: React.FC = () => {
         <AutoTable
             expandRowTable={expandRowTable}
             keyField='id' data={products} columns={columns}
-            button={{link: 'productcreate', text: 'Добавить товар'}}/>
+            button={{link: '/productcreate', text: 'Добавить товар'}}/>
     )
 }
 
