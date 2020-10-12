@@ -33,6 +33,7 @@ class ProviderWithRelationshipsResource extends JsonResource
             'beneficiaryBankAddress' => $this->beneficiary_bank_address,
             'beneficiaryBankName' => $this->beneficiary_bank_name,
             'beneficiaryBankCode' => $this->beneficiary_bank_code,
+            'beneficiarySwiftAddress' => $this->beneficiary_swift_address,
             'catalogs' => CatalogResource::collection($this->catalogs),
             'orders' => OrderResource::collection($this->orders),
             'createdAt' => strtotime($this->created_at),

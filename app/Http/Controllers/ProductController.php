@@ -25,6 +25,7 @@ class ProductController extends Controller
             'priceCny' => 'цена в юань',
             'weightNetto' => 'вес в нетто',
             'weightBrutto' => 'вес в брутто',
+            'vendorCode' => 'артикул'
         ];
 
         return Validator::make($data, [
@@ -36,6 +37,7 @@ class ProductController extends Controller
             'priceCny' => ['required', 'integer', 'max:999999'],
             'weightNetto' => ['required', 'integer', 'max:999999'],
             'weightBrutto' => ['required', 'integer', 'max:999999'],
+            'vendorCode' => ['required'],
         ], $messages, $names);
     }
     /**
@@ -59,7 +61,7 @@ class ProductController extends Controller
     {
 //        $this->productCreateValidator($request->all())->validate(); валидация;
         $newProduct = $product->create($product->dashesToSnakeCase($request->all()));
-        $newProduct->createOrUpdateImage($request->file('image'));
+//        $newProduct->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($newProduct), 201);
     }
 

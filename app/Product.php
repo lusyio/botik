@@ -20,6 +20,7 @@ class Product extends Model
         'price_rub',
         'price_usd',
         'price_cny',
+        'vendor_code',
         'weight_netto',
         'weight_brutto',
     ];

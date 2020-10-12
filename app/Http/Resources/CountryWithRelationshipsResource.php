@@ -3,7 +3,7 @@
 namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
-use App\Http\Resources\ProviderWithRelationshipsResource;
+use App\Http\Resources\ProviderResource;
 
 class CountryWithRelationshipsResource extends JsonResource
 {
@@ -18,7 +18,7 @@ class CountryWithRelationshipsResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
-            'providers' => ProviderWithRelationshipsResource::collection($this->providers),
+            'providers' => ProviderResource::collection($this->providers),
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),
         ];

@@ -29,7 +29,7 @@ class ProductResource extends JsonResource
             'weightNetto' => $this->weight_netto,
             'weightBrutto' => $this->weight_brutto,
             'catalog' => new CatalogResource($this->catalog),
-            'orderItem' => OrderItemResource::collection($this->orderitems),
+            'orderItems' => OrderItemResource::collection($this->orderitems),
             'vendorCode' => $this->vendor_code,
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),

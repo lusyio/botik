@@ -22,6 +22,7 @@ class Provider extends Model
       'beneficiary_bank_address',
       'beneficiary_bank_name',
       'beneficiary_bank_code',
+      'beneficiary_swift_address',
       'beneficiary_name'
     ];
 

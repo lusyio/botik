@@ -25,6 +25,7 @@ class ProviderController extends Controller
             'beneficiaryAddress' => 'адрес получателя',
             'beneficiaryBankName' => 'название банка получателя',
             'beneficiaryBankCode' => 'код банка получателя',
+            'beneficiarySwiftAddress' => 'SWIFT адрес'
         ];
 
         return Validator::make($data, [
@@ -36,6 +37,7 @@ class ProviderController extends Controller
             'beneficiaryAddress' => ['required', 'string', 'max:255'],
             'beneficiaryBankName' => ['required', 'string', 'max:255'],
             'beneficiaryBankCode' => ['required', 'string', 'max:255'],
+            'beneficiarySwiftAddress' => ['required']
         ], $messages, $names);
     }
     /**
