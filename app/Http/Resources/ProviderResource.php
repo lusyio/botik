@@ -30,6 +30,7 @@ class ProviderResource extends JsonResource
             'beneficiaryBankAddress' => $this->beneficiary_bank_address,
             'beneficiaryBankName' => $this->beneficiary_bank_name,
             'beneficiaryBankCode' => $this->beneficiary_bank_code,
+            'beneficiarySwiftAddress' => $this->beneficiary_swift_address,
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),
         ];

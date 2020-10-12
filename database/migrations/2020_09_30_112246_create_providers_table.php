@@ -29,6 +29,7 @@ class CreateProvidersTable extends Migration
             $table->string('beneficiary_address');
             $table->string('beneficiary_bank_name');
             $table->string('beneficiary_bank_code');
+            $table->string('beneficiary_swift_address');
             $table->timestamps();
         });
     }
