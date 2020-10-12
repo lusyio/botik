@@ -1,4 +1,7 @@
 import {
+    CREATE_CATALOG_START,
+    CREATE_CATALOG_SUCCESS,
+    CREATE_CATALOG_ERROR,
     FETCH_CATALOGS_ERROR,
     FETCH_CATALOGS_START,
     FETCH_CATALOGS_SUCCESS,
@@ -47,6 +50,27 @@ export const fetchCatalogById = (id) => async dispatch => {
         .catch((error: AxiosError) => {
             dispatch({
                 type: FETCH_CATALOG_ERROR,
+                payload: error.response
+            })
+        })
+}
+
+export const createCatalog = (data) => async dispatch => {
+    await dispatch({
+        type: CREATE_CATALOG_START,
+    })
+    const url = '/api/catalogs'
+    axios
+        .post(url, data)
+        .then((answer) => {
+            dispatch({
+                type: CREATE_CATALOG_SUCCESS,
+                payload: answer.data
+            })
+        })
+        .catch((error: AxiosError) => {
+            dispatch({
+                type: CREATE_CATALOG_ERROR,
                 payload: error.response
             })
         })
