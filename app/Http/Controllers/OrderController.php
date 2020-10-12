@@ -51,7 +51,7 @@ class OrderController extends Controller
             $items = $request->input('items');
             foreach ($items as $item) {
                 $orderItem = new OrderItem();
-                $product = Product::findOrFail($item['product_id']);
+                $product = Product::findOrFail($item['id']);
                 $orderItem->order_id = $newOrder->id;
                 $orderItem->product_id = $product->id;
                 $orderItem->quantity = $item['quantity'];
