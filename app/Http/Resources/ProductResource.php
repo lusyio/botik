@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 use App\Http\Resources\CatalogResource;
-use App\Http\Resources\OrderResource;
+use App\Http\Resources\OrderItemResource;
 use phpDocumentor\Reflection\Types\Object_;
 
 class ProductResource extends JsonResource
@@ -29,7 +29,7 @@ class ProductResource extends JsonResource
             'weightNetto' => $this->weight_netto,
             'weightBrutto' => $this->weight_brutto,
             'catalog' => new CatalogResource($this->catalog),
-            'orders' => OrderResource::collection($this->orders),
+            'orderItem' => OrderItemResource::collection($this->orderitems),
             'vendorCode' => $this->vendor_code,
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),

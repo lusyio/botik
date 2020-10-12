@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->text('about_ru');
             $table->text('about_en')->nullable();
             $table->bigInteger('catalog_id')->nullable();
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('price_rub');
             $table->integer('price_usd');
             $table->integer('price_cny');
