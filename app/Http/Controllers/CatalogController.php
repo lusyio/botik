@@ -48,7 +48,7 @@ class CatalogController extends Controller
     {
 //       $this->catalogCreateValidator($request->all())->validate(); валидация
        $newCatalog = $catalog->create($catalog->dashesToSnakeCase($request->all()));
-       if ($request->input('tags')) {
+       if ($request->has('tags')) {
            $newCatalog->checkAndAddTag($request->input('tags'));
        }
        $newCatalog->createOrUpdateFile($request->file('file'));
@@ -80,7 +80,7 @@ class CatalogController extends Controller
        if ($request->input('tags')) {
            $catalog->checkAndAddTag($request->input('tags'));
        }
-       $catalog->createOrUpdateFile($request->file('file'));
+//       $catalog->createOrUpdateFile($request->file('file'));
        return response()->json(new CatalogWithRelationshipsResource($catalog), 201);
     }
 

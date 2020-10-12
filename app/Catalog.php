@@ -11,7 +11,7 @@ class Catalog extends Model
 
     public const FILE_DIRECTORY = '/public/catalogs-files';
 
-    protected $fillable = ['name'];
+    protected $fillable = ['name', 'provider_id'];
 
     public function provider()
     {
