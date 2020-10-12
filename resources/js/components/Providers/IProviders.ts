@@ -22,6 +22,7 @@ export interface IProvider {
     beneficiaryAddress: string
     beneficiaryBankName: string
     beneficiaryBankCode: string
+    beneficiarySwiftAddress: string
     catalogs: [] // Здесь будет массив объектов Каталоги
     orders: [] // Здесь будет массив объектов Заказы
     createdAt?: number;

@@ -131,7 +131,9 @@ const Provider: React.FC<IProvider> = () => {
                                     <p>{'beneficiaryBankCode' in provider
                                         ? provider.beneficiaryBankCode
                                         : ''}</p>
-                                    <p>3243242</p>
+                                    <p>{'beneficiarySwiftAddress' in provider
+                                        ? provider.beneficiarySwiftAddress
+                                        : ''}</p>
                                 </div>
                             </div>
 
