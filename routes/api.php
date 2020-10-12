@@ -48,3 +48,9 @@ Route::post('countries', 'CountryController@store');
 Route::get('countries/{country}', 'CountryController@show');
 Route::put('countries/{country}', 'CountryController@update');
 Route::delete('countries/{country}', 'CountryController@destroy');
+
+Route::get('orders', 'OrderController@index');
+Route::post('orders', 'OrderController@store');
+Route::get('orders/{order}', 'OrderController@show');
+Route::put('orders/{order}', 'OrderController@update');
+Route::delete('orders/{order}', 'OrderController@destroy');

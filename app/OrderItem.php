@@ -17,4 +17,10 @@ class OrderItem extends Model
     {
         return $this->belongsTo('App\Product');
     }
+
+    public function getSum()
+    {
+        return $this->price * $this->quantity;
+    }
+
 }

@@ -20,8 +20,9 @@ class OrderItemWithRelationshipsResource extends JsonResource
         return [
             'id' => $this->id,
             'productId' => $this->product_id,
-            'orderId' => $this->order_id,
             'quantity' => $this->quantity,
+            'price' => $this->price,
+            'fullPrice' => $this->getSum(),
             'order' => new OrderResource($this->order),
             'product' => new ProductResource($this->order),
             'createdAt' => strtotime($this->created_at),

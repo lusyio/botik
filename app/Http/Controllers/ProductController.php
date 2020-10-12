@@ -87,7 +87,7 @@ class ProductController extends Controller
     {
 //        $this->productCreateValidator($request->all())->validate(); валидация
         $updatedProduct = $product->update($product->dashesToSnakeCase($request->all()));
-        $updatedProduct->createOrUpdateImage($request->file('image'));
+//        $updatedProduct->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($product), 200);
     }
 
