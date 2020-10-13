@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderItem;
+use App\OrderPaymentStatus;
 use App\OrderStatus;
 use App\Product;
 use Illuminate\Http\Request;
@@ -52,6 +53,7 @@ class OrderController extends Controller
         $order->name = $order->dashesToSnakeCase($request->input('name'));
         $order->provider_id = $order->dashesToSnakeCase($request->input('providerId'));
         $order->status = OrderStatus::CREATED;
+        $order->status_payment = OrderPaymentStatus::PENDING;
         $order->save();
         if ($request->has('items') && is_array($request->input('items'))) {
             $items = $request->input('items');
@@ -61,7 +63,7 @@ class OrderController extends Controller
                 $orderItem->order_id = $order->id;
                 $orderItem->product_id = $product->id;
                 $orderItem->quantity = $item['quantity'];
-                $orderItem->price = $product->price_cny;
+                $orderItem->price_cny = $product->price_cny;
                 $orderItem->save();
             }
         }
@@ -76,7 +78,7 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        return response()->json(new OrderWithRelationshipsResource($order), 200);
     }
 
     /**

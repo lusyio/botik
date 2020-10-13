@@ -19,8 +19,8 @@ class OrderItemResource extends JsonResource
             'productId' => $this->product_id,
             'orderId' => $this->order_id,
             'quantity' => $this->quantity,
-            'price' => $this->price,
-            'fullPrice' => $this->getSum(),
+            'priceCny' => $this->price_cny,
+            'fullPriceCny' => $this->getSum(),
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),
         ];

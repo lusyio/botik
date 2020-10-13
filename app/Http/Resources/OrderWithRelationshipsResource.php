@@ -20,6 +20,7 @@ class OrderWithRelationshipsResource extends JsonResource
             'id' => $this->id,
             'name' => $this->name,
             'status' => $this->status,
+            'statusPayment' => $this->status_payment,
             'providerId' => new ProviderResource($this->provider),
             'items' => OrderItemResource::collection($this->orderItems),
             'cargo' => $this->cargo,

@@ -20,7 +20,7 @@ class OrderItem extends Model
 
     public function getSum()
     {
-        return $this->price * $this->quantity;
+        return $this->price_cny * $this->quantity;
     }
 
 }

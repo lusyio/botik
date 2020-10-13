@@ -18,7 +18,7 @@ class CreateOrderItemsTable extends Migration
             $table->integer('order_id');
             $table->integer('product_id');
             $table->integer('quantity');
-            $table->integer('price');
+            $table->integer('price_cny');
             $table->timestamps();
         });
     }
