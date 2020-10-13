@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Order;
 use App\OrderItem;
+use App\OrderStatus;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -44,22 +45,27 @@ class OrderController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Order $order)
+    public function store(Request $request)
     {
-        $newOrder = $order->create($order->dashesToSnakeCase($request->all()));
-        if ($request->input('items') && array($request->input('items'))) {
+        $order = new Order();
+        $this->orderCreateValidator($request->all())->validate();
+        $order->name = $order->dashesToSnakeCase($request->input('name'));
+        $order->provider_id = $order->dashesToSnakeCase($request->input('providerId'));
+        $order->status = OrderStatus::CREATED;
+        $order->save();
+        if ($request->has('items') && is_array($request->input('items'))) {
             $items = $request->input('items');
             foreach ($items as $item) {
                 $orderItem = new OrderItem();
                 $product = Product::findOrFail($item['id']);
-                $orderItem->order_id = $newOrder->id;
+                $orderItem->order_id = $order->id;
                 $orderItem->product_id = $product->id;
                 $orderItem->quantity = $item['quantity'];
                 $orderItem->price = $product->price_cny;
                 $orderItem->save();
             }
         }
-        return response()->json(new OrderWithRelationshipsResource($newOrder), 201);
+        return response()->json(new OrderWithRelationshipsResource($order), 201);
     }
 
     /**

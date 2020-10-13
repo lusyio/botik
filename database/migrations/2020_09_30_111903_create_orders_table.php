@@ -17,6 +17,7 @@ class CreateOrdersTable extends Migration
             $table->id();
             $table->string('name');
             $table->bigInteger('provider_id');
+            $table->string('status');
             $table->integer('cargo')->default(0);
             $table->timestamps();
         });

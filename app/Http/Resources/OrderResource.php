@@ -17,6 +17,7 @@ class OrderResource extends JsonResource
         return [
             'id' => $this->id,
             'name' => $this->name,
+            'status' => $this->status,
             'providerId' => $this->provider_id,
             'cargo' => $this->cargo,
             'createdAt' => strtotime($this->created_at),

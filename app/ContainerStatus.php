@@ -4,9 +4,9 @@ namespace App;
 
 class ContainerStatus
 {
-    const GOING = 'Is going';
-    const TRANSIT = 'In transit';
-    const ARRIVED_AT_CUSTOMS = 'arrived at customs';
-    const OUTPUT = 'output';
-    const ARRIVED_AT_WAREHOUS = 'arrived at the warehouse';
+    const GOING = 'ContainerIsGoing';
+    const TRANSIT = 'ContainerInTransit';
+    const ARRIVED_AT_CUSTOMS = 'ContainerArrivedAtCustoms';
+    const OUTPUT = 'ContainerOutput';
+    const ARRIVED_AT_WAREHOUS = 'ContainerArrivedAtTheWarehouse';
 }
