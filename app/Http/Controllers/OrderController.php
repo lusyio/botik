@@ -82,6 +82,12 @@ class OrderController extends Controller
         $this->orderCreateValidator($request->all())->validate();
         $order->name =$request->input('name');
         $order->provider_id = $request->input('providerId');
+        if ($request->has('status')) {
+            $order->status = $request->input('status');
+        }
+        if ($request->has('statusPayment')) {
+            $order->status_payment = $request->input('statusPayment');
+        }
         $order->save();
         if ($request->has('items') && is_array($request->input('items'))) {
             $order->addOrderItems($request->input('items'));
