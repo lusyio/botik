@@ -37,4 +37,13 @@ class Order extends Model
             $orderItem->save();
         }
     }
+
+    public function getOrderSum()
+    {
+        $sum = 0;
+        foreach ($this->orderItems as $orderItem) {
+            $sum += $orderItem->getSum();
+        }
+        return $sum;
+    }
 }
