@@ -3,10 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Order;
-use App\OrderItem;
 use App\OrderPaymentStatus;
 use App\OrderStatus;
-use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Resources\OrderWithRelationshipsResource;
@@ -48,24 +46,15 @@ class OrderController extends Controller
      */
     public function store(Request $request)
     {
-        $order = new Order();
         $this->orderCreateValidator($request->all())->validate();
-        $order->name = $order->dashesToSnakeCase($request->input('name'));
-        $order->provider_id = $order->dashesToSnakeCase($request->input('providerId'));
+        $order = new Order();
+        $order->name = $request->input('name');
+        $order->provider_id = $request->input('providerId');
         $order->status = OrderStatus::CREATED;
         $order->status_payment = OrderPaymentStatus::PENDING;
         $order->save();
         if ($request->has('items') && is_array($request->input('items'))) {
-            $items = $request->input('items');
-            foreach ($items as $item) {
-                $orderItem = new OrderItem();
-                $product = Product::findOrFail($item['id']);
-                $orderItem->order_id = $order->id;
-                $orderItem->product_id = $product->id;
-                $orderItem->quantity = $item['quantity'];
-                $orderItem->price_cny = $product->price_cny;
-                $orderItem->save();
-            }
+            $order->addOrderItems($request->input('items'));
         }
         return response()->json(new OrderWithRelationshipsResource($order), 201);
     }
@@ -90,7 +79,14 @@ class OrderController extends Controller
      */
     public function update(Request $request, Order $order)
     {
-        //
+        $this->orderCreateValidator($request->all())->validate();
+        $order->name =$request->input('name');
+        $order->provider_id = $request->input('providerId');
+        $order->save();
+        if ($request->has('items') && is_array($request->input('items'))) {
+            $order->addOrderItems($request->input('items'));
+        }
+        return response()->json(new OrderWithRelationshipsResource($order), 200);
     }
 
     /**
@@ -101,6 +97,8 @@ class OrderController extends Controller
      */
     public function destroy(Order $order)
     {
-        //
+        $order->orderItems()->delete();
+        $order->delete();
+        return response()->json([], 204);
     }
 }

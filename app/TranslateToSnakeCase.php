@@ -8,7 +8,7 @@ trait TranslateToSnakeCase
     public function dashesToSnakeCase($request)
     {
         if (!is_array($request)) {
-            return Str::snake($request);
+            return $request;
         }
         $newRequest = [];
         foreach ($request as $key => $value) {
