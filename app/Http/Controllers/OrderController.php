@@ -82,10 +82,10 @@ class OrderController extends Controller
         $this->orderCreateValidator($request->all())->validate();
         $order->name =$request->input('name');
         $order->provider_id = $request->input('providerId');
-        if ($request->has('status')) {
+        if ($request->has('status') && $request->input('status') != '') {
             $order->status = $request->input('status');
         }
-        if ($request->has('statusPayment')) {
+        if ($request->has('statusPayment') && $request->input('statusPayment') != '') {
             $order->status_payment = $request->input('statusPayment');
         }
         $order->save();
