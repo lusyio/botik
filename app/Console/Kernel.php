@@ -32,7 +32,7 @@ class Kernel extends ConsoleKernel
              $rubToUsd = json_decode($response->body())->Valute->USD->Previous;
              $cnyToUsd = round($rubToCny / $rubToUsd, 4);
              $latesCours = $exchangeRate->latest()->first();
-             if (is_null($latesCours) || ($latesCours->rub != $rubToCny && $latesCours->usd != $cnyToUsd)) {
+             if (is_null($latesCours) || $latesCours->rub != $rubToCny || $latesCours->usd != $cnyToUsd) {
                 $exchangeRate->create(['rub' => $rubToCny, 'usd' => $cnyToUsd]);
              }
          })->daily();
