@@ -44,7 +44,7 @@ class CountryController extends Controller
      */
     public function store(Request $request, Country $country)
     {
-//        $this->countryCreateValidator($request->all())->validate(); валидация
+        $this->countryCreateValidator($request->all())->validate();
         $newCountry = $country->create($country->dashesToSnakeCase($request->all()));
         return response()->json(new CountryWithRelationshipsResource($newCountry), 201);
     }
@@ -69,7 +69,7 @@ class CountryController extends Controller
      */
     public function update(Request $request, Country $country)
     {
-//        $this->countryCreateValidator($request->all())->validate(); валидация
+        $this->countryCreateValidator($request->all())->validate();
         $country->update($country->dashesToSnakeCase($request->all()));
         return response()->json(new CountryWithRelationshipsResource($country), 201);
     }

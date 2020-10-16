@@ -59,9 +59,9 @@ class ProductController extends Controller
      */
     public function store(Request $request, Product $product)
     {
-//        $this->productCreateValidator($request->all())->validate(); валидация;
+        $this->productCreateValidator($request->all())->validate();
         $newProduct = $product->create($product->dashesToSnakeCase($request->all()));
-//        $newProduct->createOrUpdateImage($request->file('image'));
+        $newProduct->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($newProduct), 201);
     }
 
@@ -85,9 +85,9 @@ class ProductController extends Controller
      */
     public function update(Request $request, Product $product)
     {
-//        $this->productCreateValidator($request->all())->validate(); валидация
-        $updatedProduct = $product->update($product->dashesToSnakeCase($request->all()));
-//        $updatedProduct->createOrUpdateImage($request->file('image'));
+        $this->productCreateValidator($request->all())->validate();
+        $product->update($product->dashesToSnakeCase($request->all()));
+        $product->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($product), 200);
     }
 
