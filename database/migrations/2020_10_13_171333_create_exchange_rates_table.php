@@ -15,8 +15,8 @@ class CreateExchangeRatesTable extends Migration
     {
         Schema::create('exchange_rates', function (Blueprint $table) {
             $table->id();
-            $table->string('cny_to_rub');
-            $table->string('cny_to_usd');
+            $table->double('rub');
+            $table->double('usd');
             $table->timestamps();
         });
     }

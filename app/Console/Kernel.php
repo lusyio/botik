@@ -26,15 +26,14 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-         $schedule->call(function() {
+         $schedule->call(function(ExchangeRate $exchangeRate) {
              $response = Http::get('https://www.cbr-xml-daily.ru/daily_json.js');
              $rubToCny = json_decode($response->body())->Valute->CNY->Previous;
              $rubToUsd = json_decode($response->body())->Valute->USD->Previous;
-             $exchangeRate = new ExchangeRate();
-             $exchangeRate->cny_to_rub = $rubToCny;
-             $exchangeRate->cny_to_usd = round($rubToCny / $rubToUsd, 4);
+             $exchangeRate->rub = $rubToCny;
+             $exchangeRate->usd = round($rubToCny / $rubToUsd, 4);
              $exchangeRate->save();
-         })->dailyAt('17:25');
+         })->daily();
     }
 
     /**
