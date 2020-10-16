@@ -30,9 +30,11 @@ class Kernel extends ConsoleKernel
              $response = Http::get('https://www.cbr-xml-daily.ru/daily_json.js');
              $rubToCny = json_decode($response->body())->Valute->CNY->Previous;
              $rubToUsd = json_decode($response->body())->Valute->USD->Previous;
-             $exchangeRate->rub = $rubToCny;
-             $exchangeRate->usd = round($rubToCny / $rubToUsd, 4);
-             $exchangeRate->save();
+             $cnyToUsd = round($rubToCny / $rubToUsd, 4);
+             $latesCours = $exchangeRate->latest()->first();
+             if (is_null($latesCours) || ($latesCours->rub != $rubToCny && $latesCours->usd != $cnyToUsd)) {
+                $exchangeRate->create(['rub' => $rubToCny, 'usd' => $cnyToUsd]);
+             }
          })->daily();
     }
 
