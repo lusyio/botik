@@ -44,7 +44,6 @@ const ProductForm: React.FC = () => {
     const productFormSubmitHandler =
         handleSubmit((formValues: ICreateProductData) => {
             formValues.image = formValues.image[0]
-            console.log(formValues)
             dispatch(createProduct(formValues))
             history.push('/products')
         })
