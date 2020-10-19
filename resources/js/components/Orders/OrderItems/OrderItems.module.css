@@ -1,0 +1,28 @@
+.products {
+    background: #FAFBFC;
+}
+
+.productImg {
+    background: white;
+}
+.productImg img {
+    max-height: 50px;
+}
+.productName {
+    display: block;
+    font-size: 12px;
+    line-height: 15px;
+    color: #3A405F;
+    font-weight: 700;
+    margin-top: 18px;
+    padding-left: 15px;
+}
+.productCount {
+    background: white !important;
+    height: 30px !important;
+    margin-top: 10px !important;
+    border: 0.5px solid #EBEBEB !important;
+    box-sizing: border-box !important;
+    border-radius: 10px !important;
+    width: 75px !important;
+}

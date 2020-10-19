@@ -80,7 +80,7 @@ const OrderForm: React.FC = () => {
                             <label className='w-100' htmlFor='name'>
                                 Название заказа
                             </label>
-                            <input className='col-lg-10 mb-2' name="name"
+                            <input className='col-lg-10 mb-3' name="name"
                                    ref={register}
                                    placeholder="Введите название" type="text"/>
 
@@ -104,8 +104,20 @@ const OrderForm: React.FC = () => {
                             </select>
                         </div>
                         <div className="col-lg-6">
-
-                            карго переключатель
+                            <label className='w-100' htmlFor='provider'>
+                                Статус карго
+                            </label>
+                            <div className="custom-control custom-switch">
+                                <input
+                                    type="checkbox"
+                                    className="custom-control-input"
+                                    id="customSwitch1"
+                                />
+                                    <label
+                                        className="custom-control-label"
+                                        htmlFor="customSwitch1">
+                                    </label>
+                            </div>
 
                         </div>
                     </div>
@@ -142,7 +154,8 @@ const OrderForm: React.FC = () => {
                             className="ml-4 font-weight-bold"
                         >124 ¥</span>
                     </div>
-                    <div>
+                    <div
+                        className="d-flex justify-content-between mt-4">
                         <button
                             onClick={() => {
                                 history.goBack()
