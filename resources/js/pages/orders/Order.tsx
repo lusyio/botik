@@ -141,6 +141,14 @@ const Order: React.FC<IOrder> = () => {
                                     : ''}
                             </p>
                             <p className="infoBlockHeaders mb-1">
+                                Wechat
+                            </p>
+                            <p className="infoBlockText">
+                                {'wechat' in provider
+                                    ? provider.wechat
+                                    : ''}
+                            </p>
+                            <p className="infoBlockHeaders mb-1">
                                 Сайт
                             </p>
                             <p className="infoBlockText">

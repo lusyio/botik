@@ -11,10 +11,15 @@ import {IProductsRootState} from '../../components/Products/IProducts'
 
 // Actions
 import {fetchProductById} from '../../store/actions/products'
+import {fetchProviderById} from '../../store/actions/providers'
 
 // App
 import Loader from '../../components/UI/Loader/Loader'
 import {moneyFormatter, timeConverter} from '../../utils'
+import {
+    // IProvider,
+    IProvidersRootState
+} from '../../components/Providers/IProviders'
 
 const Product: React.FC = () => {
     const {id}: any = useParams()
@@ -28,6 +33,16 @@ const Product: React.FC = () => {
             loading: state.productsState.loading
         })
     )
+
+    const {provider} = useSelector(
+        (state: IProvidersRootState) => ({
+            provider: state.providersState.provider
+        })
+    )
+
+    useEffect(() => {
+        dispatch(fetchProviderById(id))
+    }, [dispatch])
 
     useEffect(() => {
         dispatch(fetchProductById(id))
@@ -176,21 +191,53 @@ const Product: React.FC = () => {
                 <div className="card">
                     <div className="card-body">
                         <p className="infoBlockHeaders mb-1">Поставщик</p>
-                        <p className="infoBlockText">Yiche Electronic</p>
+                        <p className="infoBlockText">
+                            {'name' in provider
+                                ? provider.name
+                                : ''}
+                        </p>
                         <p className="infoBlockHeaders mb-1">Страна</p>
-                        <p className="infoBlockText">Китай</p>
+                        <p className="infoBlockText">
+                            {'country' in provider
+                                ? provider.country
+                                : ''}
+                        </p>
                         <p className="infoBlockHeaders mb-1">Почта</p>
-                        <p className="infoBlockText">ycdz1@yc-zqy.com</p>
+                        <p className="infoBlockText">
+                            {'email' in provider
+                                ? provider.email
+                                : ''}
+                        </p>
                         <p className="infoBlockHeaders mb-1">Телефон</p>
-                        <p className="infoBlockText">0 (000) 000-00-00</p>
+                        <p className="infoBlockText">
+                            {'phone' in provider
+                                ? provider.phone
+                                : ''}
+                        </p>
                         <p className="infoBlockHeaders mb-1">Wechat</p>
-                        <p className="infoBlockText">13506575780</p>
+                        <p className="infoBlockText">
+                            {'wechat' in provider
+                                ? provider.wechat
+                                : ''}
+                        </p>
                         <p className="infoBlockHeaders mb-1">Сайт</p>
-                        <p className="infoBlockText">www.yc-zqy.com</p>
+                        <p className="infoBlockText">
+                            <a href={'website' in provider
+                                ? provider.website
+                                : ''}
+                               target="_blank"
+                               rel="noreferrer">
+                                {'website' in provider
+                                    ? provider.website
+                                    : ''}
+                            </a>
+                        </p>
                         <p className="infoBlockHeaders mb-1 mt-5">
                             Перейти на страницу поставщика
                         </p>
-                        <NavLink to={`/provider/2`}>
+                        <NavLink to={'id' in provider
+                            ? '/provider/' + provider.id
+                            : ''}>
                             <SvgArrowRight/>
                         </NavLink>
                     </div>
