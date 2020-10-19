@@ -41,7 +41,6 @@ const CatalogForm: React.FC = () => {
         handleSubmit((formValues: ICreateCatalogData) => {
             formValues.file = formValues.file[0]
             formValues.tags = [formValues.tags]
-            console.log(formValues)
             dispatch(createCatalog(formValues))
             history.push('/catalogs')
         })

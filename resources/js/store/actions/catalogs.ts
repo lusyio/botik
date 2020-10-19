@@ -56,12 +56,16 @@ export const fetchCatalogById = (id) => async dispatch => {
 }
 
 export const createCatalog = (data) => async dispatch => {
+    const formData = new FormData()
+    Object.entries(data).map(([key, val]) => {
+        return formData.append(key, val)
+    })
     await dispatch({
         type: CREATE_CATALOG_START,
     })
     const url = '/api/catalogs'
     axios
-        .post(url, data)
+        .post(url, formData)
         .then((answer) => {
             dispatch({
                 type: CREATE_CATALOG_SUCCESS,

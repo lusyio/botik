@@ -56,12 +56,16 @@ export const fetchProductById = (id) => async dispatch => {
 }
 
 export const createProduct = (data) => async dispatch => {
+    const formData = new FormData()
+    Object.entries(data).map(([key, val]) => {
+        return formData.append(key, val)
+    })
     await dispatch({
-        type: CREATE_PRODUCT_START,
+        type: CREATE_PRODUCT_START
     })
     const url = '/api/products'
     axios
-        .post(url, data)
+        .post(url, formData)
         .then((answer) => {
             dispatch({
                 type: CREATE_PRODUCT_SUCCESS,
