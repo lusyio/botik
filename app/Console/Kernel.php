@@ -35,7 +35,7 @@ class Kernel extends ConsoleKernel
              if (is_null($latesCours) || $latesCours->rub != $rubToCny || $latesCours->usd != $cnyToUsd) {
                 $exchangeRate->create(['rub' => $rubToCny, 'usd' => $cnyToUsd]);
              }
-         })->daily();
+         })->dailyAt('10:00');
     }
 
     /**
