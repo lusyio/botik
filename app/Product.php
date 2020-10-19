@@ -11,20 +11,6 @@ class Product extends Model
 
     public const IMAGE_DIRECTORY = '/public/product-images';
 
-    protected $fillable = [
-        'name_ru',
-        'name_en',
-        'about_ru',
-        'about_en',
-        'catalog_id',
-        'price_rub',
-        'price_usd',
-        'price_cny',
-        'vendor_code',
-        'weight_netto',
-        'weight_brutto',
-    ];
-
     public function catalog()
     {
         return $this->belongsTo('App\Catalog');

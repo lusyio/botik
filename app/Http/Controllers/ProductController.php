@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\ExchangeRate;
 use Illuminate\Http\Request;
 use App\Http\Resources\ProductResource;
 use App\Product;
@@ -13,30 +14,23 @@ class ProductController extends Controller
     {
         $messages = [
             'required' => 'Поле :attribute обязательно для заполнения.',
-            'max' => 'Поле :attribute должно содержать не более :max символов',
         ];
 
         $names = [
             'nameRu' => 'название продукта',
             'aboutRu' => 'о продукте',
-            'image' => 'изображение',
-            'priceRub' => 'цена в рублях',
-            'priceUsd' => 'цена в долларах',
             'priceCny' => 'цена в юань',
-            'weightNetto' => 'вес в нетто',
+            'weightNetto' => 'вес в нет то',
             'weightBrutto' => 'вес в брутто',
             'vendorCode' => 'артикул'
         ];
 
         return Validator::make($data, [
-            'nameRu' => ['required', 'string', 'max:255'],
+            'nameRu' => ['required'],
             'aboutRu' => ['required'],
-            'image' => ['required', 'image'],
-            'priceRub' => ['required', 'integer', 'max:999999'],
-            'priceUsd' => ['required', 'integer', 'max:999999'],
-            'priceCny' => ['required', 'integer', 'max:999999'],
-            'weightNetto' => ['required', 'integer', 'max:999999'],
-            'weightBrutto' => ['required', 'integer', 'max:999999'],
+            'priceCny' => ['required'],
+            'weightNetto' => ['required'],
+            'weightBrutto' => ['required'],
             'vendorCode' => ['required'],
         ], $messages, $names);
     }
@@ -57,12 +51,24 @@ class ProductController extends Controller
      * @param Product $product
      * @return void
      */
-    public function store(Request $request, Product $product)
+    public function store(Request $request,ExchangeRate $exchangeRate)
     {
         $this->productCreateValidator($request->all())->validate();
-        $newProduct = $product->create($product->dashesToSnakeCase($request->all()));
-        $newProduct->createOrUpdateImage($request->file('image'));
-        return response()->json(new ProductResource($newProduct), 201);
+        $product = new Product();
+        $product->name_ru = $request->input('nameRu');
+        $product->name_en = $request->input('nameEn');
+        $product->about_ru = $request->input('aboutRu');
+        $product->about_en = $request->input('aboutEn');
+        $product->catalog_id = $request->input('catalogId');
+        $product->price_cny = $request->input('priceCny');
+        $product->price_rub = $exchangeRate->lastCourse()->rub * $product->price_cny;
+        $product->price_usd = $exchangeRate->lastCourse()->usd * $product->price_cny;
+        $product->weight_netto = $request->input('weightNetto');
+        $product->weight_brutto = $request->input('weightBrutto');
+        $product->vendor_code = $request->input('vendorCode');
+        $product->save();
+        $product->createOrUpdateImage($request->file('image'));
+        return response()->json(new ProductResource($product), 201);
     }
 
     /**
@@ -83,10 +89,21 @@ class ProductController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Product $product)
+    public function update(Request $request, Product $product, ExchangeRate $exchangeRate)
     {
         $this->productCreateValidator($request->all())->validate();
-        $product->update($product->dashesToSnakeCase($request->all()));
+        $product->name_ru = $request->input('nameRu');
+        $product->name_en = $request->input('nameEn');
+        $product->about_ru = $request->input('aboutRu');
+        $product->about_en = $request->input('aboutEn');
+        $product->catalog_id = $request->input('catalogId');
+        $product->price_cny = $request->input('priceCny');
+        $product->price_rub = round($exchangeRate->lastCourse()->rub * $product->price_cny, 2);
+        $product->price_usd = round($exchangeRate->lastCourse()->usd * $product->price_cny, 2);
+        $product->weight_netto = $request->input('weightNetto');
+        $product->weight_brutto = $request->input('weightBrutto');
+        $product->vendor_code = $request->input('vendorCode');
+        $product->save();
         $product->createOrUpdateImage($request->file('image'));
         return response()->json(new ProductResource($product), 200);
     }
