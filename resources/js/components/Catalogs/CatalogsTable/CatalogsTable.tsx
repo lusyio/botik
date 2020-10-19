@@ -15,7 +15,7 @@ import {ICatalogsRootState} from '../ICatalogs'
 import Loader from '../../UI/Loader/Loader'
 import Placeholder from '../../UI/Placeholder/Placeholder'
 import AutoTable from '../../UI/AutoTable/AutoTable'
-import {nameToLinkFormatter} from '../../../utils'
+import {nameToLinkFormatter, timeConverter} from '../../../utils'
 import Error from '../../UI/Error/Error'
 
 const CatalogsTable: React.FC = () => {
@@ -63,7 +63,8 @@ const CatalogsTable: React.FC = () => {
         {
             dataField: 'updatedAt',
             text: 'Обновление',
-            sort: true
+            sort: true,
+            formatter: timeConverter
         },
         {
             dataField: 'tags',
