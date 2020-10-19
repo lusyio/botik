@@ -1,5 +1,6 @@
 .products {
     background: #FAFBFC;
+    min-height: 50px;
 }
 
 .productImg {
@@ -25,4 +26,8 @@
     box-sizing: border-box !important;
     border-radius: 10px !important;
     width: 75px !important;
+}
+
+.productPrices {
+    padding-top: 13px;
 }

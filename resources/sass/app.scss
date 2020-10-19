@@ -236,6 +236,20 @@ a {
     color: #3A405F;
 }
 
+.pricesBlock {
+    font-weight: 500;
+    font-size: 12px;
+    line-height: 15px;
+}
+
+.pricesBlock .pricesSymbol {
+    margin-right: 20px;
+}
+
+.pricesBlock .pricesSymbol:last-child {
+    margin-right: 0px;
+}
+
 // Инпуты, селекты и кнопки
 .btn {
     max-height: 50px;

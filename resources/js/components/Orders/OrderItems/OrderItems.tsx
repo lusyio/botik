@@ -31,7 +31,7 @@ const OrderItems: React.FC = ({items, onChange}: any) => {
                                onChange={onChange}
                                value={1} type="number"/>
                     </div>
-                    <div className="col-3">
+                    <div className={classes.productPrices + ' col-3'}>
                         {moneyFormatter(item.price)}
                     </div>
                     <div className="col-1">

@@ -3,6 +3,7 @@ import React from 'react'
 
 // Third-party
 import {NavLink} from 'react-router-dom'
+import getSymbolFromCurrency from 'currency-symbol-map'
 
 export function nameToLinkFormatter(name, row, page) {
     return (
@@ -48,9 +49,9 @@ export function timeConverter(timestamp) {
  */
 export function moneyFormatter(price) {
     return (
-        <span>
+        <span className="pricesBlock">
            {Object.entries(price).map(([key, val]) => {
-               return `${val} ${key}, `
+               return val + ' ' + getSymbolFromCurrency(key) + '   '
            })}
         </span>
     )
