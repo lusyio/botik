@@ -8,7 +8,7 @@ import {useDispatch, useSelector} from 'react-redux'
 import {fetchContainers} from '../../../store/actions/containers'
 
 // Typescript
-import {IContainersRootState} from '../IContainer'
+import {IContainersRootState} from '../IContainers'
 
 // App
 import Loader from '../../UI/Loader/Loader'

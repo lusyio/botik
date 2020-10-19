@@ -1,54 +1,45 @@
 // React
 import React from 'react'
-// import {useEffect} from 'react'
+import {useEffect} from 'react'
 
 // Third-party
-// import {useDispatch, useSelector} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 
 // Actions
-// import {fetchOrders} from '../../../store/actions/orders'
+import {fetchOrders} from '../../../store/actions/orders'
 
 // Typescript
-// import {IOrdersRootState} from '../IOrder'
+import {IOrdersRootState} from '../IOrders'
 
 // App
 import Placeholder from '../../UI/Placeholder/Placeholder'
-// import Loader from '../../UI/Loader/Loader'
+import Loader from '../../UI/Loader/Loader'
 import {nameToLinkFormatter} from '../../../utils'
 import AutoTable from '../../UI/AutoTable/AutoTable'
 import {ColumnDescription} from 'react-bootstrap-table-next'
-// import Error from '../../UI/Error/Error'
+import Error from '../../UI/Error/Error'
 
 const OrdersTable: React.FC = () => {
-    // const dispatch = useDispatch()
-    //
-    // useEffect(() => {
-    //     dispatch(fetchOrders())
-    // }, [dispatch])
+    const dispatch = useDispatch()
 
-    const orders = [
-        {
-            name: 'Светотехника',
-            id: '3453453443',
-            status: 'Создан',
-            dop: 'Возврат оплаты'
-        }
-    ];
+    useEffect(() => {
+        dispatch(fetchOrders())
+    }, [dispatch])
 
-    // const {orders, loading, error} = useSelector(
-    //     (state: IOrdersRootState) => ({
-    //         error: state.ordersState.error,
-    //         orders: state.ordersState.orders,
-    //         loading: state.ordersState.loading
-    //     })
-    // )
+    const {orders, loading, error} = useSelector(
+        (state: IOrdersRootState) => ({
+            error: state.ordersState.error,
+            orders: state.ordersState.orders,
+            loading: state.ordersState.loading
+        })
+    )
 
-    // if (error) {
-    //     return <Error/>
-    // }
-    // if (loading) {
-    //     return <Loader/>
-    // }
+    if (error) {
+        return <Error/>
+    }
+    if (loading) {
+        return <Loader/>
+    }
     if (!orders.length) {
         return <Placeholder
             description='Нажмите на кнопку «Создать заказ»,

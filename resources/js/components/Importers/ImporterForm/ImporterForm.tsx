@@ -1,13 +1,13 @@
 // React
-import React from 'react';
+import React from 'react'
 
 // Third-party
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useDispatch} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 
 // Actions
-import {createImporter} from '../../../store/actions/importers';
+import {createImporter} from '../../../store/actions/importers'
 
 interface ICreateImporterData {
     nameRu: string
@@ -16,26 +16,27 @@ interface ICreateImporterData {
     phone: string
 }
 
-const ImporterForm: React.FC<InjectedFormProps> = (props) => {
-    const {handleSubmit, pristine, submitting} = props;
+const ImporterForm: React.FC = () => {
+    const {
+        register, handleSubmit
+    } = useForm<ICreateImporterData>()
 
-    const dispatch = useDispatch();
-    const history = useHistory();
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    const importerFormSubmitHandler = (formValues: ICreateImporterData) => {
-        dispatch(createImporter(formValues));
-        history.push('/importers');
-    };
+    const importerFormSubmitHandler =
+        handleSubmit((formValues: ICreateImporterData) => {
+            dispatch(createImporter(formValues))
+            history.push('/importers')
+        })
 
     return (
         <div className='card'>
             <div className="card-body">
-                <form onSubmit={handleSubmit(
-                    (formValues: ICreateImporterData) =>
-                        importerFormSubmitHandler(formValues))}>
+                <form onSubmit={importerFormSubmitHandler}>
                     <div className='mb-3 row'>
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label htmlFor='nameRu' className='w-100'>
                                 Укажите название
                                 <span className="float-right
                                     text-main
@@ -44,16 +45,12 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                                     RU
                                 </span>
                             </label>
-                            <Field
-                                name="nameRu"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Введите название"
-                            />
+                            <input className='col-lg-10' name="nameRu"
+                                   ref={register}
+                                   type="text" placeholder="Введите название"/>
                         </div>
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label htmlFor='nameEn' className='w-100'>
                                 Name
                                 <span className="float-right
                                     text-main
@@ -62,56 +59,47 @@ const ImporterForm: React.FC<InjectedFormProps> = (props) => {
                                     ENG
                                 </span>
                             </label>
-                            <Field
-                                name="nameEn"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Type here"
-                            />
+                            <input name="nameEn" className='col-lg-10'
+                                   ref={register}
+                                   type="text" placeholder="Type here"/>
                         </div>
                     </div>
                     <div className='mb-5 row'>
                         <div className="col-lg-6">
-                            <label>Укажите адрес</label>
-                            <Field
-                                name="address"
-                                component="input"
-                                type="text"
+                            <label htmlFor='address'>Укажите адрес</label>
+                            <input
+                                name="address" type="text"
                                 className='col-lg-10'
-                                placeholder="Введите адрес"
-                            />
+                                ref={register}
+                                placeholder="Введите адрес"/>
                         </div>
                         <div className="col-lg-6">
-                            <label>Укажите номер телефона</label>
-                            <Field
-                                name="phone"
-                                component="input"
-                                type="phone"
+                            <label
+                                htmlFor='phone'>Укажите номер телефона</label>
+                            <input
+                                name="phone" type="tel"
                                 className='col-lg-10'
-                                placeholder="Введите номер"
-                            />
+                                ref={register}
+                                placeholder="Введите номер"/>
                         </div>
                     </div>
                     <div>
                         <button
                             onClick={() => {
-                                history.goBack();
+                                history.goBack()
                             }} className='mr-3 btn btn-light'>
                             Назад
                         </button>
-                        <button className='btn btn-success'
-                                type="submit"
-                                disabled={pristine || submitting}>
+                        <button
+                            className='btn btn-success'
+                            type="submit">
                             Сохранить
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default reduxForm({
-    form: 'ImporterFormCreate'
-})(ImporterForm);
+export default ImporterForm

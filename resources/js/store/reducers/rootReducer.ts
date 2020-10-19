@@ -8,12 +8,16 @@ import productsReducer from './products'
 import providersReducer from './providers'
 import containersReducer from './containers'
 import catalogsReducer from './catalogs'
+import countryReducer from './countries'
+import ordersReducer from './orders'
 
 export default combineReducers({
     importersState: importersReducer,
     productsState: productsReducer,
     providersState: providersReducer,
+    ordersState: ordersReducer,
     containersState: containersReducer,
     catalogsState: catalogsReducer,
+    countriesState: countryReducer,
     form: formReducer
 })

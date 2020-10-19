@@ -1,12 +1,18 @@
 import {
     IProvidersActionTypes,
     IProvidersState
-} from '../../components/Providers/IProviders';
+} from '../../components/Providers/IProviders'
 import {
-    FETCH_PROVIDERS_ERROR, FETCH_PROVIDERS_START, FETCH_PROVIDERS_SUCCESS,
+    CREATE_PROVIDER_ERROR,
+    CREATE_PROVIDER_START,
+    CREATE_PROVIDER_SUCCESS,
+    FETCH_PROVIDERS_ERROR,
+    FETCH_PROVIDERS_START,
+    FETCH_PROVIDERS_SUCCESS,
     FETCH_PROVIDER_ERROR,
-    FETCH_PROVIDER_START, FETCH_PROVIDER_SUCCESS
-} from '../actions/actionTypes';
+    FETCH_PROVIDER_START,
+    FETCH_PROVIDER_SUCCESS
+} from '../actions/actionTypes'
 
 const initialState: IProvidersState = {
     providers: [],
@@ -40,6 +46,18 @@ export default function providersReducer(
                 ...state, loading: false, provider: action.payload
             }
         case FETCH_PROVIDER_ERROR:
+            return {
+                ...state, loading: false, error: action.payload
+            }
+        case CREATE_PROVIDER_START:
+            return {
+                ...state, loading: true
+            }
+        case CREATE_PROVIDER_SUCCESS:
+            return {
+                ...state, loading: false, provider: action.payload
+            }
+        case CREATE_PROVIDER_ERROR:
             return {
                 ...state, loading: false, error: action.payload
             }

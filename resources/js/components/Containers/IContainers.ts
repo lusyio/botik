@@ -1,4 +1,7 @@
 import {
+    CREATE_CONTAINER_ERROR,
+    CREATE_CONTAINER_START,
+    CREATE_CONTAINER_SUCCESS,
     FETCH_CONTAINERS_ERROR,
     FETCH_CONTAINERS_START,
     FETCH_CONTAINERS_SUCCESS,
@@ -61,6 +64,24 @@ interface IFetchContainerError {
     loading: boolean
 }
 
+interface ICreateContainerStart {
+    type: typeof CREATE_CONTAINER_START
+    loading: boolean
+}
+
+interface ICreateContainerSuccess {
+    type: typeof CREATE_CONTAINER_SUCCESS
+    payload: IContainer
+    loading: boolean
+}
+
+interface ICreateContainerError {
+    type: typeof CREATE_CONTAINER_ERROR
+    payload: any
+    loading: boolean
+}
+
 export type IContainersActionTypes =
     IFetchContainersStart | IFetchContainersSuccess | IFetchContainersError |
-    IFetchContainerStart | IFetchContainerSuccess | IFetchContainerError
+    IFetchContainerStart | IFetchContainerSuccess | IFetchContainerError |
+    ICreateContainerStart | ICreateContainerSuccess | ICreateContainerError

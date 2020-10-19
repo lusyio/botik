@@ -35,10 +35,10 @@ export function substringOut(value, length) {
  * @param timestamp
  */
 export function timeConverter(timestamp) {
-    const nowDate = new Date(timestamp * 1000)
-    const month = nowDate.getMonth() + 1
-    const year = nowDate.getFullYear()
-    const date = nowDate.getDate()
+    const a = new Date(timestamp * 1000)
+    const month = a.getMonth() + 1
+    const year = a.getFullYear()
+    const date = a.getDate()
     return `${date}.${month}.${year}`
 }
 
@@ -49,8 +49,8 @@ export function timeConverter(timestamp) {
 export function moneyFormatter(price) {
     return (
         <span>
-           {Object.entries(price).map(([_, val]) => {
-               return val + ' ₽ '
+           {Object.entries(price).map(([key, val]) => {
+               return `${val} ${key}, `
            })}
         </span>
     )

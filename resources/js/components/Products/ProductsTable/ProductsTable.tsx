@@ -54,12 +54,20 @@ const ProductsTable: React.FC = () => {
 
     const expandRowTable = [
         {
+            dataField: 'id',
+            text: 'Артикул'
+        },
+        {
             dataField: 'aboutRu',
             text: 'Описание'
         },
         {
+            dataField: 'weightBrutto',
+            text: 'Брутто'
+        },
+        {
             dataField: 'weightNetto',
-            text: 'Вес нетто'
+            text: 'Нетто'
         }
     ]
 
@@ -87,10 +95,10 @@ const ProductsTable: React.FC = () => {
             sort: true
         },
         {
-            dataField: 'updateAt',
+            dataField: 'updatedAt',
             text: 'Обновление',
             sort: true,
-            formatter: (updateAt) => timeConverter(updateAt)
+            formatter: timeConverter
         }
     ]
 

@@ -1,15 +1,17 @@
 // React
-import React from 'react';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
-import SvgCatalog from '../../UI/iconComponents/Catalog';
-import SvgClose from '../../UI/iconComponents/Close';
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 
 // Actions
-import {createProvider} from '../../../store/actions/providers';
+import {createProvider} from '../../../store/actions/providers'
+import {fetchCountries} from '../../../store/actions/countries'
+import {ICountriesRootState, ICountry} from '../../Сountries/ICountries'
+import {fetchCatalogs} from '../../../store/actions/catalogs'
+import {ICatalog, ICatalogsRootState} from '../../Catalogs/ICatalogs'
 
 interface ICreateProviderData {
     name: string
@@ -25,196 +27,190 @@ interface ICreateProviderData {
     beneficiaryAddress: string
     beneficiaryBankName: string
     beneficiaryBankCode: string
+    beneficiarySwiftAddress: string
 }
 
-const ProviderForm: React.FC<InjectedFormProps> = (props) => {
-    const {handleSubmit, pristine, submitting} = props;
+const ProviderForm: React.FC = () => {
+    const {
+        register, handleSubmit
+    } = useForm<ICreateProviderData>()
 
-    const dispatch = useDispatch();
-    const history = useHistory();
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    const providerFormSubmitHandler = (formValues: ICreateProviderData) => {
-        dispatch(createProvider(formValues));
-        history.push('/providers');
-    };
+    const {countries} = useSelector(
+        (state: ICountriesRootState) => ({
+            countries: state.countriesState.countries
+        }))
+
+    const {catalogs} = useSelector(
+        (state: ICatalogsRootState) => ({
+            catalogs: state.catalogsState.catalogs
+        }))
+
+    useEffect(() => {
+        dispatch(fetchCountries())
+        dispatch(fetchCatalogs())
+    }, [dispatch])
+
+    const providerFormSubmitHandler =
+        handleSubmit((formValues: ICreateProviderData) => {
+            dispatch(createProvider(formValues))
+            history.push('/providers')
+        })
 
     return (
         <div className='card'>
             <div className="card-body">
-                <form onSubmit={handleSubmit(
-                    (formValues: ICreateProviderData) =>
-                        providerFormSubmitHandler(formValues))}>
+                <form onSubmit={providerFormSubmitHandler}>
                     <div className='mb-3 row'>
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='name'>
                                 Укажите поставщика
                             </label>
-                            <Field
-                                name="name"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Введите название для системы"
-                            />
+                            <input name="name" className='col-lg-10'
+                                   ref={register}
+                                   type="text"
+                                   placeholder="Введите название для системы"/>
                         </div>
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='nameCompany'>
                                 Укажите название компании
                             </label>
-                            <Field
-                                name="nameCompany"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Введите название"
-                            />
+                            <input name="nameCompany" type="text"
+                                   ref={register}
+                                   className='col-lg-10'
+                                   placeholder="Введите название"/>
                         </div>
 
-                        <div className="col-lg-12 mt-4 mb-1">
+                        <div className="col-lg-12 mt-4 mb-3">
                             <h2>Общая информация</h2>
                         </div>
 
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='email'>
                                 Укажите почту
                             </label>
-                            <Field
-                                name="email"
-                                component="input"
-                                type="text"
-                                className='col-lg-10 mb-2'
-                                placeholder="Введите почту"
-                            />
+                            <input name="email" className='col-lg-10 mb-2'
+                                   ref={register}
+                                   type="email" placeholder="Введите почту"/>
 
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='phone'>
                                 Укажите телефон
                             </label>
-                            <Field
-                                name="phone"
-                                component="input"
-                                type="text"
-                                className='col-lg-10 mb-2'
-                                placeholder="Введите номер телефона"
-                            />
+                            <input name="phone" ref={register}
+                                   placeholder="Введите номер телефона"
+                                   type="tel" className='col-lg-10 mb-2'/>
 
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='countryId'>
                                 Выберите страну
                             </label>
-                            <Field
-                                name="countryId"
-                                component="select"
-                                className='col-lg-10 mb-2'
-                            >
-                                <option disabled selected>Страна</option>
-                                <option value="1">Китай</option>
-                                <option value="2">Россия</option>
-                            </Field>
+                            <select name="countryId"
+                                    ref={register}
+                                    className='col-lg-10 mb-2'>
+                                <option disabled defaultValue=''>Страна</option>
+                                {countries.map((country: ICountry) => {
+                                    return (<option
+                                        key={country.id}
+                                        value={country.id}>
+                                        {country.name}</option>)
+                                })}
+                            </select>
                         </div>
 
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='website'>
                                 Укажите адрес сайта
                             </label>
-                            <Field
-                                name="website"
-                                component="input"
-                                type="text"
-                                className='col-lg-10 mb-2'
-                                placeholder="Введите адрес сайта"
-                            />
+                            <input name="website" ref={register}
+                                   placeholder="Введите адрес сайта"
+                                   type="text" className='col-lg-10 mb-2'/>
 
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='wechat'>
                                 Укажите Wechat
                             </label>
-                            <Field
-                                name="wechat"
-                                component="input"
-                                type="text"
-                                className='col-lg-10 mb-2'
-                                placeholder="Wechat"
-                            />
+                            <input name="wechat" ref={register}
+                                   className='col-lg-10 mb-2'
+                                   type="text" placeholder="Wechat"/>
                         </div>
 
-                        <div className="col-lg-12 mt-4 mb-1">
+                        <div className="col-lg-12 mt-4 mb-3">
                             <h2>Реквизиты</h2>
                         </div>
 
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='beneficiaryName'>
                                 Beneficiary Name
                             </label>
-                            <Field
-                                name="beneficiaryName"
-                                component="input"
-                                type="text"
-                                className='col-lg-10 mb-2'
-                                placeholder="Beneficiary name"
-                            />
+                            <input name="beneficiaryName"
+                                   placeholder="Beneficiary name"
+                                   ref={register}
+                                   type="text" className='col-lg-10 mb-2'/>
 
-                            <label className='w-100'>
+                            <label className='w-100'
+                                   htmlFor='beneficiaryAccountName'>
                                 Beneficiary Account Name
                             </label>
-                            <Field
+                            <input
                                 name="beneficiaryAccountName"
-                                component="input"
-                                type="text"
+                                type="text" ref={register}
                                 className='col-lg-10 mb-2'
                                 placeholder="Beneficiary Account Name"
                             />
 
-                            <label className='w-100'>
+                            <label className='w-100'
+                                   htmlFor='beneficiaryBankAddress'>
                                 Beneficiary Bank Address
                             </label>
-                            <Field
+                            <input
                                 name="beneficiaryBankAddress"
-                                component="input"
-                                type="text"
+                                type="text" ref={register}
                                 className='col-lg-10 mb-2'
                                 placeholder="Beneficiary Bank Address"
                             />
 
-                            <label className='w-100'>
+                            <label className='w-100'
+                                   htmlFor='beneficiarySwiftAddress'>
                                 SWIFT Address
                             </label>
-                            <Field
+                            <input
                                 name="beneficiarySwiftAddress"
-                                component="input"
-                                type="text"
+                                type="text" ref={register}
                                 className='col-lg-10 mb-2'
                                 placeholder="SWIFT Address"
                             />
                         </div>
 
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100'
+                                   htmlFor='beneficiaryAddress'>
                                 Address
                             </label>
-                            <Field
+                            <input
                                 name="beneficiaryAddress"
-                                component="input"
-                                type="text"
+                                type="text" ref={register}
                                 className='col-lg-10 mb-2'
                                 placeholder="Address"
                             />
 
-                            <label className='w-100'>
+                            <label className='w-100'
+                                   htmlFor='beneficiaryBankName'>
                                 Beneficiary Bank Name
                             </label>
-                            <Field
+                            <input
                                 name="beneficiaryBankName"
-                                component="input"
-                                type="text"
+                                type="text" ref={register}
                                 className='col-lg-10 mb-2'
                                 placeholder="Beneficiary Bank Name"
                             />
 
-                            <label className='w-100'>
+                            <label className='w-100'
+                                   htmlFor='beneficiaryBankCode'>
                                 Beneficiary Bank Code
                             </label>
-                            <Field
+                            <input
                                 name="beneficiaryBankCode"
-                                component="input"
-                                type="text"
+                                type="text" ref={register}
                                 className='col-lg-10 mb-2'
                                 placeholder="Beneficiary Bank Code"
                             />
@@ -222,43 +218,30 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
 
                         <div className="col-lg-12 mt-4 mb-1">
                             <h2>Каталоги</h2>
-
-
-                            <div className="card border mb-3">
-                                <div className="card-body">
-
-                                    <div className="row">
-                                        <div className="col-lg-1">
-                                            <SvgCatalog/>
-                                        </div>
-                                        <div className="col-lg-10 pt-1">
-                                            braslux - светотехника
-                                        </div>
-                                        <div className="col-lg-1 pt-1">
-                                            <SvgClose/>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
                         </div>
 
                         <div className="col-lg-6">
                             <label className='w-100'>
-                                Выберите поставщика
+                                Выберите каталог
                             </label>
-                            <Field
+                            <select
                                 name="nameEn"
-                                component="select"
+                                ref={register}
                                 className='col-lg-10 mb-3'
                             >
-                                <option disabled selected>Каталог</option>
-                                <option>Светильники</option>
-                                <option>Гайки</option>
-                            </Field>
+                                <option disabled
+                                        defaultValue=''>Каталог
+                                </option>
+                                {catalogs.map((catalog: ICatalog) => {
+                                    return (<option
+                                        key={catalog.id}
+                                        value={catalog.id}>
+                                        {catalog.name}</option>)
+                                })}
+                            </select>
                             <span className='mb-4 d-block small'>
                                     + Привязать ещё один каталог
-                                </span>
+                            </span>
                         </div>
 
                     </div>
@@ -266,22 +249,19 @@ const ProviderForm: React.FC<InjectedFormProps> = (props) => {
                     <div>
                         <button
                             onClick={() => {
-                                history.goBack();
+                                history.goBack()
                             }} className='mr-3 btn btn-light'>
                             Назад
                         </button>
                         <button className='btn btn-success'
-                                type="submit"
-                                disabled={pristine || submitting}>
+                                type="submit">
                             Сохранить
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default reduxForm({
-    form: 'ProviderFormCreate'
-})(ProviderForm);
+export default ProviderForm
