@@ -1,5 +1,8 @@
 // Types
 import {
+    CREATE_CATALOG_ERROR,
+    CREATE_CATALOG_START,
+    CREATE_CATALOG_SUCCESS,
     FETCH_CATALOGS_ERROR,
     FETCH_CATALOGS_START,
     FETCH_CATALOGS_SUCCESS,
@@ -46,6 +49,18 @@ export default function catalogsReducer(
                 ...state, loading: false, catalog: action.payload
             }
         case FETCH_CATALOG_ERROR:
+            return {
+                ...state, loading: false, error: action.payload
+            }
+        case CREATE_CATALOG_START:
+            return {
+                ...state, loading: true
+            }
+        case CREATE_CATALOG_SUCCESS:
+            return {
+                ...state, loading: false, catalog: action.payload
+            }
+        case CREATE_CATALOG_ERROR:
             return {
                 ...state, loading: false, error: action.payload
             }

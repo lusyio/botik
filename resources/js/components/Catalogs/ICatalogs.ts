@@ -1,5 +1,8 @@
 import {IProvider} from '../Providers/IProviders'
 import {
+    CREATE_CATALOG_ERROR,
+    CREATE_CATALOG_START,
+    CREATE_CATALOG_SUCCESS,
     FETCH_CATALOGS_ERROR,
     FETCH_CATALOGS_START,
     FETCH_CATALOGS_SUCCESS,
@@ -9,7 +12,7 @@ import {
 } from '../../store/actions/actionTypes'
 
 export interface ICatalog {
-    id: number | null
+    id: number
     name: string
     provider?: IProvider | {}
     catalogFile: ICatalogFile
@@ -19,7 +22,7 @@ export interface ICatalog {
 }
 
 export interface ICatalogTag {
-    key: string
+    key?: string
     value: string
 }
 
@@ -30,7 +33,7 @@ export interface ICatalogFile {
 }
 
 export interface ICatalogsState {
-    catalogs: ICatalog[] | []
+    catalogs: ICatalog[]
     catalog: ICatalog | {}
     loading: boolean
     error: any
@@ -74,6 +77,24 @@ interface IFetchCatalogError {
     loading: boolean
 }
 
+interface ICreateCatalogStart {
+    type: typeof CREATE_CATALOG_START
+    loading: boolean
+}
+
+interface ICreateCatalogSuccess {
+    type: typeof CREATE_CATALOG_SUCCESS
+    payload: ICatalog
+    loading: boolean
+}
+
+interface ICreateCatalogError {
+    type: typeof CREATE_CATALOG_ERROR
+    payload: any
+    loading: boolean
+}
+
 export type ICatalogsActionTypes =
     IFetchCatalogsStart | IFetchCatalogsSuccess | IFetchCatalogsError |
-    IFetchCatalogStart | IFetchCatalogSuccess | IFetchCatalogError
+    IFetchCatalogStart | IFetchCatalogSuccess | IFetchCatalogError |
+    ICreateCatalogStart | ICreateCatalogSuccess | ICreateCatalogError

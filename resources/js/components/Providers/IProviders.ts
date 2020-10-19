@@ -4,11 +4,14 @@ import {
     FETCH_PROVIDERS_START,
     FETCH_PROVIDERS_SUCCESS,
     FETCH_PROVIDER_SUCCESS,
-    FETCH_PROVIDER_ERROR
-} from '../../store/actions/actionTypes';
+    FETCH_PROVIDER_ERROR,
+    CREATE_PROVIDER_START,
+    CREATE_PROVIDER_SUCCESS,
+    CREATE_PROVIDER_ERROR
+} from '../../store/actions/actionTypes'
 
 export interface IProvider {
-    id: number | null
+    id: number
     name: string
     nameCompany: string
     email?: string
@@ -31,7 +34,7 @@ export interface IProvider {
 
 
 export interface IProvidersState {
-    providers: IProvider[] | []
+    providers: IProvider[]
     provider: IProvider | {}
     loading: boolean;
     error: any
@@ -75,6 +78,24 @@ interface IFetchProviderError {
     payload: any
 }
 
+interface ICreateProviderStart {
+    type: typeof CREATE_PROVIDER_START
+    loading: boolean
+}
+
+interface ICreateProviderSuccess {
+    type: typeof CREATE_PROVIDER_SUCCESS
+    loading: boolean
+    payload: IProvider
+}
+
+interface ICreateProviderError {
+    type: typeof CREATE_PROVIDER_ERROR
+    loading: boolean
+    payload: any
+}
+
 export type IProvidersActionTypes =
     IFetchProvidersStart | IFetchProvidersSuccess | IFetchProvidersError |
-    IFetchProviderStart | IFetchProviderSuccess | IFetchProviderError
+    IFetchProviderStart | IFetchProviderSuccess | IFetchProviderError |
+    ICreateProviderStart | ICreateProviderSuccess | ICreateProviderError

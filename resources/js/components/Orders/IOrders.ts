@@ -11,7 +11,7 @@ import {
 } from '../../store/actions/actionTypes';
 
 export interface IOrder {
-    id: number | null
+    id: number
     name: string
     status: string
     providerId?: number

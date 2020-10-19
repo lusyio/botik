@@ -1,98 +1,115 @@
 // React
-import React from 'react';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 
 // Actions
-import {createCatalog} from '../../../store/actions/catalogs';
+import {createCatalog} from '../../../store/actions/catalogs'
+import {fetchProviders} from '../../../store/actions/providers'
+
+// Typescript
+import {IProvider, IProvidersRootState} from '../../Providers/IProviders'
 
 interface ICreateCatalogData {
     name: string
     providerId: string
+    tags: []
     file: string
 }
 
-const CatalogForm: React.FC<InjectedFormProps> = (props) => {
-    const {handleSubmit, pristine, submitting} = props;
+const CatalogForm: React.FC = () => {
+    const {
+        register, handleSubmit
+    } = useForm<ICreateCatalogData>()
 
-    const dispatch = useDispatch();
-    const history = useHistory();
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    const catalogFormSubmitHandler = (formValues: ICreateCatalogData) => {
-        dispatch(createCatalog(formValues));
-        history.push('/catalogs');
-    };
+    const {providers} = useSelector(
+        (state: IProvidersRootState) => ({
+            providers: state.providersState.providers
+        }))
+
+    useEffect(() => {
+        dispatch(fetchProviders())
+    }, [dispatch])
+
+    const catalogFormSubmitHandler =
+        handleSubmit((formValues: ICreateCatalogData) => {
+            formValues.file = formValues.file[0]
+            formValues.tags = [formValues.tags]
+            console.log(formValues)
+            dispatch(createCatalog(formValues))
+            history.push('/catalogs')
+        })
 
     return (
         <div className='card'>
             <div className="card-body">
-                <form onSubmit={handleSubmit(
-                    (formValues: ICreateCatalogData) =>
-                        catalogFormSubmitHandler(formValues))}>
+                <form onSubmit={catalogFormSubmitHandler}>
                     <div className='mb-3 row'>
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='name'>
                                 Укажите название для каталога
                             </label>
-                            <Field
-                                name="name"
-                                component="input"
-                                type="text"
-                                className='col-lg-10 mb-3'
-                                placeholder="Введите название"
-                            />
+                            <input placeholder="Введите название" name='name'
+                                   ref={register}
+                                   className='col-lg-10 mb-3' type="text"/>
 
-                            <label className='w-100'>
+                            <label className='w-100' htmlFor='providerId'>
                                 Выберите поставщика
                             </label>
-                            <Field
-                                name="providerId"
-                                component="select"
-                                className='col-lg-10'
-                            >
-                                <option disabled selected value=''>
+                            <select className='col-lg-10'
+                                    ref={register}
+                                    name="providerId" id="providerId">
+                                <option disabled defaultValue=''>
                                     Выберите поставщика
                                 </option>
-                                <option value='1'>поставщик 1</option>
-                                <option value='2'>поставщик 2</option>
-                            </Field>
+                                {providers.map((provider: IProvider) => {
+                                    return (<option
+                                        key={provider.id}
+                                        value={provider.id}>
+                                        {provider.name}</option>)
+                                })}
+                            </select>
+
+                            <label className='w-100' htmlFor='file'>
+                                Загрузите файл каталога
+                            </label>
+                            <input multiple={false} name="file"
+                                   ref={register}
+                                   type="file" className='col-lg-10'/>
                         </div>
                         <div className="col-lg-6">
                             <label className='w-100'>
                                 Укажите теги
                             </label>
-                            <Field
-                                name="tags"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Type here"
-                            />
+                            <input
+                                name='tags' type="text" ref={register}
+                                className='col-lg-10' placeholder="Type here"/>
                         </div>
                     </div>
-
                     <div>
                         <button
                             onClick={() => {
-                                history.goBack();
+                                history.goBack()
                             }} className='mr-3 btn btn-light'>
                             Назад
                         </button>
-                        <button className='btn btn-success'
-                                type="submit"
-                                disabled={pristine || submitting}>
+                        <button
+                            className='btn btn-success'
+                            type="submit"
+                        >
                             Сохранить
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default reduxForm({
-    form: 'CatalogFormCreate'
-})(CatalogForm);
+export default CatalogForm

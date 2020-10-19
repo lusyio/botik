@@ -1,14 +1,15 @@
 // React
-import React from 'react';
-import SvgSearch from '../../UI/iconComponents/Search';
+import React, {useEffect} from 'react'
 
 // Third-party
-import {Field, InjectedFormProps, reduxForm} from 'redux-form';
-import {useDispatch} from 'react-redux';
-import {useHistory} from 'react-router-dom';
+import {useDispatch, useSelector} from 'react-redux'
+import {useHistory} from 'react-router-dom'
+import {useForm} from 'react-hook-form'
 
 // Actions
-import {createProduct} from '../../../store/actions/products';
+import {createProduct} from '../../../store/actions/products'
+import {fetchCatalogs} from '../../../store/actions/catalogs'
+import {ICatalog, ICatalogsRootState} from '../../Catalogs/ICatalogs'
 
 interface ICreateProductData {
     nameRu: string
@@ -18,85 +19,43 @@ interface ICreateProductData {
     aboutEn: string
     catalogId: number
     image: string
-    priceRub: number
-    priceUsd: number
     priceCny: number
     weightNetto: number
     weightBrutto: number
 }
 
-const ProductForm: React.FC<InjectedFormProps> = (props) => {
-    const {handleSubmit, pristine, submitting} = props;
+const ProductForm: React.FC = () => {
+    const {
+        register, handleSubmit
+    } = useForm<ICreateProductData>()
 
-    const dispatch = useDispatch();
-    const history = useHistory();
+    const dispatch = useDispatch()
+    const history = useHistory()
 
-    const productFormSubmitHandler = (formValues: ICreateProductData) => {
-        dispatch(createProduct(formValues));
-        history.push('/products');
-    };
+    const {catalogs} = useSelector(
+        (state: ICatalogsRootState) => ({
+            catalogs: state.catalogsState.catalogs
+        }))
+
+    useEffect(() => {
+        dispatch(fetchCatalogs())
+    }, [dispatch])
+
+    const productFormSubmitHandler =
+        handleSubmit((formValues: ICreateProductData) => {
+            formValues.image = formValues.image[0]
+            console.log(formValues)
+            dispatch(createProduct(formValues))
+            history.push('/products')
+        })
 
     return (
         <div className='card'>
             <div className="card-body">
-                <form onSubmit={handleSubmit(
-                    (formValues: ICreateProductData) =>
-                        productFormSubmitHandler(formValues))}>
+                <form onSubmit={productFormSubmitHandler}>
                     <div className='mb-3 row'>
                         <div className="col-lg-6">
-                            <label className='w-100'>
-                                Укажите артикул
-                            </label>
-                            <div className='row mb-3'>
-                                <div className='col-10'>
-                                    <Field
-                                        name="vendorCode"
-                                        component="input"
-                                        type="text"
-                                        className='w-100'
-                                        placeholder="Введите номер"
-                                    />
-                                </div>
-                                <div className='col-2 pl-0'>
-                                    <button
-                                        className='btn btn-search'>
-                                        <SvgSearch/>
-                                    </button>
-                                </div>
-                            </div>
-
-
-                            <label className='w-100'>
-                                Путь до изображения
-                            </label>
-                            <Field
-                                name="image"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Путь до изображения"
-                            />
-                        </div>
-                        <div className="col-lg-6">
-                            <label className='w-100'>
-                                Выберите каталог
-                            </label>
-                            <Field
-                                name="catalogId"
-                                component="select"
-                                className='col-lg-10 mb-3'
-                            >
-                                <option disabled selected value=''>
-                                    Выберите каталог
-                                </option>
-                                <option value='3'>Светильники</option>
-                                <option value='4'>Гайки</option>
-                            </Field>
-                        </div>
-                    </div>
-                    <div className='mb-3 row'>
-                        <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label htmlFor='nameRu' className='w-100'>
                                 Укажите название товара
                                 <span className="float-right
                                     text-main
@@ -105,16 +64,12 @@ const ProductForm: React.FC<InjectedFormProps> = (props) => {
                                     RU
                                 </span>
                             </label>
-                            <Field
-                                name="nameRu"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Введите название"
-                            />
+                            <input name="nameRu" className='col-lg-10'
+                                   ref={register}
+                                   type="text" placeholder="Введите название"/>
                         </div>
                         <div className="col-lg-6">
-                            <label className='w-100'>
+                            <label htmlFor='nameEn' className='w-100'>
                                 Product name
                                 <span className="float-right
                                     text-main
@@ -123,166 +78,149 @@ const ProductForm: React.FC<InjectedFormProps> = (props) => {
                                     ENG
                                 </span>
                             </label>
-                            <Field
-                                name="nameEn"
-                                component="input"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Type here"
-                            />
+                            <input name="nameEn" className='col-lg-10'
+                                   ref={register}
+                                   type="text" placeholder="Type here"/>
                         </div>
                     </div>
                     <div className='mb-3 row'>
                         <div className="col-lg-6">
-                            <label>Описание товара</label>
-                            <Field
-                                name="aboutRu"
-                                component="textarea"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Введите описание"
-                            />
+                            <label htmlFor='aboutRu'>Описание товара</label>
+                            <textarea name="aboutRu" id="aboutRu"
+                                      className='col-lg-10 mb-3' rows={4}
+                                      ref={register}
+                                      placeholder="Введите описание">
+                            </textarea>
+                            <div className='row'>
+                                <div className="col-lg-12">
+                                    <label htmlFor='vendorCode'
+                                           className='w-100'>
+                                        Укажите артикул
+                                    </label>
+                                    <input className='col-lg-10 mb-3'
+                                           name="vendorCode"
+                                           ref={register}
+                                           type="text"
+                                           placeholder="Введите номер"/>
+                                    <label htmlFor='catalogId'
+                                           className='w-100'>
+                                        Выберите каталог
+                                    </label>
+                                    <select name="catalogId" ref={register}
+                                            className='col-lg-10 mb-3'
+                                            id="catalogId">
+                                        <option disabled defaultValue=''>
+                                            Выберите каталог
+                                        </option>
+                                        {catalogs.map((catalog: ICatalog) => {
+                                            return (<option
+                                                key={catalog.id}
+                                                value={catalog.id}>
+                                                {catalog.name}</option>)
+                                        })}
+                                    </select>
+                                    <label htmlFor='image' className='w-100'>
+                                        Загрузите изображение товара
+                                    </label>
+                                    <input
+                                        name="image" className='col-lg-10 mb-3'
+                                        ref={register}
+                                        type="file"
+                                        placeholder="Путь до изображения"/>
+                                </div>
+                            </div>
                         </div>
                         <div className="col-lg-6">
-                            <label>Description</label>
-                            <Field
-                                name="aboutEn"
-                                component="textarea"
-                                type="text"
-                                className='col-lg-10'
-                                placeholder="Type here"
-                            />
-                        </div>
-                    </div>
-                    <div className='row mb-3'>
-                        <div className='col-lg-6'>
-                            <label>Укажите цену</label>
-                            <div className='row'>
-                                <div className='col-10'>
-                                    <Field
-                                        name="priceCny"
-                                        component="input"
-                                        type="number"
-                                        className='w-100'
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div className='col-1 pl-0'>
-                                <span
-                                    className='priceSymbol
-                                    text-orange
-                                    font-weight-bold'>
-                                    ¥
-                                </span>
-                                </div>
-                            </div>
-
-                            <div className='row mt-3'>
-                                <div className='col-4 pr-0'>
-                                    <Field
-                                        name="priceRub"
-                                        component="input"
-                                        type="number"
-                                        className='w-100'
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div className='col-2'>
-                                    <span
-                                        className='priceSymbol
-                                    text-main
-                                    font-weight-bold'>
-                                    ₽
-                                </span>
-                                </div>
-                                <div className='col-4'>
-                                    <Field
-                                        name="priceUsd"
-                                        component="input"
-                                        type="number"
-                                        className='w-100'
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div className='col-2 pl-0'>
-                                    <span
-                                        className='priceSymbol
-                                    text-main
-                                    font-weight-bold'>
-                                    $
-                                </span>
-                                </div>
-                            </div>
-
-                        </div>
-                        <div className='col-lg-6'>
-                            <label>Укажите вес</label>
-
+                            <label htmlFor='aboutEn'>Description</label>
+                            <textarea name="aboutEn" id="aboutEn"
+                                      className='col-lg-10' rows={4}
+                                      ref={register}
+                                      placeholder="Type here">
+                                </textarea>
                             <div className='row mb-3'>
-                                <div
-                                    className='col-2 small
-                                    pt-2 font-weight-bold'
-                                >
-                                    Брутто
-                                </div>
-                                <div className='col-8'>
-                                    <Field
-                                        name="weightBrutto"
-                                        component="input"
-                                        type="number"
-                                        className='w-100'
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div className='col-2 priceSymbol
-                                    text-main font-weight-bold pl-0'>
-                                    кг
-                                </div>
-                            </div>
-                            <div className='row mb-3'>
-                                <div
-                                    className='col-2 small
-                                    pt-2 font-weight-bold'
-                                >
-                                    Нетто
-                                </div>
-                                <div className='col-8'>
-                                    <Field
-                                        name="weightNetto"
-                                        component="input"
-                                        type="number"
-                                        className='w-100'
-                                        placeholder="0"
-                                    />
-                                </div>
-                                <div className='col-2 priceSymbol
-                                    text-main font-weight-bold pl-0'>
-                                    кг
-                                </div>
-                            </div>
+                                <div className='col-lg-12 mb-3'>
+                                    <label>Укажите цену</label>
+                                    <div className='row'>
+                                        <div className='col-10'>
+                                            <input name="priceCny"
+                                                   className='w-100'
+                                                   ref={register}
+                                                   type="number"
+                                                   placeholder="0"/>
+                                        </div>
+                                        <div className='col-1 pl-0'>
+                                                <span
+                                                    className='priceSymbol
+                                                    text-orange
+                                                    font-weight-bold'>
+                                                    ¥
+                                                </span>
+                                        </div>
+                                    </div>
 
+                                </div>
+                                <div className='col-lg-12'>
+                                    <label>Укажите вес</label>
+
+                                    <div className='row mb-3'>
+                                        <div
+                                            className='col-2 small
+                                                    pt-2 font-weight-bold'>
+                                            Брутто
+                                        </div>
+                                        <div className='col-8'>
+                                            <input name="weightBrutto"
+                                                   placeholder="0"
+                                                   ref={register}
+                                                   type="number"
+                                                   className='w-100'/>
+                                        </div>
+                                        <div className='col-2 priceSymbol
+                                            text-main font-weight-bold pl-0'>
+                                            кг
+                                        </div>
+                                    </div>
+                                    <div className='row mb-3'>
+                                        <div
+                                            className='col-2 small
+                                            pt-2 font-weight-bold'
+                                        >
+                                            Нетто
+                                        </div>
+                                        <div className='col-8'>
+                                            <input name="weightNetto"
+                                                   className='w-100'
+                                                   ref={register}
+                                                   type="number"
+                                                   placeholder="0"/>
+                                        </div>
+                                        <div className='col-2 priceSymbol
+                                            text-main font-weight-bold pl-0'>
+                                            кг
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
                         </div>
-
                     </div>
                     <div>
                         <button
                             onClick={() => {
-                                history.goBack();
+                                history.goBack()
                             }} className='mr-3 btn btn-light'>
                             Назад
                         </button>
                         <button className='btn btn-success'
-                                type="submit"
-                                disabled={pristine || submitting}>
+                                type="submit">
                             Сохранить
                         </button>
                     </div>
                 </form>
             </div>
         </div>
-    );
-};
+    )
+}
 
-export default reduxForm({
-    form: 'ProductFormCreate'
-})(ProductForm);
+export default ProductForm

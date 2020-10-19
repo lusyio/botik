@@ -5,14 +5,17 @@ import {
     FETCH_CONTAINERS_SUCCESS,
     FETCH_CONTAINER_ERROR,
     FETCH_CONTAINER_START,
-    FETCH_CONTAINER_SUCCESS
+    FETCH_CONTAINER_SUCCESS,
+    CREATE_CONTAINER_ERROR,
+    CREATE_CONTAINER_SUCCESS,
+    CREATE_CONTAINER_START
 } from '../actions/actionTypes'
 
 // Typescript
 import {
     IContainersActionTypes,
     IContainersState
-} from '../../components/Containers/IContainer'
+} from '../../components/Containers/IContainers'
 
 const initialState: IContainersState = {
     containers: [],
@@ -46,6 +49,18 @@ export default function containersReducer(
                 ...state, loading: false, container: action.payload
             }
         case FETCH_CONTAINER_ERROR:
+            return {
+                ...state, loading: false, error: action.payload
+            }
+        case CREATE_CONTAINER_START:
+            return {
+                ...state, loading: true
+            }
+        case CREATE_CONTAINER_SUCCESS:
+            return {
+                ...state, loading: false, container: action.payload
+            }
+        case CREATE_CONTAINER_ERROR:
             return {
                 ...state, loading: false, error: action.payload
             }
