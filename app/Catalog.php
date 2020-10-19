@@ -46,13 +46,8 @@ class Catalog extends Model
     {
         $newRequest = [];
         foreach ($tags as $tag) {
-            $availableTag = Tag::where('name', '=', mb_strtolower($tag));
-            if ($availableTag->doesntExist()) {
-                $newTag = Tag::create(['name' => mb_strtolower($tag)]);
-                array_push($newRequest,$newTag->id);
-            } else {
-                array_push($newRequest, $availableTag->first()->id);
-            }
+            $availableTag = Tag::firstOrCreate(['name' => mb_strtolower($tag)]);
+            array_push($newRequest, $availableTag->id);
         }
         $this->tags()->sync($newRequest);
     }
