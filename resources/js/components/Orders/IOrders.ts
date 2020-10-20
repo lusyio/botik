@@ -7,8 +7,8 @@ import {
     FETCH_ORDERS_SUCCESS,
     FETCH_ORDER_ERROR,
     FETCH_ORDER_START,
-    FETCH_ORDER_SUCCESS
-} from '../../store/actions/actionTypes';
+    FETCH_ORDER_SUCCESS, FETCH_ORDER_PRODUCTS
+} from '../../store/actions/actionTypes'
 
 export interface IOrder {
     id: number
@@ -22,6 +22,7 @@ export interface IOrder {
 export interface IOrdersState {
     orders: IOrder[] | []
     order: IOrder | {}
+    orderProducts: []
     loading: boolean;
     error: any
 }
@@ -81,7 +82,14 @@ interface ICreateOrderError {
     loading: boolean
 }
 
+interface IFetchOrderProducts {
+    type: typeof FETCH_ORDER_PRODUCTS
+    payload: any
+    loading: boolean
+}
+
 export type IOrdersActionTypes =
     IFetchOrdersStart | IFetchOrdersSuccess | IFetchOrdersError |
     IFetchOrderStart | IFetchOrderSuccess | IFetchOrderError |
-    ICreateOrderStart | ICreateOrderSuccess | ICreateOrderError
+    ICreateOrderStart | ICreateOrderSuccess | ICreateOrderError |
+    IFetchOrderProducts

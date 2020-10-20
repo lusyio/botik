@@ -8,7 +8,8 @@ import {
     FETCH_ORDER_ERROR,
     CREATE_ORDER_START,
     CREATE_ORDER_SUCCESS,
-    CREATE_ORDER_ERROR
+    CREATE_ORDER_ERROR,
+    FETCH_ORDER_PRODUCTS
 } from '../actions/actionTypes'
 
 // Typescript
@@ -17,6 +18,7 @@ import {IOrdersActionTypes, IOrdersState} from '../../components/Orders/IOrders'
 const initialState: IOrdersState = {
     orders: [],
     order: {},
+    orderProducts: [],
     loading: true,
     error: null
 }
@@ -60,6 +62,10 @@ export default function ordersReducer(
         case CREATE_ORDER_ERROR:
             return {
                 ...state, loading: false, error: action.payload
+            }
+        case FETCH_ORDER_PRODUCTS:
+            return {
+                ...state, loading: false, orderProducts: action.payload
             }
         default:
             return state

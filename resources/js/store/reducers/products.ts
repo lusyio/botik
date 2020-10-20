@@ -8,7 +8,10 @@ import {
     FETCH_PRODUCT_START,
     CREATE_PRODUCT_START,
     CREATE_PRODUCT_SUCCESS,
-    CREATE_PRODUCT_ERROR
+    CREATE_PRODUCT_ERROR,
+    UPDATE_PRODUCT_START,
+    UPDATE_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_ERROR, FETCH_PRODUCT_PRICE
 } from '../actions/actionTypes'
 
 // Typescript
@@ -20,6 +23,7 @@ import {
 const initialState: IProductsState = {
     products: [],
     product: {},
+    price: {},
     loading: true,
     error: null
 }
@@ -63,6 +67,22 @@ export default function productsReducer(
         case CREATE_PRODUCT_ERROR:
             return {
                 ...state, loading: false, error: action.payload
+            }
+        case UPDATE_PRODUCT_START:
+            return {
+                ...state, loading: true
+            }
+        case UPDATE_PRODUCT_SUCCESS:
+            return {
+                ...state, loading: false, product: action.payload
+            }
+        case UPDATE_PRODUCT_ERROR:
+            return {
+                ...state, loading: false, error: action.payload
+            }
+        case FETCH_PRODUCT_PRICE:
+            return {
+                ...state, loading: false, price: action.payload.price
             }
         default:
             return state

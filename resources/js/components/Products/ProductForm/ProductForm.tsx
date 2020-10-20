@@ -7,9 +7,10 @@ import {useHistory} from 'react-router-dom'
 import {useForm} from 'react-hook-form'
 
 // Actions
-import {createProduct} from '../../../store/actions/products'
+import {createProduct, fetchProductPrice} from '../../../store/actions/products'
 import {fetchCatalogs} from '../../../store/actions/catalogs'
 import {ICatalog, ICatalogsRootState} from '../../Catalogs/ICatalogs'
+import {IProductsRootState} from '../IProducts'
 
 interface ICreateProductData {
     nameRu: string
@@ -37,6 +38,11 @@ const ProductForm: React.FC = () => {
             catalogs: state.catalogsState.catalogs
         }))
 
+    const {price} = useSelector(
+        (state: IProductsRootState) => ({
+            price: state.productsState.price
+        }))
+
     useEffect(() => {
         dispatch(fetchCatalogs())
     }, [dispatch])
@@ -47,6 +53,11 @@ const ProductForm: React.FC = () => {
             dispatch(createProduct(formValues))
             history.push('/products')
         })
+
+    const onChangePrice = (e) => {
+        const value = e.target.value
+        dispatch(fetchProductPrice(value))
+    }
 
     return (
         <div className='card'>
@@ -140,20 +151,55 @@ const ProductForm: React.FC = () => {
                                 <div className='col-lg-12 mb-3'>
                                     <label>Укажите цену</label>
                                     <div className='row'>
-                                        <div className='col-10'>
+                                        <div className='col-10 mb-3'>
                                             <input name="priceCny"
                                                    className='w-100'
                                                    ref={register}
+                                                   onChange={onChangePrice}
                                                    type="number"
                                                    placeholder="0"/>
                                         </div>
                                         <div className='col-1 pl-0'>
-                                                <span
-                                                    className='priceSymbol
-                                                    text-orange
-                                                    font-weight-bold'>
-                                                    ¥
-                                                </span>
+                                            <span
+                                                className='priceSymbol
+                                                text-orange
+                                                font-weight-bold'>
+                                                ¥
+                                            </span>
+                                        </div>
+                                        <div className='col-4'>
+                                            <input
+                                                name="priceUsd"
+                                                type="number"
+                                                value={price.usd}
+                                                className='w-100'
+                                                placeholder="0"
+                                                disabled
+                                            />
+                                        </div>
+                                        <div className='col-2 pl-0'>
+                                    <span
+                                        className='priceSymbol text-main
+                                         font-weight-bold'>
+                                    $
+                                    </span>
+                                        </div>
+                                        <div className='col-4'>
+                                            <input
+                                                name="priceRub"
+                                                type="number"
+                                                value={price.rub}
+                                                className='w-100'
+                                                placeholder="0"
+                                                disabled
+                                            />
+                                        </div>
+                                        <div className='col-2 pl-0'>
+                                    <span
+                                        className='priceSymbol text-main
+                                        font-weight-bold'>
+                                        ₽
+                                    </span>
                                         </div>
                                     </div>
 

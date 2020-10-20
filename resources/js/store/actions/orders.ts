@@ -6,10 +6,11 @@ import {
     FETCH_ORDERS_START,
     FETCH_ORDERS_SUCCESS,
     FETCH_ORDER_ERROR,
+    FETCH_ORDER_PRODUCTS,
     FETCH_ORDER_START,
     FETCH_ORDER_SUCCESS
-} from './actionTypes';
-import axios, {AxiosError} from 'axios';
+} from './actionTypes'
+import axios, {AxiosError} from 'axios'
 
 export const fetchOrders = () => async dispatch => {
     await dispatch({
@@ -35,7 +36,7 @@ export const fetchOrders = () => async dispatch => {
 
 export const fetchOrderById = (id) => async dispatch => {
     await dispatch({
-        type: FETCH_ORDER_START,
+        type: FETCH_ORDER_START
     })
 
     const url = `/api/orders/${id}`
@@ -57,7 +58,7 @@ export const fetchOrderById = (id) => async dispatch => {
 
 export const createOrder = (data) => async dispatch => {
     await dispatch({
-        type: CREATE_ORDER_START,
+        type: CREATE_ORDER_START
     })
     const url = '/api/orders'
     axios
@@ -72,6 +73,21 @@ export const createOrder = (data) => async dispatch => {
             dispatch({
                 type: CREATE_ORDER_ERROR,
                 payload: error.response
+            })
+        })
+}
+
+export const fetchProductsByVendor = (data) => async dispatch => {
+    const vendorCodesArr = data.vendorCodes.split(' ')
+    const url = `/api/orders/checkvendorcode`
+    axios
+        .post(url, {
+            vendorCodes: vendorCodesArr
+        })
+        .then((answer) => {
+            dispatch({
+                type: FETCH_ORDER_PRODUCTS,
+                payload: answer.data
             })
         })
 }

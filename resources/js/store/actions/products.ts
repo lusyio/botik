@@ -7,7 +7,10 @@ import {
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCT_ERROR,
     FETCH_PRODUCT_START,
-    FETCH_PRODUCT_SUCCESS
+    FETCH_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_ERROR,
+    UPDATE_PRODUCT_START,
+    UPDATE_PRODUCT_SUCCESS, FETCH_PRODUCT_PRICE
 } from './actionTypes'
 
 import axios, {AxiosError} from 'axios'
@@ -76,6 +79,46 @@ export const createProduct = (data) => async dispatch => {
             dispatch({
                 type: CREATE_PRODUCT_ERROR,
                 payload: error.response
+            })
+        })
+}
+
+export const updateProduct = (id, data) => async dispatch => {
+    const formData = new FormData()
+    Object.entries(data).map(([key, val]) => {
+        return formData.append(key, val)
+    })
+    await dispatch({
+        type: UPDATE_PRODUCT_START
+    })
+    const url = `/api/products/${id}`
+    axios
+        .put(url, formData)
+        .then((answer) => {
+            dispatch({
+                type: UPDATE_PRODUCT_SUCCESS,
+                payload: answer.data
+            })
+        })
+        .catch((error: AxiosError) => {
+            dispatch({
+                type: UPDATE_PRODUCT_ERROR,
+                payload: error.response
+            })
+        })
+}
+
+export const fetchProductPrice = (priceCny) => async dispatch => {
+    const data = {
+        priceCny
+    }
+    const url = '/api/products/calculateprice'
+    axios
+        .post(url, data)
+        .then((answer) => {
+            dispatch({
+                type: FETCH_PRODUCT_PRICE,
+                payload: answer.data
             })
         })
 }

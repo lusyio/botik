@@ -6,8 +6,12 @@ import {
     FETCH_PRODUCTS_START,
     FETCH_PRODUCTS_SUCCESS,
     FETCH_PRODUCT_ERROR,
+    FETCH_PRODUCT_PRICE,
     FETCH_PRODUCT_START,
-    FETCH_PRODUCT_SUCCESS
+    FETCH_PRODUCT_SUCCESS,
+    UPDATE_PRODUCT_ERROR,
+    UPDATE_PRODUCT_START,
+    UPDATE_PRODUCT_SUCCESS
 } from '../../store/actions/actionTypes'
 
 export interface IProduct {
@@ -17,6 +21,7 @@ export interface IProduct {
     aboutRu?: string
     aboutEn?: string
     catalogId?: number
+    vendorCode: string
     image: string
     price: IProductPrice
     weightNetto: number
@@ -26,14 +31,15 @@ export interface IProduct {
 }
 
 export interface IProductPrice {
-    priceRub?: number
-    priceUsd?: number
-    priceCny: number
+    rub?: number
+    usd?: number
+    cny: number
 }
 
 export interface IProductsState {
     products: IProduct[] | []
     product: IProduct | {}
+    price: IProductPrice | {}
     loading: boolean
     error: any
 }
@@ -93,7 +99,32 @@ interface ICreateProductError {
     loading: boolean
 }
 
+interface IUpdateProductStart {
+    type: typeof UPDATE_PRODUCT_START
+    loading: boolean
+}
+
+interface IUpdateProductSuccess {
+    type: typeof UPDATE_PRODUCT_SUCCESS
+    payload: IProduct
+    loading: boolean
+}
+
+interface IUpdateProductError {
+    type: typeof UPDATE_PRODUCT_ERROR
+    payload: any
+    loading: boolean
+}
+
+interface IFetchProductPrice {
+    type: typeof FETCH_PRODUCT_PRICE
+    payload: any
+    loading: boolean
+}
+
 export type IProductsActionTypes =
     IFetchProductsStart | IFetchProductsSuccess | IFetchProductsError |
     IFetchProductStart | IFetchProductSuccess | IFetchProductError |
-    ICreateProductStart | ICreateProductSuccess | ICreateProductError
+    ICreateProductStart | ICreateProductSuccess | ICreateProductError |
+    IUpdateProductStart | IUpdateProductSuccess | IUpdateProductError |
+    IFetchProductPrice
