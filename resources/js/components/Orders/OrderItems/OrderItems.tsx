@@ -3,6 +3,9 @@ import React from 'react'
 import {IProduct} from '../../Products/IProducts'
 import {moneyFormatter} from '../../../utils'
 
+import classes from '../OrderItems/OrderItems.module.css'
+import SvgClose from '../../UI/iconComponents/Close'
+
 const OrderItems: React.FC = ({items, onChange}: any) => {
     if (!items.length) {
         return null
@@ -11,24 +14,28 @@ const OrderItems: React.FC = ({items, onChange}: any) => {
         items.map((item: IProduct) => {
             return (
                 <div key={item.id + item.nameRu}
-                     className='row mb-2'>
-                    <div className="col-2">
+                     className={classes.products + ' row mb-2'}>
+                    <div className={classes.productImg + ' col-2'}>
                         <img src={item.image ||
                         '/imgs/placeholder-product-image.png'}
                              alt={item.nameRu}/>
                     </div>
                     <div className="col-4">
-                        {item.nameRu}
+                        <span className={classes.productName}>
+                            {item.nameRu}
+                        </span>
                     </div>
                     <div className="col-2">
                         <input data-id={item.id} min={1}
-                               onChange={onChange} type="number"/>
+                               className={classes.productCount + ' pr-1'}
+                               onChange={onChange}
+                               type="number"/>
                     </div>
-                    <div className="col-3">
+                    <div className={classes.productPrices + ' col-3'}>
                         {moneyFormatter(item.price)}
                     </div>
                     <div className="col-1">
-                        del
+                        <SvgClose className='mt-3'/>
                     </div>
                 </div>
             )

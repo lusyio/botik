@@ -26,7 +26,7 @@ class Product extends Model
         if (!is_null($this->image)) {
             $this->deleteImage();
         }
-        $path = Storage::putFileAs(Product::IMAGE_DIRECTORY, $image, $this->id . '_' . $this->id . $image->getClientOriginalExtension());
+        $path = Storage::putFileAs(Product::IMAGE_DIRECTORY, $image, $this->id . '_' . $this->id . '.' . $image->getClientOriginalExtension());
         $this->image = $path;
         $this->save();
     }
