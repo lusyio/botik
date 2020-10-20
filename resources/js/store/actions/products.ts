@@ -108,17 +108,19 @@ export const updateProduct = (id, data) => async dispatch => {
         })
 }
 
-export const fetchProductPrice = (priceCny) => async dispatch => {
-    const data = {
-        priceCny
+export const fetchProductPrice = (priceCny) =>
+    async dispatch => {
+        const data = {
+            priceCny
+        }
+        const url = '/api/products/calculateprice'
+        axios
+            .post(url, data)
+            .then((answer) => {
+                    dispatch({
+                        type: FETCH_PRODUCT_PRICE,
+                        payload: answer.data,
+                    })
+                }
+            )
     }
-    const url = '/api/products/calculateprice'
-    axios
-        .post(url, data)
-        .then((answer) => {
-            dispatch({
-                type: FETCH_PRODUCT_PRICE,
-                payload: answer.data
-            })
-        })
-}

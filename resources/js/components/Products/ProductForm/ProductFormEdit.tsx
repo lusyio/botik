@@ -6,7 +6,11 @@ import {useDispatch, useSelector} from 'react-redux'
 import {useForm} from 'react-hook-form'
 
 // Actions
-import {fetchProductPrice, updateProduct} from '../../../store/actions/products'
+import {
+    createProduct,
+    fetchProductPrice,
+    updateProduct
+} from '../../../store/actions/products'
 import {IProduct, IProductsRootState} from '../IProducts'
 
 interface IEditProductData {
@@ -27,12 +31,12 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
         register, handleSubmit
     } = useForm<IEditProductData>({
             defaultValues: {
-                nameRu: product.nameRu,
+                nameRu: product.nameRu || product.name,
                 nameEn: product.nameEn,
-                vendorCode: product.vendorCode,
-                aboutRu: product.aboutRu,
+                vendorCode: product.vendorCode || product.articul,
+                aboutRu: product.aboutRu || product.text,
                 aboutEn: product.aboutEn,
-                priceCny: product.price.cny,
+                priceCny: product.price.cny || product.price,
                 priceRub: product.price.rub,
                 priceUsd: product.price.usd,
                 weightNetto: product.weightNetto,
@@ -46,7 +50,11 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
     const productFormSubmitHandler =
         handleSubmit((formValues: IEditProductData) => {
             formValues.image = formValues.image[0]
-            dispatch(updateProduct(product.id, formValues))
+            if (product.id) {
+                dispatch(updateProduct(product.id, formValues))
+            } else {
+                dispatch(createProduct(formValues))
+            }
         })
 
     const {price} = useSelector(
@@ -113,12 +121,13 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
                             <label>Укажите цену</label>
                             <div className='row mb-3'>
                                 <div className='col-10'>
-                                    <input name="priceCny"
-                                           className='w-100'
-                                           ref={register}
-                                           type="number"
-                                           onChange={onChangePrice}
-                                           placeholder="0"/>
+                                    <input
+                                        name="priceCny"
+                                        className='w-100'
+                                        ref={register}
+                                        type="number"
+                                        onChange={onChangePrice}
+                                        placeholder="0"/>
                                 </div>
                                 <div className='col-1 pl-0'>
                                     <span

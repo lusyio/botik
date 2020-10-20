@@ -118,6 +118,7 @@ interface IUpdateProductError {
 
 interface IFetchProductPrice {
     type: typeof FETCH_PRODUCT_PRICE
+    vendorCode: string
     payload: any
     loading: boolean
 }

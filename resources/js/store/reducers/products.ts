@@ -82,7 +82,7 @@ export default function productsReducer(
             }
         case FETCH_PRODUCT_PRICE:
             return {
-                ...state, loading: false, price: action.payload.price
+                ...state, price: action.payload.price
             }
         default:
             return state

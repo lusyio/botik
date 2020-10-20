@@ -115,7 +115,7 @@ const OrderForm: React.FC = () => {
                                     </option>
                                     {providers.map((provider: IProvider) => {
                                         return (<option
-                                            key={provider.id}
+                                            key={provider.id + provider.name}
                                             value={provider.id}>
                                             {provider.name}</option>)
                                     })}
@@ -140,7 +140,6 @@ const OrderForm: React.FC = () => {
 
                             </div>
                         </div>
-
 
                     </div>
                 </div>
@@ -195,7 +194,8 @@ const OrderForm: React.FC = () => {
                 </div>
             </form>
             {orderProducts.map((product: IProduct) => {
-                return <ProductFormEdit key={product.id} product={product}/>
+                return <ProductFormEdit
+                    key={product.id || product.number} product={product}/>
             })}
         </>
     )
