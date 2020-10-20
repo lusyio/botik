@@ -18,6 +18,7 @@ interface ICreateOrderData {
     name: string
     providerId: string
     items: []
+    cargo: number
 }
 
 const OrderForm: React.FC = () => {
@@ -46,25 +47,31 @@ const OrderForm: React.FC = () => {
         dispatch(fetchProducts())
     }, [dispatch])
 
-    const onChangeQtyHandler = (e) => {
-        const itemId = +e.target.dataset.id
+    const onChangeQtyHandler = (e, itemId: number) => {
         const value = +e.target.value
         // @ts-ignore
         setData(oldData => [...oldData, oldData.find(({id}) =>
             id === itemId).quantity = value])
     }
 
+    const onDeleteHandler = (itemId: number) => {
+        const newData = data.filter(el => el.id !== itemId)
+        const newItems = items.filter(el => el.id !== itemId)
+        setData(newData)
+        setItems(newItems)
+    }
+
     const onChangeHandler = (e) => {
         const product = JSON.parse(e.target.value)
         // @ts-ignore
         setData(oldData => [...oldData, {id: product.id, quantity: 1}])
-        console.log(data)
         setItems(oldItems => [...oldItems, product])
     }
 
     const orderFormSubmitHandler =
         handleSubmit((formValues: ICreateOrderData) => {
             formValues.items = data.filter(el => typeof el === 'object')
+            formValues.cargo = formValues.cargo ? 1 : 0
             dispatch(createOrder(formValues))
             history.push('/orders')
         })
@@ -110,13 +117,14 @@ const OrderForm: React.FC = () => {
                             <div className="custom-control custom-switch">
                                 <input
                                     type="checkbox"
+                                    name='cargo' ref={register}
                                     className="custom-control-input"
                                     id="customSwitch1"
                                 />
-                                    <label
-                                        className="custom-control-label"
-                                        htmlFor="customSwitch1">
-                                    </label>
+                                <label
+                                    className="custom-control-label"
+                                    htmlFor="cargo">
+                                </label>
                             </div>
 
                         </div>
@@ -147,7 +155,8 @@ const OrderForm: React.FC = () => {
                             }
                         })}
                     </select>
-                    <OrderItems onChange={onChangeQtyHandler} items={items}/>
+                    <OrderItems onDelete={onDeleteHandler}
+                                onChange={onChangeQtyHandler} items={items}/>
                     <div className="text-right mb-3">
                         Итоговая стоимость
                         <span

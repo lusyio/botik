@@ -6,7 +6,7 @@ import {moneyFormatter} from '../../../utils'
 import classes from '../OrderItems/OrderItems.module.css'
 import SvgClose from '../../UI/iconComponents/Close'
 
-const OrderItems: React.FC = ({items, onChange}: any) => {
+const OrderItems: React.FC = ({items, onChange, onDelete}: any) => {
     if (!items.length) {
         return null
     }
@@ -28,14 +28,15 @@ const OrderItems: React.FC = ({items, onChange}: any) => {
                     <div className="col-2">
                         <input data-id={item.id} min={1}
                                className={classes.productCount + ' pr-1'}
-                               onChange={onChange}
+                               onChange={(e) => onChange(e, item.id)}
                                type="number"/>
                     </div>
                     <div className={classes.productPrices + ' col-3'}>
                         {moneyFormatter(item.price)}
                     </div>
                     <div className="col-1">
-                        <SvgClose className='mt-3'/>
+                        <SvgClose onClick={() => onDelete(item.id)}
+                                  className='mt-3'/>
                     </div>
                 </div>
             )
