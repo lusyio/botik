@@ -9,7 +9,7 @@ class Catalog extends Model
 {
     use TranslateToSnakeCase;
 
-    public const FILE_DIRECTORY = '/public/catalogs-files';
+    public const FILE_DIRECTORY = '/catalogs-files';
 
     protected $fillable = ['name', 'provider_id'];
 
@@ -28,7 +28,7 @@ class Catalog extends Model
         if (!is_null($this->file)) {
             $this->deleteFile();
         }
-        $path = Storage::putFileAs(Catalog::FILE_DIRECTORY, $file, $this->id . '_' . $this->id . '.' . $file->extension());
+        $path = Storage::disk('main')->putFileAs(Catalog::FILE_DIRECTORY, $file, $this->id . '_' . $this->id . '.' . $file->extension());
         $this->file = $path;
         $this->save();
     }

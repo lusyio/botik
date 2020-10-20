@@ -9,7 +9,7 @@ class Product extends Model
 {
     use TranslateToSnakeCase;
 
-    public const IMAGE_DIRECTORY = '/public/product-images';
+    public const IMAGE_DIRECTORY = '/product-images';
 
     public function catalog()
     {
@@ -26,7 +26,7 @@ class Product extends Model
         if (!is_null($this->image)) {
             $this->deleteImage();
         }
-        $path = Storage::putFileAs(Product::IMAGE_DIRECTORY, $image, $this->id . '_' . $this->id . '.' . $image->getClientOriginalExtension());
+        $path = Storage::disk('main')->putFileAs(Product::IMAGE_DIRECTORY, $image, $this->id . '_' . $this->id . '.' . $image->getClientOriginalExtension());
         $this->image = $path;
         $this->save();
     }
