@@ -28,7 +28,7 @@ class Catalog extends Model
         if (!is_null($this->file)) {
             $this->deleteFile();
         }
-        $path = Storage::putFileAs(Catalog::FILE_DIRECTORY, $file, $this->id . '_' . $this->id . $file->extension());
+        $path = Storage::putFileAs(Catalog::FILE_DIRECTORY, $file, $this->id . '_' . $this->id . '.' . $file->extension());
         $this->file = $path;
         $this->save();
     }
