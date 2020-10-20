@@ -22,7 +22,7 @@ const OrderItems: React.FC = ({items, onChange}: any) => {
                     </div>
                     <div className="col-2">
                         <input data-id={item.id} min={1}
-                               onChange={onChange} value={1} type="number"/>
+                               onChange={onChange} type="number"/>
                     </div>
                     <div className="col-3">
                         {moneyFormatter(item.price)}
