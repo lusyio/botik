@@ -9,6 +9,7 @@ import {
     CREATE_PROVIDER_SUCCESS,
     CREATE_PROVIDER_ERROR
 } from '../../store/actions/actionTypes'
+import {ICountry} from '../Сountries/ICountries'
 
 export interface IProvider {
     id: number
@@ -18,7 +19,7 @@ export interface IProvider {
     website?: string
     phone?: string
     wechat?: string
-    country?: any // код страны(Чуть позже здесь будет объект Страна)
+    country: ICountry | null // код страны(Чуть позже здесь будет объект Страна)
     beneficiaryName: string
     beneficiaryAccountName: string
     beneficiaryBankAddress: string
