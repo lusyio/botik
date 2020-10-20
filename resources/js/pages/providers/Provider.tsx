@@ -6,7 +6,7 @@ import {NavLink, useParams} from 'react-router-dom'
 import {useDispatch, useSelector} from 'react-redux'
 
 // Css
-import classes from './Providers.module.css';
+import classes from './Providers.module.css'
 
 // Actions
 import {fetchProviderById} from '../../store/actions/providers'
@@ -46,28 +46,28 @@ const Provider: React.FC<IProvider> = () => {
     }
     return (
         <div>
-        <div className="card mb-3">
-            <div className="card-body-info">
+            <div className="card mb-3">
+                <div className="card-body-info">
                        <span
-                            className="infoBlockHeaders mr-3">
+                           className="infoBlockHeaders mr-3">
                            Название
                        </span>
-                        <span className="infoBlockText mr-5">
+                    <span className="infoBlockText mr-5">
                                     {'name' in provider
                                         ? provider.name
                                         : ''}
                         </span>
-                        <span
-                             className="infoBlockHeaders mr-3">
+                    <span
+                        className="infoBlockHeaders mr-3">
                             Название компании
                         </span>
-                        <span className="infoBlockText">
+                    <span className="infoBlockText">
                                     {'nameCompany' in provider
                                         ? provider.nameCompany
                                         : ''}
                         </span>
+                </div>
             </div>
-        </div>
 
             <div className="row">
 
@@ -100,6 +100,7 @@ const Provider: React.FC<IProvider> = () => {
                                         : ''}</p>
                                     <p>{'country' in provider
                                         ? provider.country
+                                            ? provider.country.name : ''
                                         : ''}</p>
                                 </div>
                             </div>
