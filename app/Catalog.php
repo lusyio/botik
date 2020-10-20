@@ -9,7 +9,7 @@ class Catalog extends Model
 {
     use TranslateToSnakeCase;
 
-    public const FILE_DIRECTORY = '/catalogs-files';
+    public const FILE_DIRECTORY = '/storage/catalogs-files';
 
     protected $fillable = ['name', 'provider_id'];
 

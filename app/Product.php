@@ -9,7 +9,7 @@ class Product extends Model
 {
     use TranslateToSnakeCase;
 
-    public const IMAGE_DIRECTORY = '/product-images';
+    public const IMAGE_DIRECTORY = '/storage/product-images';
 
     public function catalog()
     {

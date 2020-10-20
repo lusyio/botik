@@ -65,7 +65,7 @@ const Product: React.FC = () => {
                             <div className="col-lg-5">
                                 <img
                                     src={'image' in product
-                                        ? product.image
+                                        ? '/' + product.image
                                         : placeholder}
                                     alt={'nameRu' in product
                                         ? product.nameRu
