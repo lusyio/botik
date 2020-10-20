@@ -123,7 +123,7 @@ const OrderForm: React.FC = () => {
                                 />
                                 <label
                                     className="custom-control-label"
-                                    htmlFor="cargo">
+                                    htmlFor="customSwitch1">
                                 </label>
                             </div>
 
