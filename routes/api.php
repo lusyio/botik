@@ -55,3 +55,4 @@ Route::post('orders', 'OrderController@store');
 Route::get('orders/{order}', 'OrderController@show');
 Route::put('orders/{order}', 'OrderController@update');
 Route::delete('orders/{order}', 'OrderController@destroy');
+Route::post('orders/checkvendorcode', 'OrderController@checkVendorCode');

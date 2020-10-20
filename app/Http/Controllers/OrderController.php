@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\AutolongRuProduct;
 use App\Order;
 use App\OrderPaymentStatus;
 use App\OrderStatus;
@@ -106,5 +107,28 @@ class OrderController extends Controller
         $order->orderItems()->delete();
         $order->delete();
         return response()->json([], 204);
+    }
+
+    protected function vendorCodesCreateValidator(array $data)
+    {
+        $messages = [
+            'required' => 'Поле :attribute обязательно для заполнения.',
+        ];
+
+        $names = [
+            'vendorCodes' => 'артикулы',
+        ];
+
+        return Validator::make($data, [
+            'vendorCodes' => ['required'],
+        ], $messages, $names);
+    }
+
+    public function checkVendorCode(Request $request, AutolongRuProduct $autolongRuProduct)
+    {
+        $this->vendorCodesCreateValidator($request->all())->validate();
+        $vendorCodes = $request->input('vendorCodes');
+        $availableProducts = $autolongRuProduct->checkVendorCodesInDB($vendorCodes);
+        return response()->json($availableProducts, 200);
     }
 }
