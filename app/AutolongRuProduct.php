@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Http\Resources\ProductResource;
 use Illuminate\Database\Eloquent\Model;
 
 class AutolongRuProduct extends Model
@@ -17,7 +18,7 @@ class AutolongRuProduct extends Model
             if (!is_null($product) && $product != '') {
                 array_push($avilableProducts, $product);
             } elseif($usProducts->exists()) {
-                array_push($avilableProducts, $usProducts->first());
+                array_push($avilableProducts, new ProductResource($usProducts->first()));
             }
         }
         return $avilableProducts;

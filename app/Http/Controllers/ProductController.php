@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use App\ExchangeRate;
 use Illuminate\Http\Request;
-use App\Http\Resources\ProductResource;
+use App\Http\Resources\ProductWithRelationshipsResource;
 use App\Product;
 use Illuminate\Support\Facades\Validator;
 
@@ -41,7 +41,7 @@ class ProductController extends Controller
      */
     public function index()
     {
-        return response()->json(ProductResource::collection(Product::all(), 200));
+        return response()->json(ProductWithRelationshipsResource::collection(Product::all(), 200));
     }
 
     /**
@@ -68,7 +68,7 @@ class ProductController extends Controller
         $product->vendor_code = $request->input('vendorCode');
         $product->save();
         $product->createOrUpdateImage($request->file('image'));
-        return response()->json(new ProductResource($product), 201);
+        return response()->json(new ProductWithRelationshipsResource($product), 201);
     }
 
     /**
@@ -79,7 +79,7 @@ class ProductController extends Controller
      */
     public function show(Product $product)
     {
-        return response()->json(new ProductResource($product), 200);
+        return response()->json(new ProductWithRelationshipsResource($product), 200);
     }
 
     /**
@@ -105,7 +105,7 @@ class ProductController extends Controller
         $product->vendor_code = $request->input('vendorCode');
         $product->save();
         $product->createOrUpdateImage($request->file('image'));
-        return response()->json(new ProductResource($product), 200);
+        return response()->json(new ProductWithRelationshipsResource($product), 200);
     }
 
     /**
