@@ -54,7 +54,7 @@ const ProductsTable: React.FC = () => {
 
     const expandRowTable = [
         {
-            dataField: 'id',
+            dataField: 'vendorCode',
             text: 'Артикул'
         },
         {

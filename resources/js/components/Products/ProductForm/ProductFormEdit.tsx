@@ -49,7 +49,11 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
 
     const productFormSubmitHandler =
         handleSubmit((formValues: IEditProductData) => {
-            formValues.image = formValues.image[0]
+            if (formValues.image) {
+                formValues.image = formValues.image[0]
+            } else {
+                formValues.image = product.image
+            }
             if (product.id) {
                 dispatch(updateProduct(product.id, formValues))
             } else {
@@ -143,6 +147,7 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
                                     <input
                                         name="priceUsd"
                                         type="number"
+                                        ref={register}
                                         value={price.usd}
                                         className='w-100'
                                         placeholder="0"
@@ -176,7 +181,11 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
                             <label htmlFor='image' className='w-100'>
                                 Загрузите изображение товара
                             </label>
-                            <img src={product.image} alt=""/>
+                            {product.image
+                                ? <img width={100} height={100}
+                                       src={product.image} alt=""/>
+                                : null
+                            }
                             <input
                                 name="image" className='col-lg-10 mb-3'
                                 ref={register}
@@ -236,7 +245,9 @@ const ProductFormEdit: React.FC<{ product: IProduct }> = ({product}) => {
                                 <div>
                                     <button className='btn btn-success'
                                             type="submit">
-                                        Добавить
+                                        {product.id
+                                            ? 'Обновить'
+                                            : 'Добавить'}
                                     </button>
                                     <button>
                                         Удалить товар

@@ -1,6 +1,6 @@
 // React
 import React, {useEffect} from 'react'
-import SvgArrowRight from '../../components/UI/iconComponents/ArrowRight';
+import SvgArrowRight from '../../components/UI/iconComponents/ArrowRight'
 
 // Third-party
 import {NavLink, useParams} from 'react-router-dom'
@@ -82,7 +82,9 @@ const Product: React.FC = () => {
                                         <p>Вес нетто:</p>
                                     </div>
                                     <div className="col-lg-7 infoBlockText">
-                                        <p>0000001</p>
+                                        <p>{'vendorCode' in product
+                                            ? product.vendorCode
+                                            : ''}</p>
                                         <p>{'price' in product
                                             ? moneyFormatter(product.price)
                                             : ''}</p>
