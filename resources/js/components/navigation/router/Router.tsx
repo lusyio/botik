@@ -22,7 +22,7 @@ const Router: React.FC<IProps> = ({routes}) => {
             {routes.map((route: IRoute) =>
                 <RouteWithSubRoutes key={route.path} {...route} />)}
             <Route exact path="/">
-                <Redirect to="/orders"/>
+                <Redirect to="/main"/>
             </Route>
         </Switch>
     )

@@ -3,7 +3,7 @@ import {combineReducers} from 'redux'
 import {reducer as formReducer} from 'redux-form'
 
 // Reducers
-import importersReducer from './importers'
+import operationsReducer from './operations'
 import productsReducer from './products'
 import providersReducer from './providers'
 import containersReducer from './containers'
@@ -12,7 +12,7 @@ import countryReducer from './countries'
 import ordersReducer from './orders'
 
 export default combineReducers({
-    importersState: importersReducer,
+    operationsState: operationsReducer,
     productsState: productsReducer,
     providersState: providersReducer,
     ordersState: ordersReducer,

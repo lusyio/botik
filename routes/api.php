@@ -13,11 +13,11 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
-Route::get('importers', 'ImporterController@index');
-Route::post('importers', 'ImporterController@store');
-Route::get('importers/{importer}', 'ImporterController@show');
-Route::put('importers/{importer}', 'ImporterController@update');
-Route::delete('importers/{importer}', 'ImporterController@destroy');
+Route::get('operations', 'OperationController@index');
+Route::post('operations', 'OperationController@store');
+Route::get('operations/{operation}', 'OperationController@show');
+Route::put('operations/{operation}', 'OperationController@update');
+Route::delete('operations/{operation}', 'OperationController@destroy');
 
 Route::get('containers', 'ContainerController@index');
 Route::post('containers', 'ContainerController@store');

@@ -1,76 +1,76 @@
 import {
-    CREATE_IMPORTER_ERROR,
-    CREATE_IMPORTER_START,
-    CREATE_IMPORTER_SUCCESS,
-    FETCH_IMPORTERS_ERROR,
-    FETCH_IMPORTERS_START,
-    FETCH_IMPORTERS_SUCCESS,
-    FETCH_IMPORTER_ERROR,
-    FETCH_IMPORTER_START,
-    FETCH_IMPORTER_SUCCESS
+    CREATE_OPERATION_ERROR,
+    CREATE_OPERATION_START,
+    CREATE_OPERATION_SUCCESS,
+    FETCH_OPERATIONS_ERROR,
+    FETCH_OPERATIONS_START,
+    FETCH_OPERATIONS_SUCCESS,
+    FETCH_OPERATION_ERROR,
+    FETCH_OPERATION_START,
+    FETCH_OPERATION_SUCCESS
 } from './actionTypes';
 import axios, {AxiosError} from 'axios';
 
-export const fetchImporters = () => async dispatch => {
+export const fetchOperations = () => async dispatch => {
     await dispatch({
-        type: FETCH_IMPORTERS_START
+        type: FETCH_OPERATIONS_START
     })
 
-    const url = '/api/importers'
+    const url = '/api/operations'
     axios
         .get(url)
         .then((answer) => {
             dispatch({
-                type: FETCH_IMPORTERS_SUCCESS,
+                type: FETCH_OPERATIONS_SUCCESS,
                 payload: answer.data
             })
         })
         .catch((error: AxiosError) => {
             dispatch({
-                type: FETCH_IMPORTERS_ERROR,
+                type: FETCH_OPERATIONS_ERROR,
                 payload: error.response
             })
         })
 }
 
-export const fetchImporterById = (id) => async dispatch => {
+export const fetchOperationById = (id) => async dispatch => {
     await dispatch({
-        type: FETCH_IMPORTER_START,
+        type: FETCH_OPERATION_START,
     })
 
-    const url = `/api/importers/${id}`
+    const url = `/api/operations/${id}`
     axios
         .get(url)
         .then((answer) => {
             dispatch({
-                type: FETCH_IMPORTER_SUCCESS,
+                type: FETCH_OPERATION_SUCCESS,
                 payload: answer.data
             })
         })
         .catch((error: AxiosError) => {
             dispatch({
-                type: FETCH_IMPORTER_ERROR,
+                type: FETCH_OPERATION_ERROR,
                 payload: error.response
             })
         })
 }
 
-export const createImporter = (data) => async dispatch => {
+export const createOperation = (data) => async dispatch => {
     await dispatch({
-        type: CREATE_IMPORTER_START,
+        type: CREATE_OPERATION_START,
     })
-    const url = '/api/importers'
+    const url = '/api/operations'
     axios
         .post(url, data)
         .then((answer) => {
             dispatch({
-                type: CREATE_IMPORTER_SUCCESS,
+                type: CREATE_OPERATION_SUCCESS,
                 payload: answer.data
             })
         })
         .catch((error: AxiosError) => {
             dispatch({
-                type: CREATE_IMPORTER_ERROR,
+                type: CREATE_OPERATION_ERROR,
                 payload: error.response
             })
         })

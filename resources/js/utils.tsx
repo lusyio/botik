@@ -11,6 +11,17 @@ export function nameToLinkFormatter(name, row, page) {
     )
 }
 
+
+export function bankIDToCardFormatter(bankID, color) {
+    return (
+        <div>
+            <div className={'bankCard bankCardColor' + (color)}>
+                {bankID}
+            </div>
+        </div>
+    )
+}
+
 export function imgFormatter(img, row, placeholder) {
     return (
         <img src={img || placeholder}

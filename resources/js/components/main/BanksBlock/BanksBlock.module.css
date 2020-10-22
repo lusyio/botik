@@ -1,0 +1,10 @@
+.bank {
+    width: 220px;
+    height: 60px;
+    margin-right: 20px;
+    margin-bottom: 15px;
+}
+
+.bankCards .bank:nth-child(4n+4) {
+    margin-right: 0px;
+}

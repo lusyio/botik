@@ -1,32 +1,28 @@
 // React
-import React, {useState} from 'react';
+import React from 'react';
+import {NavLink} from 'react-router-dom';
+import SvgSettings from '../../UI/iconComponents/Settings';
+import SvgLogout from '../../UI/iconComponents/Logout';
 
 // Styles
 import classes from './Header.module.css'
-import {useLocation} from 'react-router-dom';
 
 const Header: React.FC = () => {
-    const [pageName, setPageName]: any = useState('')
-    const location = useLocation()
-    // @todo Оптимизировать
-    setTimeout(() => {
-        return setPageName(location.state);
-    }, 0)
     return (
         <div className={classes.header}>
             <div>
-                <h1>{pageName}</h1>
+                <NavLink to="/" className="mr-3">
+                    <span className={classes.logo}>BOTIK</span>
+                </NavLink>
             </div>
             <div className="d-flex">
-                <span className={classes.HeaderBlockUserPic}>И</span>
-                <div className={classes.HeaderBlockUserNameRole}>
-                    <span className={classes.HeaderBlockUserName}>
-                        Иванов И.И.
-                    </span>
-                    <span className={classes.HeaderBlockUserRole}>
-                        Администратор
-                    </span>
-                </div>
+                <NavLink to="settings" className="mr-3">
+                    <SvgSettings/>
+                </NavLink>
+
+                <NavLink to="logout">
+                    <SvgLogout/>
+                </NavLink>
             </div>
         </div>
     );

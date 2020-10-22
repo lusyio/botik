@@ -1,0 +1,20 @@
+.mainMoneyCount p {
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+    margin-bottom: 1px;
+}
+
+.mainMoneyCount p span {
+    color: #383E42;
+    font-weight: 600;
+    font-size: 18px;
+    line-height: 22px;
+}
+
+.mainMoneyCount span {
+    color: #B3C0CF;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 17px;
+}

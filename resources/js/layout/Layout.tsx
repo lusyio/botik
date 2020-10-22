@@ -6,22 +6,16 @@ import PropTypes from 'prop-types';
 import classes from './Layout.module.css'
 
 // App
-import Sidebar from '../components/navigation/Sidebar/Sidebar';
 import Header from '../components/navigation/Header/Header';
 
 const Layout: React.FC = (props) => {
     return (
         <div className={classes.Layout}>
-            <div className="container">
-                <div className="row">
-                    <div className='col-lg-2 p-0'>
-                        <Sidebar/>
-                    </div>
-                    <main role='main' className="col-lg-10 pl-5">
-                        <Header/>
+            <div className="container mt-4">
+                <Header/>
+                <main role='main' className="pt-2">
                         {props.children}
-                    </main>
-                </div>
+                </main>
             </div>
         </div>
     );

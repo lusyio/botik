@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ImporterResource extends JsonResource
+class OperationResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -16,10 +16,10 @@ class ImporterResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'nameRu' => $this->name_ru,
-            'nameEn' => $this->name_en,
-            'address' => $this->address,
-            'phone' => $this->phone,
+            'name' => $this->name,
+            'value' => $this->value,
+            'type' => $this->type,
+            'bank_id' => $this->bank_id,
             'createdAt' => strtotime($this->created_at),
             'updatedAt' => strtotime($this->updated_at),
         ];
